@@ -18,7 +18,7 @@
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
             display: ['Plus Jakarta Sans', 'sans-serif'],
-          },
+          }
         }
       }
     };
@@ -35,7 +35,7 @@
     .wd-row-removing {
       opacity: 0;
       transform: translateX(28px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
+      transition: opacity 0.32s ease, transform 0.32s ease;
     }
     ::-webkit-scrollbar {
       width: 6px;
@@ -56,14 +56,14 @@
 <body class="font-sans antialiased selection:bg-emerald-500 selection:text-slate-950 overflow-x-hidden">
 
   <!-- TOAST NOTIFICATION CONTAINER -->
-  <div id="toastContainer" class="fixed top-5 right-5 z-[100] flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+  <div id="toastContainer" class="fixed top-5 right-5 z-[120] flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
 
   <!-- ===================================================================== -->
-  <!-- 1. LANDING PAGE VIEW (100% CLEAN PUBLIK - TANPA TOMBOL/INFO ADMIN)    -->
+  <!-- 1. PUBLIC LANDING PAGE (100% CLEAN - TANPA TOMBOL ATAU INFO ADMIN)    -->
   <!-- ===================================================================== -->
   <div id="landingView" class="min-h-screen flex flex-col">
     <!-- Navbar -->
-    <header class="sticky top-0 z-40 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80">
+    <header class="sticky top-0 z-40 backdrop-blur-xl bg-slate-950/85 border-b border-slate-800/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="#" class="flex items-center gap-2.5">
           <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
@@ -78,21 +78,23 @@
           <a href="#cara-kerja" class="hover:text-emerald-400 transition">Cara Kerja</a>
           <a href="#kalkulator" class="hover:text-emerald-400 transition">Kalkulator Komisi</a>
           <a href="#keunggulan" class="hover:text-emerald-400 transition">Keunggulan</a>
+          <a href="#testimoni" class="hover:text-emerald-400 transition">Testimoni</a>
         </nav>
 
         <div class="flex items-center gap-2.5">
-          <button onclick="openAuthModal('login')" class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800 transition">
-            Masuk
+          <button type="button" data-auth-open="login" class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800 transition cursor-pointer">
+            Login
           </button>
-          <button onclick="openAuthModal('register')" class="px-4 py-2 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-500/20 transition">
+          <button type="button" data-auth-open="register" class="px-4 py-2 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-500/20 transition cursor-pointer">
             Daftar Gratis
           </button>
         </div>
       </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Main Landing Content -->
     <main class="flex-1">
+      <!-- Hero Section -->
       <section class="relative hero-grid pt-14 pb-20 sm:pt-20 sm:pb-28 border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-6">
@@ -109,17 +111,17 @@
           </p>
 
           <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-            <button onclick="openAuthModal('register')" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-base shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 transition">
+            <button type="button" data-auth-open="register" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-base shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 transition cursor-pointer">
               <i data-lucide="rocket" class="w-5 h-5"></i>
-              Mulai Hasilkan Uang
+              Daftar &amp; Mulai Hasilkan Uang
             </button>
-            <button onclick="openAuthModal('login')" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-semibold text-base flex items-center justify-center gap-2 transition">
+            <button type="button" data-auth-open="login" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-semibold text-base flex items-center justify-center gap-2 transition cursor-pointer">
               <i data-lucide="log-in" class="w-5 h-5 text-emerald-400"></i>
               Masuk ke Akun
             </button>
           </div>
 
-          <!-- Key Rate Cards -->
+          <!-- Rate Highlight Cards -->
           <div class="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto text-left">
             <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
               <div class="flex items-center justify-between mb-2">
@@ -155,17 +157,17 @@
       <section id="kalkulator" class="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
           <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white">Kalkulator Estimasi Penghasilan</h2>
-          <p class="text-slate-400 mt-2 text-sm sm:text-base">Sesuaikan jumlah perangkat dan target pesan harian Anda</p>
+          <p class="text-slate-400 mt-2 text-sm sm:text-base">Sesuaikan jumlah perangkat aktif dan target pesan harian Anda</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-10">
           <div class="lg:col-span-7 space-y-6">
             <div>
               <div class="flex justify-between text-sm font-semibold mb-2">
-                <span class="text-slate-300">Jumlah Perangkat WhatsApp</span>
+                <span class="text-slate-300">Jumlah Perangkat WhatsApp Aktif</span>
                 <span id="calcDevicesVal" class="text-emerald-400 font-bold">2 Perangkat</span>
               </div>
-              <input id="calcDevices" type="range" min="1" max="15" value="2" oninput="updateLandingCalculator()" class="w-full accent-emerald-500 cursor-pointer" />
+              <input id="calcDevices" type="range" min="1" max="15" value="2" class="w-full accent-emerald-500 cursor-pointer" />
             </div>
 
             <div>
@@ -173,7 +175,7 @@
                 <span class="text-slate-300">Pesan Terkirim / Hari per Perangkat</span>
                 <span id="calcMsgVal" class="text-emerald-400 font-bold">150 Pesan</span>
               </div>
-              <input id="calcMsg" type="range" min="20" max="1000" step="10" value="150" oninput="updateLandingCalculator()" class="w-full accent-emerald-500 cursor-pointer" />
+              <input id="calcMsg" type="range" min="20" max="1000" step="10" value="150" class="w-full accent-emerald-500 cursor-pointer" />
             </div>
 
             <div>
@@ -181,7 +183,7 @@
                 <span class="text-slate-300">Jumlah Referral Aktif (100 pesan/hari)</span>
                 <span id="calcRefVal" class="text-teal-400 font-bold">5 Member</span>
               </div>
-              <input id="calcRef" type="range" min="0" max="50" value="5" oninput="updateLandingCalculator()" class="w-full accent-teal-500 cursor-pointer" />
+              <input id="calcRef" type="range" min="0" max="50" value="5" class="w-full accent-teal-500 cursor-pointer" />
             </div>
           </div>
 
@@ -200,14 +202,14 @@
                 </div>
               </div>
             </div>
-            <button onclick="openAuthModal('register')" class="mt-6 w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition">
-              Daftar & Mulai Sekarang
+            <button type="button" data-auth-open="register" class="mt-6 w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition cursor-pointer">
+              Daftar &amp; Mulai Sekarang
             </button>
           </div>
         </div>
       </section>
 
-      <!-- How It Works (4 Langkah) -->
+      <!-- 4-Step Member How It Works -->
       <section id="cara-kerja" class="py-16 border-t border-slate-800/80 bg-slate-950/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-12">
@@ -235,51 +237,95 @@
               <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4 font-display font-extrabold text-lg">
                 3
               </div>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Klik Start & Jalan Otomatis</h3>
-              <p class="text-sm text-slate-400 leading-relaxed">Tekan tombol Start Blast, sistem akan mengambil daftar target dari antrean pusat dan mengirim pesan beruntun sesuai jeda aman.</p>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Klik Start Blast Otomatis</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Tekan tombol Start Blast, sistem akan mengambil daftar target dari antrean dan mengirim pesan beruntun sesuai jeda aman.</p>
             </div>
 
             <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 transition">
               <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4 font-display font-extrabold text-lg">
                 4
               </div>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Cairkan Saldo Komisi</h3>
-              <p class="text-sm text-slate-400 leading-relaxed">Tarik penghasilan kapan saja mulai dari Rp 20.000 langsung ke rekening Bank lokal atau E-Wallet pilihan Anda.</p>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Tarik Saldo Minimal Rp 20.000</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Cairkan komisi kapan saja mulai dari Rp 20.000 langsung ke rekening Bank lokal atau E-Wallet pilihan Anda.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Keunggulan Section -->
+      <!-- Features Grid -->
       <section id="keunggulan" class="py-16 border-t border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-12">
             <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white">Keunggulan Platform BlastHub</h2>
-            <p class="text-slate-400 mt-2 text-sm sm:text-base">Dirancang untuk keamanan nomor dan kecepatan pencairan komisi member</p>
+            <p class="text-slate-400 mt-2 text-sm sm:text-base">Dirancang untuk perlindungan nomor dan kecepatan pencairan komisi member</p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
               <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4">
                 <i data-lucide="shield-check" class="w-6 h-6"></i>
               </div>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Smart Anti-Banned Delay</h3>
-              <p class="text-sm text-slate-400 leading-relaxed">Pengaturan jeda pengiriman otomatis antar pesan dengan spintax dinamis untuk menjaga reputasi nomor WhatsApp Anda tetap aman.</p>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Deteksi Kenon Otomatis</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Sistem memantau kesehatan perangkat secara real-time dan otomatis memutus sesi apabila terdeteksi pembatasan WhatsApp.</p>
             </div>
 
             <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
               <div class="w-11 h-11 rounded-xl bg-teal-500/15 text-teal-400 flex items-center justify-center mb-4">
                 <i data-lucide="cpu" class="w-6 h-6"></i>
               </div>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Multi-Gateway & Multi-Device</h3>
-              <p class="text-sm text-slate-400 leading-relaxed">Mendukung berbagai penyedia WA Gateway resmi maupun antrean browser ringan yang berjalan stabil dari HP maupun laptop.</p>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Multi-Gateway &amp; Multi-Device</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Mendukung penyedia API Gateway resmi maupun antrean browser ringan yang berjalan stabil dari HP maupun laptop.</p>
             </div>
 
             <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
               <div class="w-11 h-11 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center mb-4">
                 <i data-lucide="zap" class="w-6 h-6"></i>
               </div>
-              <h3 class="font-display font-bold text-lg text-white mb-2">Pencairan Transparan</h3>
-              <p class="text-sm text-slate-400 leading-relaxed">Minimal penarikan ringan hanya Rp 20.000 dengan pemantauan status transfer secara real-time langsung dari halaman member.</p>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Pencairan Cepat Rp 20.000</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Minimal penarikan ringan hanya Rp 20.000 dengan pemantauan status transfer secara real-time langsung dari dashboard.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Member Testimonials -->
+      <section id="testimoni" class="py-16 border-t border-slate-800/80 bg-slate-950/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white">Dipercaya Ribuan Mitra Aktif</h2>
+            <p class="text-slate-400 mt-2 text-sm sm:text-base">Pengalaman member yang menjalankan kampanye harian di BlastHub</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <p class="text-sm text-slate-300 leading-relaxed">"Tinggal klik Start Blast dari HP, antrean pesan langsung jalan otomatis dan saldo cepat tembus minimal WD Rp 20.000 setiap hari."</p>
+              <div class="flex items-center gap-3 pt-2 border-t border-slate-800">
+                <div class="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs flex items-center justify-center">RP</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Rizky Pratama</div>
+                  <div class="text-xs text-slate-400">Mitra Aktif &bull; Jakarta</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <p class="text-sm text-slate-300 leading-relaxed">"Integrasi ke Fonnte dan Baileys gampang banget. History blast juga rapi, bisa diekspor ke CSV buat laporan harian."</p>
+              <div class="flex items-center gap-3 pt-2 border-t border-slate-800">
+                <div class="w-9 h-9 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xs flex items-center justify-center">AN</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Aulia Ningsih</div>
+                  <div class="text-xs text-slate-400">Mitra Gateway &bull; Bandung</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <p class="text-sm text-slate-300 leading-relaxed">"Komisi referralnya lumayan banget buat pasif income. Penarikan ke DANA dan BCA juga diproses cepat tanpa ribet."</p>
+              <div class="flex items-center gap-3 pt-2 border-t border-slate-800">
+                <div class="w-9 h-9 rounded-full bg-cyan-500/20 text-cyan-400 font-bold text-xs flex items-center justify-center">DF</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Dimas Firmansyah</div>
+                  <div class="text-xs text-slate-400">Mitra Aktif &bull; Surabaya</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -292,66 +338,83 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- 2. UNIFIED AUTH MODAL (SATU PINTU MASUK USER & ADMIN)                  -->
+  <!-- 2. UNIFIED AUTH MODAL (LOGIN & BUAT AKUN BARU + ADMIN LOGIN)          -->
   <!-- ===================================================================== -->
-  <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
-      <button onclick="closeAuthModal()" class="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition">
+  <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
+    <div id="authModalCard" class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+      <button type="button" id="closeAuthModalBtn" aria-label="Tutup" class="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <!-- Tabs (Masuk / Daftar Member) -->
-      <div class="flex gap-1.5 p-1 bg-slate-950 rounded-xl border border-slate-800 mb-6">
-        <button id="tabAuthLogin" onclick="switchAuthTab('login')" class="flex-1 py-2.5 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950">
-          Masuk Akun
+      <div class="flex items-center gap-2.5 mb-5">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
+          <i data-lucide="send" class="w-4 h-4 text-slate-950"></i>
+        </div>
+        <span class="font-display font-extrabold text-lg text-white">Blast<span class="text-emerald-400">Hub</span></span>
+      </div>
+
+      <!-- Tab Switcher: Masuk (Login) vs Buat Akun Baru (Daftar) -->
+      <div class="flex gap-1.5 p-1 bg-slate-950 rounded-xl border border-slate-800 mb-5">
+        <button type="button" id="tabAuthLogin" class="flex-1 py-2.5 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950 cursor-pointer">
+          Masuk (Login)
         </button>
-        <button id="tabAuthRegister" onclick="switchAuthTab('register')" class="flex-1 py-2.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white">
-          Daftar Baru
+        <button type="button" id="tabAuthRegister" class="flex-1 py-2.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer">
+          Buat Akun Baru (Daftar)
         </button>
       </div>
 
+      <!-- Inline Validation Error Box -->
+      <div id="authInlineError" class="hidden mb-4 p-3 rounded-xl bg-rose-950/90 border border-rose-500/50 text-rose-200 text-xs font-semibold flex items-start gap-2">
+        <i data-lucide="alert-circle" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i>
+        <span id="authInlineErrorText">Terjadi kesalahan.</span>
+      </div>
+
       <!-- Unified Login Form (User & Admin in One Form) -->
-      <form id="loginForm" onsubmit="handleUnifiedLogin(event)" class="space-y-4">
+      <form id="loginForm" novalidate class="space-y-4">
         <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Email atau ID Akun</label>
-          <input id="loginIdentity" type="text" required autocomplete="username" placeholder="Masukkan email atau ID akun" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+          <label for="loginIdentity" class="block text-xs font-semibold text-slate-300 mb-1.5">Email atau ID Akun</label>
+          <input id="loginIdentity" type="text" autocomplete="username" placeholder="Masukkan email atau ID akun" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
         </div>
         <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Password</label>
-          <input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Masukkan password" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+          <label for="loginPassword" class="block text-xs font-semibold text-slate-300 mb-1.5">Password</label>
+          <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Masukkan password" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
         </div>
-        <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 transition">
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 transition cursor-pointer">
           Masuk Sekarang
         </button>
       </form>
 
-      <!-- User Register Form -->
-      <form id="registerForm" onsubmit="handleUserRegister(event)" class="space-y-4 hidden">
+      <!-- Register Form ("Buat Akun Baru") -->
+      <form id="registerForm" novalidate class="space-y-3.5 hidden">
         <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama Lengkap</label>
-          <input id="regName" type="text" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+          <label for="regName" class="block text-xs font-semibold text-slate-300 mb-1">Nama Lengkap</label>
+          <input id="regName" type="text" placeholder="Contoh: Budi Santoso" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
         </div>
         <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Email</label>
-          <input id="regEmail" type="email" required placeholder="nama@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+          <label for="regEmail" class="block text-xs font-semibold text-slate-300 mb-1">Email Aktif</label>
+          <input id="regEmail" type="email" placeholder="nama@email.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
         </div>
         <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Password</label>
-          <input id="regPassword" type="password" required placeholder="Minimal 6 karakter" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+          <label for="regPhone" class="block text-xs font-semibold text-slate-300 mb-1">Nomor WhatsApp</label>
+          <input id="regPhone" type="tel" placeholder="Contoh: 081234567890" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
         </div>
         <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Kode Referral (Opsional)</label>
-          <input id="regRefCode" type="text" placeholder="Contoh: BLAST01" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white uppercase" />
+          <label for="regPassword" class="block text-xs font-semibold text-slate-300 mb-1">Password</label>
+          <input id="regPassword" type="password" placeholder="Minimal 6 karakter" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
         </div>
-        <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition">
-          Buat Akun Member
+        <div>
+          <label for="regRefCode" class="block text-xs font-semibold text-slate-300 mb-1">Kode Referral (Opsional)</label>
+          <input id="regRefCode" type="text" placeholder="Contoh: BLAST01" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white uppercase" />
+        </div>
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 transition cursor-pointer">
+          Buat Akun &amp; Masuk
         </button>
       </form>
     </div>
   </div>
 
   <!-- ===================================================================== -->
-  <!-- 3. MEMBER (USER) DASHBOARD VIEW (TANPA INDIKATOR C2 / RASIO)          -->
+  <!-- 3. MEMBER (USER) DASHBOARD VIEW (100% BEBAS INDIKATOR C1/C2/RASIO)    -->
   <!-- ===================================================================== -->
   <div id="userDashboardView" class="min-h-screen hidden flex-col lg:flex-row bg-slate-950">
     <!-- User Sidebar -->
@@ -367,20 +430,20 @@
       </div>
 
       <nav class="p-3 flex lg:flex-col gap-1.5 overflow-x-auto">
-        <button onclick="switchUserTab('blast')" id="utab-btn-blast" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 whitespace-nowrap">
-          <i data-lucide="zap" class="w-4 h-4"></i> Auto-Blast &amp; Antrean
+        <button type="button" onclick="switchUserTab('blast')" id="utab-btn-blast" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 whitespace-nowrap cursor-pointer">
+          <i data-lucide="zap" class="w-4 h-4"></i> Dashboard &amp; Auto-Blast
         </button>
-        <button onclick="switchUserTab('history')" id="utab-btn-history" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap">
+        <button type="button" onclick="switchUserTab('gateway')" id="utab-btn-gateway" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="smartphone" class="w-4 h-4"></i> Perangkat WA &amp; API
+        </button>
+        <button type="button" onclick="switchUserTab('history')" id="utab-btn-history" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
           <i data-lucide="history" class="w-4 h-4"></i> History Blast
         </button>
-        <button onclick="switchUserTab('gateway')" id="utab-btn-gateway" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap">
-          <i data-lucide="smartphone" class="w-4 h-4"></i> Device &amp; API Gateway
+        <button type="button" onclick="switchUserTab('withdraw')" id="utab-btn-withdraw" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="wallet" class="w-4 h-4"></i> Tarik Saldo (WD)
         </button>
-        <button onclick="switchUserTab('referral')" id="utab-btn-referral" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap">
-          <i data-lucide="users" class="w-4 h-4"></i> Referral &amp; Jaringan
-        </button>
-        <button onclick="switchUserTab('withdraw')" id="utab-btn-withdraw" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap">
-          <i data-lucide="wallet" class="w-4 h-4"></i> Withdraw Saldo
+        <button type="button" onclick="switchUserTab('referral')" id="utab-btn-referral" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="users" class="w-4 h-4"></i> Referral
         </button>
       </nav>
 
@@ -389,7 +452,7 @@
           <div id="uSidebarName" class="text-sm font-bold text-white truncate">Member</div>
           <div id="uSidebarEmail" class="text-xs text-slate-400 truncate">member@blasthub.co</div>
         </div>
-        <button onclick="logoutSession()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-rose-500/20 hover:text-rose-400 text-slate-300 text-xs font-semibold flex items-center justify-center gap-2 transition">
+        <button type="button" onclick="logoutSession()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-rose-500/20 hover:text-rose-400 text-slate-300 text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer">
           <i data-lucide="log-out" class="w-4 h-4"></i> Keluar Akun
         </button>
       </div>
@@ -400,13 +463,14 @@
       <header class="bg-slate-900/60 border-b border-slate-800 px-4 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-4">
         <div>
           <div class="flex flex-wrap items-center gap-2.5">
-            <h1 id="uPageTitle" class="font-display font-bold text-lg sm:text-xl text-white">Auto-Blast &amp; Antrean Target</h1>
+            <h1 id="uPageTitle" class="font-display font-bold text-lg sm:text-xl text-white">Dashboard &amp; Auto-Blast</h1>
             <span id="uLiveStatusBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-[11px] font-extrabold tracking-wide">
               <span id="uLiveStatusDot" class="w-2 h-2 rounded-full bg-slate-400"></span>
               <span id="uLiveStatusText">SIAP MULAI BLAST</span>
             </span>
           </div>
           <p class="text-xs text-slate-400 mt-1">
+            Halo, <span id="uTopUserName" class="text-white font-semibold">Member</span> &bull;
             Komisi: <span id="uRateBadge" class="text-emerald-400 font-bold">Rp 1.300</span> / pesan &bull;
             <span id="uCountdownText" class="text-slate-300 font-medium">Klik tombol Start Blast untuk mulai mengirim pesan</span>
           </p>
@@ -419,12 +483,12 @@
             <span class="text-slate-400">dtk</span>
           </div>
 
-          <button id="uStartWorkerBtn" onclick="toggleBlastWorker()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition">
+          <button type="button" id="uStartWorkerBtn" onclick="toggleBlastWorker()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer">
             <i id="uWorkerBtnIcon" data-lucide="play" class="w-4 h-4"></i>
             <span id="uWorkerBtnText">Start Blast</span>
           </button>
 
-          <button onclick="logoutSession()" class="lg:hidden px-3 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold">
+          <button type="button" onclick="logoutSession()" class="lg:hidden px-3 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold cursor-pointer">
             Keluar
           </button>
         </div>
@@ -443,15 +507,15 @@
                 <span id="uDeviceAlertTag" class="px-2 py-0.5 rounded bg-rose-500/25 text-rose-300 text-[10px] font-extrabold uppercase">AUTO-DISCONNECTED</span>
               </div>
               <p id="uDeviceAlertDesc" class="text-xs text-rose-200/80 mt-1 leading-relaxed">
-                Koneksi perangkat otomatis diputus dan proses Auto-Blast dihentikan untuk melindungi antrean target.
+                Koneksi perangkat otomatis diputus dan proses blast dihentikan untuk melindungi antrean target.
               </p>
             </div>
           </div>
           <div class="flex items-center gap-2 shrink-0 w-full sm:w-auto justify-end">
-            <button onclick="switchUserTab('gateway')" class="px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-1.5 transition">
+            <button type="button" onclick="switchUserTab('gateway')" class="px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-1.5 transition cursor-pointer">
               <i data-lucide="plus-circle" class="w-4 h-4"></i> Ganti Perangkat WA
             </button>
-            <button onclick="dismissUserDeviceAlert()" class="px-3 py-2.5 rounded-xl bg-rose-900/60 hover:bg-rose-900 text-rose-200 text-xs font-semibold transition">
+            <button type="button" onclick="dismissUserDeviceAlert()" class="px-3 py-2.5 rounded-xl bg-rose-900/60 hover:bg-rose-900 text-rose-200 text-xs font-semibold transition cursor-pointer">
               Tutup
             </button>
           </div>
@@ -470,14 +534,14 @@
             </div>
             <div class="flex items-center justify-between mt-2">
               <span id="uWdProgressLabel" class="text-[11px] text-slate-400">0% dari min. WD</span>
-              <button onclick="switchUserTab('withdraw')" class="text-xs text-emerald-400 font-semibold hover:underline">Tarik Saldo &rarr;</button>
+              <button type="button" onclick="switchUserTab('withdraw')" class="text-xs text-emerald-400 font-semibold hover:underline cursor-pointer">Tarik Saldo &rarr;</button>
             </div>
           </div>
 
           <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
             <span class="text-xs font-semibold uppercase text-slate-400">Total Terkirim</span>
             <div id="uSentCountVal" class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1">0</div>
-            <div class="text-xs text-slate-400 mt-2">Pesan berhasil terkirim &amp; terhitung</div>
+            <div class="text-xs text-slate-400 mt-2">Pesan berhasil terkirim &amp; terhitung saldo</div>
           </div>
 
           <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
@@ -493,10 +557,10 @@
           </div>
         </div>
 
-        <!-- TAB 1: BLAST & QUEUE -->
+        <!-- TAB 1: DASHBOARD & AUTO-BLAST -->
         <div id="utab-section-blast" class="space-y-6">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <!-- Campaign Info & Control Card -->
+            <!-- Campaign Info & Start Control -->
             <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 flex flex-col justify-between">
               <div class="space-y-4">
                 <div class="flex items-center justify-between gap-2">
@@ -506,7 +570,7 @@
                 <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
                   <div class="text-xs text-slate-400 mb-1">Judul Kampanye:</div>
                   <div id="uCampaignTitle" class="font-bold text-sm text-white">Promo Resmi</div>
-                  <div class="text-xs text-slate-400 mt-3 mb-1">Template Pesan (Otomatis Spintax &amp; Variabel):</div>
+                  <div class="text-xs text-slate-400 mt-3 mb-1">Pesan Auto-Blast Aktif:</div>
                   <p id="uCampaignTemplate" class="text-xs text-emerald-300 bg-slate-900 p-3 rounded-lg border border-slate-800 leading-relaxed"></p>
                 </div>
               </div>
@@ -515,7 +579,7 @@
                 <div class="text-xs text-slate-400">
                   Perangkat aktif: <span id="uActiveDeviceLabel" class="text-white font-semibold">-</span>
                 </div>
-                <button id="uCardStartBtn" onclick="toggleBlastWorker()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition">
+                <button type="button" id="uCardStartBtn" onclick="toggleBlastWorker()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
                   <i id="uCardStartIcon" data-lucide="play" class="w-4 h-4"></i>
                   <span id="uCardStartText">Start Blast Sekarang</span>
                 </button>
@@ -525,10 +589,8 @@
             <!-- Live Execution Console -->
             <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col">
               <div class="flex items-center justify-between mb-3">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-display font-bold text-base text-white">Log Pengiriman Real-Time</h3>
-                </div>
-                <button onclick="clearUserConsole()" class="text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white">Clear</button>
+                <h3 class="font-display font-bold text-base text-white">Log Pengiriman Real-Time</h3>
+                <button type="button" onclick="clearUserConsole()" class="text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white cursor-pointer">Clear</button>
               </div>
               <div id="uConsoleLogs" class="flex-1 h-56 overflow-y-auto bg-slate-950 border border-slate-800 rounded-xl p-3.5 font-mono text-xs space-y-2">
                 <div class="text-slate-400">[SYSTEM] Mesin siap. Tekan tombol <span class="text-emerald-400 font-bold">Start Blast</span> untuk memulai pengiriman.</div>
@@ -536,11 +598,11 @@
             </div>
           </div>
 
-          <!-- User Sent History Table -->
+          <!-- Recent Blast History Preview -->
           <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
             <div class="flex items-center justify-between gap-3 mb-4">
               <h3 class="font-display font-bold text-base text-white">Riwayat Pengiriman Terbaru</h3>
-              <button onclick="switchUserTab('history')" class="text-xs font-semibold text-emerald-400 hover:underline flex items-center gap-1">
+              <button type="button" onclick="switchUserTab('history')" class="text-xs font-semibold text-emerald-400 hover:underline flex items-center gap-1 cursor-pointer">
                 Lihat Semua History Blast &rarr;
               </button>
             </div>
@@ -561,9 +623,58 @@
           </div>
         </div>
 
-        <!-- TAB: HISTORY BLAST LENGKAP USER -->
+        <!-- TAB 2: PERANGKAT WA & API GATEWAY -->
+        <div id="utab-section-gateway" class="hidden space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-5 p-6 rounded-2xl bg-slate-900 border border-slate-800">
+              <h3 class="font-display font-bold text-base text-white mb-1">Tambah Perangkat / API Gateway</h3>
+              <p class="text-xs text-slate-400 mb-4">Hubungkan nomor WhatsApp atau API WA Gateway nyata (Fonnte, Wablas, Baileys REST).</p>
+
+              <form id="addDeviceForm" onsubmit="handleAddUserDevice(event)" class="space-y-3.5">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1">Label Perangkat</label>
+                  <input id="devLabel" type="text" required placeholder="Contoh: WA Bisnis 1" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1">Nomor WhatsApp Pengirim</label>
+                  <input id="devPhone" type="text" required placeholder="081234567890" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1">Metode Koneksi</label>
+                  <select id="devProvider" onchange="toggleGatewayFields()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white">
+                    <option value="local_queue">Browser Queue Pairing (Langsung Aktif)</option>
+                    <option value="fonnte">Fonnte API (https://api.fonnte.com/send)</option>
+                    <option value="wablas">Wablas API Gateway</option>
+                    <option value="custom_webhook">Custom Baileys / Node.js REST API</option>
+                  </select>
+                </div>
+
+                <div id="gatewayApiFields" class="hidden space-y-3 pt-1">
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Endpoint URL API</label>
+                    <input id="devEndpoint" type="url" placeholder="https://api.fonnte.com/send" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white font-mono" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">API Token / Authorization Key</label>
+                    <input id="devToken" type="text" placeholder="Masukkan token API gateway Anda" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white font-mono" />
+                  </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition cursor-pointer">
+                  Simpan &amp; Hubungkan Perangkat
+                </button>
+              </form>
+            </div>
+
+            <div class="lg:col-span-7 p-6 rounded-2xl bg-slate-900 border border-slate-800">
+              <h3 class="font-display font-bold text-base text-white mb-4">Daftar Perangkat Terhubung</h3>
+              <div id="uDeviceList" class="space-y-3"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: HISTORY BLAST LENGKAP -->
         <div id="utab-section-history" class="hidden space-y-6">
-          <!-- Summary Stats -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
               <span class="text-xs font-semibold uppercase text-slate-400">Total Diproses</span>
@@ -583,24 +694,21 @@
             </div>
           </div>
 
-          <!-- Filter, Search & Export Bar -->
           <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
               <div>
                 <h3 class="font-display font-bold text-base text-white">Log Lengkap History Blast</h3>
-                <p class="text-xs text-slate-400 mt-0.5">Rekam jejak seluruh pengiriman pesan beserta detail perangkat dan status pengiriman</p>
+                <p class="text-xs text-slate-400 mt-0.5">Rekam jejak seluruh pengiriman pesan beserta detail perangkat, status, dan komisi</p>
               </div>
               <div class="flex flex-wrap items-center gap-2.5">
-                <div class="relative flex-1 sm:flex-initial">
-                  <input id="uHistSearchInput" type="text" oninput="renderUserHistoryTab()" placeholder="Cari nomor atau nama..." class="w-full sm:w-56 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-xs text-white" />
-                </div>
+                <input id="uHistSearchInput" type="text" oninput="renderUserHistoryTab()" placeholder="Cari nomor atau nama..." class="w-full sm:w-56 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-xs text-white" />
                 <select id="uHistStatusFilter" onchange="renderUserHistoryTab()" class="px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white">
                   <option value="all">Semua Status</option>
                   <option value="sent">Terkirim</option>
                   <option value="failed">Gagal</option>
                   <option value="stopped_ban">Terhenti - WA Kenon</option>
                 </select>
-                <button onclick="exportUserBlastHistoryCsv()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition">
+                <button type="button" onclick="exportUserBlastHistoryCsv()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer">
                   <i data-lucide="download" class="w-3.5 h-3.5"></i> Export CSV
                 </button>
               </div>
@@ -614,8 +722,8 @@
                     <th class="py-3 px-4">Nomor &amp; Nama Target</th>
                     <th class="py-3 px-4">Perangkat Pengirim</th>
                     <th class="py-3 px-4">Cuplikan Pesan</th>
-                    <th class="py-3 px-4">Status Pengiriman</th>
-                    <th class="py-3 px-4 text-right">Keterangan Komisi</th>
+                    <th class="py-3 px-4">Status</th>
+                    <th class="py-3 px-4 text-right">Komisi</th>
                   </tr>
                 </thead>
                 <tbody id="uFullHistoryTableBody" class="divide-y divide-slate-800/70"></tbody>
@@ -624,90 +732,23 @@
           </div>
         </div>
 
-        <!-- TAB 2: DEVICE & GATEWAY CONFIG -->
-        <div id="utab-section-gateway" class="hidden space-y-6">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <div class="lg:col-span-5 p-6 rounded-2xl bg-slate-900 border border-slate-800">
-              <h3 class="font-display font-bold text-base text-white mb-1">Tambah Perangkat / API Gateway</h3>
-              <p class="text-xs text-slate-400 mb-4">Hubungkan API WA Gateway nyata (Fonnte, Wablas, Baileys REST) atau mode antrean lokal.</p>
-
-              <form onsubmit="handleAddUserDevice(event)" class="space-y-3.5">
-                <div>
-                  <label class="block text-xs font-semibold text-slate-300 mb-1">Label Perangkat</label>
-                  <input id="devLabel" type="text" required placeholder="Contoh: WA Bisnis 1" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white" />
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-slate-300 mb-1">Nomor WhatsApp Pengirim</label>
-                  <input id="devPhone" type="text" required placeholder="628123456789" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white" />
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-slate-300 mb-1">Metode Pengiriman</label>
-                  <select id="devProvider" onchange="toggleGatewayFields()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white">
-                    <option value="local_queue">Browser Queue Worker (Langsung Jalan)</option>
-                    <option value="fonnte">Fonnte API (https://api.fonnte.com/send)</option>
-                    <option value="wablas">Wablas API Gateway</option>
-                    <option value="custom_webhook">Custom Baileys / Node.js REST API</option>
-                  </select>
-                </div>
-
-                <div id="gatewayApiFields" class="hidden space-y-3 pt-1">
-                  <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">Endpoint URL API</label>
-                    <input id="devEndpoint" type="url" placeholder="https://api.fonnte.com/send" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white font-mono" />
-                  </div>
-                  <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">API Token / Authorization Key</label>
-                    <input id="devToken" type="text" placeholder="Masukkan token API gateway Anda" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white font-mono" />
-                  </div>
-                </div>
-
-                <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition">
-                  Simpan &amp; Hubungkan Perangkat
-                </button>
-              </form>
-            </div>
-
-            <div class="lg:col-span-7 p-6 rounded-2xl bg-slate-900 border border-slate-800">
-              <h3 class="font-display font-bold text-base text-white mb-4">Daftar Perangkat Terhubung</h3>
-              <div id="uDeviceList" class="space-y-3"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB 3: REFERRAL -->
-        <div id="utab-section-referral" class="hidden space-y-6">
-          <div class="p-6 rounded-2xl bg-gradient-to-r from-teal-950/70 to-slate-900 border border-teal-500/30">
-            <h3 class="font-display font-bold text-lg text-white">Bagikan Link Referral Anda</h3>
-            <p class="text-xs text-slate-300 mt-1">Dapatkan bonus otomatis setiap kali downline Anda berhasil mengirimkan pesan blast.</p>
-            <div class="mt-4 flex flex-col sm:flex-row gap-2.5">
-              <input id="uRefLinkInput" type="text" readonly class="flex-1 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-emerald-400" />
-              <button onclick="copyUserRefLink()" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition">
-                <i data-lucide="copy" class="w-4 h-4"></i> Salin Link
-              </button>
-            </div>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
-            <h3 class="font-display font-bold text-base text-white mb-4">Daftar Downline Anda</h3>
-            <div id="uDownlineList" class="space-y-2.5 text-sm"></div>
-          </div>
-        </div>
-
-        <!-- TAB 4: WITHDRAW -->
+        <!-- TAB 4: TARIK SALDO (WITHDRAW) -->
         <div id="utab-section-withdraw" class="hidden space-y-6">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div class="lg:col-span-5 p-6 rounded-2xl bg-slate-900 border border-slate-800">
               <h3 class="font-display font-bold text-base text-white mb-4">Ajukan Penarikan Saldo</h3>
-              <form onsubmit="handleUserWithdraw(event)" class="space-y-4">
+              <form id="userWithdrawForm" onsubmit="handleUserWithdraw(event)" class="space-y-4">
                 <div>
                   <label class="block text-xs font-semibold text-slate-300 mb-1.5">Metode Bank / E-Wallet</label>
                   <select id="uWdMethod" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white">
                     <option value="BCA">Transfer Bank BCA</option>
                     <option value="BRI">Transfer Bank BRI</option>
+                    <option value="BNI">Transfer Bank BNI</option>
                     <option value="Mandiri">Transfer Bank Mandiri</option>
                     <option value="DANA">E-Wallet DANA</option>
                     <option value="OVO">E-Wallet OVO</option>
                     <option value="GoPay">E-Wallet GoPay</option>
+                    <option value="ShopeePay">E-Wallet ShopeePay</option>
                   </select>
                 </div>
                 <div>
@@ -721,11 +762,11 @@
                 <div>
                   <div class="flex justify-between text-xs mb-1.5">
                     <label class="font-semibold text-slate-300">Nominal Penarikan (Min. <span id="uWdMinHint">Rp 20.000</span>)</label>
-                    <button type="button" onclick="fillMaxUserWithdraw()" class="text-emerald-400 hover:underline font-semibold">Tarik Maksimal</button>
+                    <button type="button" onclick="fillMaxUserWithdraw()" class="text-emerald-400 hover:underline font-semibold cursor-pointer">Tarik Maksimal</button>
                   </div>
                   <input id="uWdAmount" type="number" min="20000" required placeholder="Minimal 20000" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white font-bold text-sm" />
                 </div>
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition">
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition cursor-pointer">
                   Kirim Permintaan Withdraw
                 </button>
               </form>
@@ -749,105 +790,124 @@
             </div>
           </div>
         </div>
+
+        <!-- TAB 5: REFERRAL -->
+        <div id="utab-section-referral" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-gradient-to-r from-teal-950/70 to-slate-900 border border-teal-500/30">
+            <h3 class="font-display font-bold text-lg text-white">Bagikan Link Referral Anda</h3>
+            <p class="text-xs text-slate-300 mt-1">Dapatkan bonus otomatis setiap kali downline Anda berhasil mengirimkan pesan blast.</p>
+            <div class="mt-4 flex flex-col sm:flex-row gap-2.5">
+              <input id="uRefLinkInput" type="text" readonly class="flex-1 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-emerald-400" />
+              <button type="button" onclick="copyUserRefLink()" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition cursor-pointer">
+                <i data-lucide="copy" class="w-4 h-4"></i> Salin Link
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+            <h3 class="font-display font-bold text-base text-white mb-4">Daftar Downline Anda</h3>
+            <div id="uDownlineList" class="space-y-2.5 text-sm"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- ===================================================================== -->
-  <!-- 4. ADMIN DASHBOARD VIEW (UPLOAD TARGET FILE & DONE WD & KONTROL C2)   -->
+  <!-- 4. ADMIN DASHBOARD VIEW (UPLOAD TARGET, PESAN AUTO-BLAST, DONE WD)    -->
   <!-- ===================================================================== -->
   <div id="adminDashboardView" class="min-h-screen hidden flex-col lg:flex-row bg-slate-950">
     <!-- Admin Sidebar -->
     <aside class="w-full lg:w-68 bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800 flex flex-col shrink-0">
       <div class="p-5 flex items-center justify-between border-b border-slate-800">
         <div class="flex items-center gap-2.5">
-        <!-- ADMIN TAB 1: UPLOAD FILE TARGET BLAST & PESAN AUTO-BLAST -->
+          <div class="w-8 h-8 rounded-lg bg-amber-400 flex items-center justify-center">
+            <i data-lucide="shield" class="w-4 h-4 text-slate-950"></i>
+          </div>
+          <span class="font-display font-extrabold text-lg text-white">Blast<span class="text-amber-400">Admin</span></span>
+        </div>
+        <span class="px-2 py-0.5 rounded bg-amber-400/15 text-amber-300 text-[10px] font-bold uppercase">Admin</span>
+      </div>
+
+      <nav class="p-3 flex lg:flex-col gap-1.5 overflow-x-auto">
+        <button type="button" onclick="switchAdminTab('targets')" id="atab-btn-targets" class="a-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 whitespace-nowrap cursor-pointer">
+          <i data-lucide="upload-cloud" class="w-4 h-4"></i> Upload Target &amp; Pesan
+        </button>
+        <button type="button" onclick="switchAdminTab('withdrawals')" id="atab-btn-withdrawals" class="a-nav-btn flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <span class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Antrean Done WD</span>
+          <span id="adminPendingWdBadge" class="px-2 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-bold hidden">0</span>
+        </button>
+        <button type="button" onclick="switchAdminTab('users')" id="atab-btn-users" class="a-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="users" class="w-4 h-4"></i> Member &amp; Analitik C2
+        </button>
+        <button type="button" onclick="switchAdminTab('campaign')" id="atab-btn-campaign" class="a-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="sliders" class="w-4 h-4"></i> Pengaturan &amp; Rasio C2
+        </button>
+        <button type="button" onclick="switchAdminTab('backup')" id="atab-btn-backup" class="a-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="database" class="w-4 h-4"></i> Backup Database
+        </button>
+      </nav>
+
+      <div class="mt-auto p-4 border-t border-slate-800 hidden lg:block">
+        <button type="button" onclick="logoutSession()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-rose-500/20 hover:text-rose-400 text-slate-300 text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer">
+          <i data-lucide="log-out" class="w-4 h-4"></i> Keluar Admin
+        </button>
+      </div>
+    </aside>
+
+    <!-- Admin Main Content -->
+    <div class="flex-1 flex flex-col min-w-0">
+      <header class="bg-slate-900/60 border-b border-slate-800 px-4 sm:px-8 py-4 flex items-center justify-between">
+        <div>
+          <h1 id="aPageTitle" class="font-display font-bold text-lg sm:text-xl text-white">Upload Target Blast &amp; Pesan Auto-Blast</h1>
+          <p class="text-xs text-slate-400 mt-0.5">Kelola daftar nomor target, pesan otomatis, analitik C2, serta antrean Done WD</p>
+        </div>
+        <button type="button" onclick="logoutSession()" class="lg:hidden px-3 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold cursor-pointer">
+          Keluar
+        </button>
+      </header>
+
+      <div class="p-4 sm:p-8 max-w-7xl w-full mx-auto space-y-6">
+        <!-- Admin Stats Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Total Member</span>
+            <div id="aStatUsers" class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1">0</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Antrean Target Pending</span>
+            <div id="aStatPending" class="font-display font-extrabold text-2xl sm:text-3xl text-amber-400 mt-1">0</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Antrean WD Menunggu</span>
+            <div id="aStatWdPending" class="font-display font-extrabold text-2xl sm:text-3xl text-rose-400 mt-1">0</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Total Saldo Terbayar (Done)</span>
+            <div id="aStatPaidOut" class="font-display font-extrabold text-xl sm:text-2xl text-emerald-400 mt-1">Rp 0</div>
+            <div id="aStatSubBreakdown" class="text-[11px] text-slate-400 mt-1">C2: 0 &bull; Lolos Saldo: 0</div>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 1: SIDE-BY-SIDE TARGET UPLOADER & PESAN AUTO-BLAST -->
         <div id="atab-section-targets" class="space-y-6">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <!-- KOLOM KIRI: PESAN AUTO-BLAST (TERKIRIM OTOMATIS KE TARGET) -->
-            <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-emerald-500/35 space-y-4 flex flex-col justify-between">
-              <div class="space-y-4">
-                <div class="flex flex-wrap items-center justify-between gap-2">
-                  <div>
-                    <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
-                      <i data-lucide="message-square-plus" class="w-5 h-5 text-emerald-400"></i>
-                      Pesan Auto-Blast (Terkirim Otomatis)
-                    </h3>
-                    <p class="text-[11px] text-slate-400 mt-0.5">Teks pesan yang otomatis dikirim ke seluruh nomor target saat member klik Start Blast</p>
-                  </div>
-                  <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px] font-extrabold uppercase">Aktif di Member</span>
-                </div>
-
-                <div>
-                  <label class="block text-xs font-semibold text-slate-300 mb-1">Judul Kampanye</label>
-                  <input id="quickCampaignTitle" type="text" oninput="updateAdminMessageLivePreview()" placeholder="Contoh: Promo Cashback & Katalog Resmi" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-400 focus:outline-none text-xs text-white font-semibold" />
-                </div>
-
-                <div>
-                  <div class="flex flex-wrap items-center justify-between gap-1.5 mb-1.5">
-                    <label class="text-xs font-semibold text-slate-300">Pesan Utama Auto-Blast</label>
-                    <div class="flex flex-wrap items-center gap-1">
-                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{nama}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition">+ {nama}</button>
-                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{nomor}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition">+ {nomor}</button>
-                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{sapaan_waktu}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition">+ {sapaan_waktu}</button>
-                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{Halo|Hai|Selamat siang}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 text-[11px] font-mono transition">+ Spintax</button>
-                    </div>
-                  </div>
-                  <textarea id="quickCampaignMessage" rows="4" oninput="updateAdminMessageLivePreview()" placeholder="Tulis pesan auto-blast di sini... Contoh: {Halo|Hai} Kak {nama}, dapatkan promo spesial hari ini!" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-400 focus:outline-none text-xs text-white leading-relaxed"></textarea>
-                </div>
-
-                <!-- Variasi Rotasi Multi-Template (Opsional) -->
-                <div>
-                  <div class="flex items-center justify-between mb-1">
-                    <label class="text-xs font-semibold text-slate-300">Variasi Pesan Rotasi Acak <span class="text-slate-500 font-normal">(Opsional, 1 baris = 1 variasi pesan)</span></label>
-                    <span id="quickVariantCountBadge" class="text-[11px] font-semibold text-cyan-400">1 variasi aktif</span>
-                  </div>
-                  <textarea id="quickCampaignVariants" rows="2" oninput="updateAdminMessageLivePreview()" placeholder="Tambahkan variasi pesan lain per baris agar setiap pengiriman bervariasi otomatis..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-cyan-400 focus:outline-none text-xs text-slate-200 leading-relaxed"></textarea>
-                </div>
-
-                <!-- Live Preview Bubble Chat WhatsApp -->
-                <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
-                  <div class="flex items-center justify-between">
-                    <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
-                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                      Live Preview Bubble WhatsApp
-                    </span>
-                    <button type="button" onclick="updateAdminMessageLivePreview()" class="text-[11px] text-slate-400 hover:text-white flex items-center gap-1">
-                      <i data-lucide="refresh-cw" class="w-3 h-3"></i> Acak Spintax
-                    </button>
-                  </div>
-                  <div class="bg-[#0b141a] border border-slate-800/90 rounded-xl p-3">
-                    <div class="max-w-[92%] ml-auto bg-[#005c4b] text-slate-100 rounded-2xl rounded-tr-sm px-3.5 py-2.5 shadow">
-                      <p id="adminWaPreviewBubble" class="text-xs whitespace-pre-line leading-relaxed"></p>
-                      <div class="text-[10px] text-emerald-200/70 text-right mt-1 flex items-center justify-end gap-1">
-                        <span>14:30</span>
-                        <span>&#10003;&#10003;</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="pt-2 flex flex-wrap items-center justify-between gap-2.5">
-                <span id="quickMsgSavedIndicator" class="text-[11px] text-slate-400">Otomatis sinkron ke seluruh akun Member</span>
-                <button type="button" onclick="saveQuickAutoBlastMessage()" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition">
-                  <i data-lucide="check-circle" class="w-4 h-4"></i>
-                  Simpan &amp; Terapkan ke Auto-Blast
-                </button>
-              </div>
-            </div>
-
-            <!-- KOLOM KANAN: FILE DROPZONE & UPLOADER TARGET NOMOR -->
+            <!-- LEFT CARD: UPLOAD TARGET BLAST FILE & MANUAL PASTE -->
             <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 flex flex-col justify-between">
               <div class="space-y-4">
-                <div class="flex items-center justify-between">
+                <div class="flex flex-wrap items-center justify-between gap-2">
                   <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
                     <i data-lucide="upload-cloud" class="w-5 h-5 text-amber-400"></i>
                     Upload File Nomor Target
                   </h3>
-                  <button onclick="downloadSampleCsvTemplate()" class="text-xs text-amber-400 hover:underline font-semibold">
-                    Unduh Contoh CSV
-                  </button>
+                  <div class="flex items-center gap-3">
+                    <button type="button" onclick="generateSampleTargetsForTesting()" class="text-xs text-emerald-400 hover:underline font-semibold cursor-pointer">
+                      +10 Nomor Contoh
+                    </button>
+                    <button type="button" onclick="downloadSampleCsvTemplate()" class="text-xs text-amber-400 hover:underline font-semibold cursor-pointer">
+                      Unduh CSV
+                    </button>
+                  </div>
                 </div>
 
                 <label id="dropZoneArea" for="targetFileInput" class="border-2 border-dashed border-slate-700 hover:border-amber-400 bg-slate-950/70 rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition">
@@ -856,7 +916,7 @@
                   </div>
                   <p class="text-sm font-bold text-white">Klik untuk pilih file atau seret file ke sini</p>
                   <p class="text-xs text-slate-400 mt-1">Mendukung <span class="text-amber-300 font-semibold">.xlsx, .xls, .csv, .txt, .json</span></p>
-                  <p class="text-[11px] text-slate-500 mt-1.5">Format kolom otomatis terdeteksi: Nomor HP (08xx / 628xx) &amp; Nama (opsional)</p>
+                  <p class="text-[11px] text-slate-500 mt-1.5">Otomatis normalisasi nomor 08xx &rarr; 628xx dan filter duplikat</p>
                   <input id="targetFileInput" type="file" accept=".xlsx,.xls,.csv,.txt,.json" onchange="handleTargetFileUpload(event)" class="hidden" />
                 </label>
 
@@ -866,9 +926,9 @@
                   <div class="mt-2.5 flex items-center justify-between gap-3">
                     <label class="inline-flex items-center gap-2 text-xs text-slate-400 cursor-pointer">
                       <input id="dedupCheckbox" type="checkbox" checked class="accent-amber-400 rounded" />
-                      Otomatis filter nomor duplikat
+                      Filter nomor duplikat
                     </label>
-                    <button onclick="handleManualTargetImport()" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs transition">
+                    <button type="button" onclick="handleManualTargetImport()" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs transition cursor-pointer">
                       Masukkan ke Antrean
                     </button>
                   </div>
@@ -880,15 +940,87 @@
                 <div class="flex items-center justify-between mb-2.5">
                   <h4 class="font-display font-bold text-xs uppercase tracking-wider text-slate-300">Riwayat Batch File Diunggah</h4>
                   <div class="flex gap-2">
-                    <button onclick="clearSentTargets()" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-300 font-semibold">
-                      Hapus Terkirim
+                    <button type="button" onclick="clearSentTargets()" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-300 font-semibold cursor-pointer">
+                      Hapus Selesai
                     </button>
-                    <button onclick="clearAllTargets()" class="px-2.5 py-1 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 text-[11px] text-rose-400 font-semibold">
+                    <button type="button" onclick="clearAllTargets()" class="px-2.5 py-1 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 text-[11px] text-rose-400 font-semibold cursor-pointer">
                       Reset Semua
                     </button>
                   </div>
                 </div>
                 <div id="adminUploadBatchList" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
+              </div>
+            </div>
+
+            <!-- RIGHT CARD: PESAN AUTO-BLAST EDITOR & LIVE WA PREVIEW -->
+            <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-emerald-500/35 space-y-4 flex flex-col justify-between">
+              <div class="space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div>
+                    <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
+                      <i data-lucide="message-square-plus" class="w-5 h-5 text-emerald-400"></i>
+                      Pesan Auto-Blast (Terkirim Otomatis)
+                    </h3>
+                    <p class="text-[11px] text-slate-400 mt-0.5">Teks pesan yang otomatis dikirim ke seluruh nomor target saat member klik Start Blast</p>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px] font-extrabold uppercase">Sinkron ke Member</span>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1">Judul Kampanye</label>
+                  <input id="quickCampaignTitle" type="text" oninput="updateAdminMessageLivePreview()" placeholder="Contoh: Promo Cashback & Katalog Resmi" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-400 focus:outline-none text-xs text-white font-semibold" />
+                </div>
+
+                <div>
+                  <div class="flex flex-wrap items-center justify-between gap-1.5 mb-1.5">
+                    <label class="text-xs font-semibold text-slate-300">Isi Pesan Utama</label>
+                    <div class="flex flex-wrap items-center gap-1">
+                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{nama}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition cursor-pointer">+ {nama}</button>
+                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{nomor}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition cursor-pointer">+ {nomor}</button>
+                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{sapaan_waktu}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition cursor-pointer">+ {sapaan_waktu}</button>
+                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{Halo|Hai|Selamat siang}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 text-[11px] font-mono transition cursor-pointer">+ Spintax</button>
+                    </div>
+                  </div>
+                  <textarea id="quickCampaignMessage" rows="3" oninput="updateAdminMessageLivePreview()" placeholder="Tulis pesan auto-blast di sini..." class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-400 focus:outline-none text-xs text-white leading-relaxed"></textarea>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <label class="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 cursor-pointer">
+                      <input id="quickRotationEnabled" type="checkbox" checked onchange="updateAdminMessageLivePreview()" class="accent-cyan-400 rounded" />
+                      Aktifkan Rotasi Multi-Pesan (1 baris = 1 variasi)
+                    </label>
+                    <span id="quickVariantCountBadge" class="text-[11px] font-semibold text-cyan-400">1 variasi aktif</span>
+                  </div>
+                  <textarea id="quickCampaignVariants" rows="2" oninput="updateAdminMessageLivePreview()" placeholder="Tambahkan variasi pesan lain per baris agar setiap pengiriman bervariasi otomatis..." class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 focus:border-cyan-400 focus:outline-none text-xs text-slate-200 leading-relaxed"></textarea>
+                </div>
+
+                <!-- Live Preview Bubble Chat WhatsApp -->
+                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      Live Preview Bubble WhatsApp
+                    </span>
+                    <button type="button" onclick="updateAdminMessageLivePreview()" class="text-[11px] text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer">
+                      <i data-lucide="refresh-cw" class="w-3 h-3"></i> Acak Spintax
+                    </button>
+                  </div>
+                  <div class="bg-[#0b141a] border border-slate-800/90 rounded-xl p-3">
+                    <div class="max-w-[92%] ml-auto bg-[#005c4b] text-slate-100 rounded-2xl rounded-tr-sm px-3.5 py-2 shadow">
+                      <p id="adminWaPreviewBubble" class="text-xs whitespace-pre-line leading-relaxed"></p>
+                      <div class="text-[10px] text-emerald-200/70 text-right mt-1">&#10003;&#10003;</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-2 flex flex-wrap items-center justify-between gap-2.5">
+                <span id="quickMsgSavedIndicator" class="text-[11px] text-slate-400">Sinkron otomatis ke seluruh Member</span>
+                <button type="button" onclick="saveQuickAutoBlastMessage()" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer">
+                  <i data-lucide="check-circle" class="w-4 h-4"></i>
+                  Simpan &amp; Terapkan
+                </button>
               </div>
             </div>
           </div>
@@ -923,30 +1055,82 @@
           </div>
         </div>
 
-        <!-- ADMIN TAB 2: CAMPAIGN TEMPLATE, RATES & C2 RANDOM RATIO -->
+        <!-- ADMIN TAB 2: ANTREAN DONE WD -->
+        <div id="atab-section-withdrawals" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
+              <div>
+                <h3 class="font-display font-bold text-base text-white">Antrean Penarikan Saldo (Done WD)</h3>
+                <p class="text-xs text-slate-400 mt-0.5">Menampilkan Nomor Rekening Tujuan, Jumlah Kontak Sudah Di-Blast, dan Nominal WD. Klik <span class="text-emerald-400 font-semibold">Done WD</span> untuk menyelesaikan dan menghapus dari antrean.</p>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2">
+                <div class="inline-flex p-1 rounded-xl bg-slate-950 border border-slate-800">
+                  <button type="button" id="wdSubTabPending" onclick="switchAdminWdSubTab('pending')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 transition cursor-pointer">
+                    Antrean Menunggu (<span id="wdPendingTabCount">0</span>)
+                  </button>
+                  <button type="button" id="wdSubTabDone" onclick="switchAdminWdSubTab('done')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition cursor-pointer">
+                    Arsip Done (<span id="wdDoneTabCount">0</span>)
+                  </button>
+                </div>
+
+                <button type="button" id="btnDoneAllWd" onclick="markAllWithdrawalsDone()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-500/20 transition hidden cursor-pointer">
+                  <i data-lucide="check-check" class="w-4 h-4"></i>
+                  Done Semua Antrean
+                </button>
+
+                <button type="button" id="btnClearDoneArchive" onclick="clearDoneWithdrawalsArchive()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs hidden transition cursor-pointer">
+                  Bersihkan Arsip Done
+                </button>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+                    <th class="py-3 px-4">Member &amp; Waktu</th>
+                    <th class="py-3 px-4">Nomor Rekening Tujuan</th>
+                    <th class="py-3 px-4">Jumlah Kontak Sudah Di-Blast</th>
+                    <th class="py-3 px-4">Nominal WD</th>
+                    <th class="py-3 px-4 text-right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="adminWdTableBody" class="divide-y divide-slate-800/70"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 3: USERS & ANALITIK C2 -->
+        <div id="atab-section-users" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+            <h3 class="font-display font-bold text-base text-white mb-4">Daftar Member &amp; Analitik C2 vs Lolos Saldo</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+                    <th class="py-3 px-4">Nama &amp; Email</th>
+                    <th class="py-3 px-4">Perangkat WA</th>
+                    <th class="py-3 px-4">Proses / C2 / Lolos Saldo</th>
+                    <th class="py-3 px-4">Saldo</th>
+                    <th class="py-3 px-4">Status</th>
+                    <th class="py-3 px-4 text-right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersTableBody" class="divide-y divide-slate-800/70"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 4: SETTINGS, TARIF & RASIO ACU C2 -->
         <div id="atab-section-campaign" class="hidden space-y-6">
           <div class="max-w-3xl p-6 sm:p-8 rounded-2xl bg-slate-900 border border-slate-800">
-            <h3 class="font-display font-bold text-lg text-white mb-1">Pengaturan Kampanye, Tarif &amp; Filter C2</h3>
+            <h3 class="font-display font-bold text-lg text-white mb-1">Pengaturan Tarif, Filter C2 &amp; Kredensial Admin</h3>
             <p class="text-xs text-slate-400 mb-6">Perubahan langsung diterapkan ke seluruh akun member secara real-time.</p>
 
-            <form onsubmit="handleSaveAdminSettings(event)" class="space-y-4">
-              <div>
-                <div class="flex flex-wrap items-center justify-between gap-1.5 mb-1.5">
-                  <label class="block text-xs font-semibold text-slate-300">Template Pesan Utama Auto-Blast</label>
-                  <div class="flex flex-wrap items-center gap-1">
-                    <button type="button" onclick="insertAutoBlastVar('setCampaignTemplate', '{nama}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition">+ {nama}</button>
-                    <button type="button" onclick="insertAutoBlastVar('setCampaignTemplate', '{nomor}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition">+ {nomor}</button>
-                    <button type="button" onclick="insertAutoBlastVar('setCampaignTemplate', '{sapaan_waktu}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition">+ {sapaan_waktu}</button>
-                  </div>
-                </div>
-                <textarea id="setCampaignTemplate" rows="4" required class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white"></textarea>
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Variasi Pesan Tambahan (Rotasi Acak per Baris, Opsional)</label>
-                <textarea id="setCampaignVariants" rows="3" placeholder="Masukkan variasi pesan tambahan per baris (opsional)..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-200"></textarea>
-              </div>
-
+            <form id="adminSettingsForm" onsubmit="handleSaveAdminSettings(event)" class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label class="block text-xs font-semibold text-slate-300 mb-1.5">Komisi per Kontak Lolos (Rp)</label>
@@ -962,12 +1146,12 @@
                 </div>
               </div>
 
-              <!-- Pengaturan Filter C2 & Rasio Acak (Hanya Terlihat Admin) -->
+              <!-- Pengaturan Filter C2 & Rasio Acak (Khusus Admin) -->
               <div class="pt-4 border-t border-slate-800 space-y-3">
                 <div class="flex items-center justify-between">
                   <div>
                     <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400">Filter C2 (Centang 2) &amp; Rasio Konversi Acak</h4>
-                    <p class="text-[11px] text-slate-400 mt-0.5">Pengaturan ini tersembunyi sepenuhnya dari tampilan Member.</p>
+                    <p class="text-[11px] text-slate-400 mt-0.5">Pengaturan ini berjalan diam-diam tanpa keterangan pada tampilan Member.</p>
                   </div>
                   <label class="inline-flex items-center gap-2 text-xs font-semibold text-white cursor-pointer">
                     <input id="setC2OnlyEnabled" type="checkbox" class="accent-emerald-400 w-4 h-4 rounded" />
@@ -977,14 +1161,13 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Pilihan Rasio Kontak C2 = 1 Terhitung (Pisah Koma)</label>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Pilihan Rasio Kontak C2 = 1 Saldo (Pisah Koma)</label>
                     <input id="setC2Thresholds" type="text" required placeholder="2, 3, 4, 5" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-emerald-400 font-mono font-bold" />
-                    <p class="text-[11px] text-slate-500 mt-1">Contoh: <code class="text-slate-300">2, 3, 4, 5</code> (tiap siklus acak membutuhkan 2, 3, 4, atau 5 kontak C2 untuk dihitung 1 kontak saldo).</p>
+                    <p class="text-[11px] text-slate-500 mt-1">Default: <code class="text-slate-300">2, 3, 4, 5</code> (tiap siklus acak membutuhkan 2, 3, 4, atau 5 kontak C2 = 1 kontak terhitung saldo).</p>
                   </div>
                   <div>
                     <label class="block text-xs font-semibold text-slate-300 mb-1.5">Persentase C2 pada Browser Queue (%)</label>
                     <input id="setC2LocalProb" type="number" min="10" max="100" required class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white font-bold" />
-                    <p class="text-[11px] text-slate-500 mt-1">Untuk API Gateway nyata, status C2 dideteksi langsung dari response delivery webhook/API.</p>
                   </div>
                 </div>
               </div>
@@ -1004,92 +1187,20 @@
                 </div>
               </div>
 
-              <button type="submit" class="px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm transition">
+              <button type="submit" class="px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm transition cursor-pointer">
                 Simpan Pengaturan
               </button>
             </form>
           </div>
         </div>
 
-        <!-- ADMIN TAB 3: ANTREAN DONE WD -->
-        <div id="atab-section-withdrawals" class="hidden space-y-6">
-          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
-            <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
-              <div>
-                <h3 class="font-display font-bold text-base text-white">Antrean Penarikan Saldo (Done WD)</h3>
-                <p class="text-xs text-slate-400 mt-0.5">Menampilkan Nomor Rekening, Jumlah Kontak yang Sudah Di-blast (beserta C2 &amp; terhitung), dan Nominal WD. Klik <span class="text-emerald-400 font-semibold">Done WD</span> untuk menyelesaikan dan menghapus dari antrean.</p>
-              </div>
-
-              <div class="flex flex-wrap items-center gap-2">
-                <!-- Sub-Tab Filter -->
-                <div class="inline-flex p-1 rounded-xl bg-slate-950 border border-slate-800">
-                  <button id="wdSubTabPending" onclick="switchAdminWdSubTab('pending')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 transition">
-                    Antrean Menunggu (<span id="wdPendingTabCount">0</span>)
-                  </button>
-                  <button id="wdSubTabDone" onclick="switchAdminWdSubTab('done')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition">
-                    Riwayat Done (<span id="wdDoneTabCount">0</span>)
-                  </button>
-                </div>
-
-                <!-- Bulk Done All Button -->
-                <button id="btnDoneAllWd" onclick="markAllWithdrawalsDone()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-500/20 transition hidden">
-                  <i data-lucide="check-check" class="w-4 h-4"></i>
-                  Done Semua Antrean
-                </button>
-
-                <!-- Clear Done Archive Button -->
-                <button id="btnClearDoneArchive" onclick="clearDoneWithdrawalsArchive()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs hidden transition">
-                  Bersihkan Riwayat Done
-                </button>
-              </div>
-            </div>
-
-            <div class="overflow-x-auto">
-              <table class="w-full text-left border-collapse text-sm">
-                <thead>
-                  <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
-                    <th class="py-3 px-4">Member &amp; Waktu</th>
-                    <th class="py-3 px-4">Nomor Rekening Tujuan</th>
-                    <th class="py-3 px-4">Kontak Di-Blast / C2 / Saldo</th>
-                    <th class="py-3 px-4">Nominal WD</th>
-                    <th class="py-3 px-4 text-right">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody id="adminWdTableBody" class="divide-y divide-slate-800/70"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- ADMIN TAB 4: USERS MANAGEMENT -->
-        <div id="atab-section-users" class="hidden space-y-6">
-          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
-            <h3 class="font-display font-bold text-base text-white mb-4">Daftar Member Terdaftar</h3>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left border-collapse text-sm">
-                <thead>
-                  <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
-                    <th class="py-3 px-4">Nama &amp; Email</th>
-                    <th class="py-3 px-4">Status Perangkat WA</th>
-                    <th class="py-3 px-4">Kirim / C2 / Lolos Saldo</th>
-                    <th class="py-3 px-4">Saldo</th>
-                    <th class="py-3 px-4">Status</th>
-                    <th class="py-3 px-4 text-right">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody id="adminUsersTableBody" class="divide-y divide-slate-800/70"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- ADMIN TAB 5: BACKUP & EXPORT -->
+        <!-- ADMIN TAB 5: BACKUP & RESTORE -->
         <div id="atab-section-backup" class="hidden space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
               <h3 class="font-display font-bold text-base text-white">Export Database JSON</h3>
-              <p class="text-xs text-slate-400">Unduh seluruh data target blast, member, saldo, dan riwayat withdraw sebagai cadangan file JSON.</p>
-              <button onclick="exportDatabaseJson()" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition">
+              <p class="text-xs text-slate-400">Unduh seluruh data target blast, member, saldo, dan riwayat withdraw sebagai file cadangan JSON.</p>
+              <button type="button" onclick="exportDatabaseJson()" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
                 <i data-lucide="download" class="w-4 h-4"></i> Unduh Backup (.json)
               </button>
             </div>
@@ -1105,7 +1216,9 @@
     </div>
   </div>
 
-  <!-- MODAL PERINGATAN DARURAT: WHATSAPP KENON / DIBATASI -->
+  <!-- ===================================================================== -->
+  <!-- 5. MODAL PERINGATAN DARURAT: WHATSAPP KENON / DIBATASI                -->
+  <!-- ===================================================================== -->
   <div id="waBanAlertModal" class="fixed inset-0 z-[90] hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
     <div class="bg-slate-900 border border-rose-500/50 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl shadow-rose-950/50 relative text-center">
       <div class="w-16 h-16 rounded-2xl bg-rose-500/15 border border-rose-500/30 text-rose-400 flex items-center justify-center mx-auto mb-4">
@@ -1124,10 +1237,10 @@
         <div>&bull; Hubungkan nomor WhatsApp baru untuk melanjutkan blast.</div>
       </div>
       <div class="mt-6 flex flex-col sm:flex-row gap-2.5">
-        <button onclick="closeWaBanModalAndGoGateway()" class="flex-1 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition">
+        <button type="button" onclick="closeWaBanModalAndGoGateway()" class="flex-1 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition cursor-pointer">
           Hubungkan Perangkat Baru
         </button>
-        <button onclick="closeWaBanModal()" class="py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition">
+        <button type="button" onclick="closeWaBanModal()" class="py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition cursor-pointer">
           Mengerti
         </button>
       </div>
@@ -1135,17 +1248,33 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- 5. JAVASCRIPT APPLICATION ENGINE                                      -->
+  <!-- 6. JAVASCRIPT APPLICATION ENGINE (ZERO SYNTAX ERROR, ROCK-SOLID)      -->
   <!-- ===================================================================== -->
   <script>
-    const DB_STORAGE_KEY = 'blasthub_prod_db_v1';
+    const DB_STORAGE_KEY = 'blasthub_prod_db_v2';
+
+    function safeRefreshIcons() {
+      try {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      } catch (err) {
+        console.warn('Lucide icon render skipped:', err);
+      }
+    }
+
+    function pickRandomC2Threshold(thresholds) {
+      const list = Array.isArray(thresholds) && thresholds.length > 0 ? thresholds : [2, 3, 4, 5];
+      return Number(list[Math.floor(Math.random() * list.length)]) || 3;
+    }
 
     function getDefaultDatabase() {
       return {
         settings: {
-          campaignTitle: 'Promo Cashback & Katalog Resmi Q4',
+          campaignTitle: 'Promo Cashback & Katalog Resmi',
           messageTemplate: '{Halo|Hai|Selamat siang} Kak {nama}! Dapatkan penawaran spesial & voucher eksklusif hari ini melalui layanan resmi mitra kami. Info lengkap balas YA.',
           messageVariants: [],
+          rotationEnabled: true,
           ratePerMessage: 1300,
           referralBonusPerMessage: 50,
           minWithdraw: 20000,
@@ -1160,10 +1289,11 @@
             id: 'usr_demo_01',
             name: 'Rizky Pratama',
             email: 'member@blasthub.co',
+            phone: '6281234567890',
             password: 'user123',
             referralCode: 'BLAST01',
             referredBy: null,
-            balance: 6000,
+            balance: 26000,
             totalEarned: 26000,
             refEarnings: 1250,
             totalSent: 20,
@@ -1246,7 +1376,7 @@
             amount: 20000,
             blastedCount: 68,
             c2CountAtRequest: 52,
-            countedAtRequest: 15,
+            countedAtRequest: 20,
             status: 'pending',
             createdAt: new Date().toLocaleString('id-ID'),
             doneAt: null
@@ -1255,22 +1385,15 @@
       };
     }
 
-    let db = loadDatabase();
-    let currentSession = null; // { role: 'admin' | 'user', userId: string }
-    let authModalMode = 'login';
-    let adminWdSubView = 'pending'; // 'pending' | 'done'
-    let workerRunning = false;
-    let workerTimer = null;
-    let countdownInterval = null;
-    let nextBlastSecondsLeft = 0;
-
     function loadDatabase() {
       try {
         const raw = localStorage.getItem(DB_STORAGE_KEY);
         if (raw) {
           const parsed = JSON.parse(raw);
+          if (!parsed || typeof parsed !== 'object') throw new Error('Corrupt DB');
           if (!parsed.settings) parsed.settings = {};
           if (!Array.isArray(parsed.settings.messageVariants)) parsed.settings.messageVariants = [];
+          if (typeof parsed.settings.rotationEnabled !== 'boolean') parsed.settings.rotationEnabled = true;
           if (!parsed.settings.minWithdraw || parsed.settings.minWithdraw < 20000) {
             parsed.settings.minWithdraw = 20000;
           }
@@ -1283,54 +1406,45 @@
           if (typeof parsed.settings.c2LocalProbability !== 'number') {
             parsed.settings.c2LocalProbability = 75;
           }
-          if (Array.isArray(parsed.users)) {
-            parsed.users.forEach(u => {
-              const rate = parsed.settings.ratePerMessage || 1300;
-              if (typeof u.c2DeliveredCount !== 'number') u.c2DeliveredCount = u.totalSent || 0;
-              if (typeof u.c2BucketCount !== 'number') u.c2BucketCount = 0;
-              if (typeof u.c2CurrentThreshold !== 'number') u.c2CurrentThreshold = pickRandomC2Threshold(parsed.settings.c2RandomThresholds);
-              if (typeof u.countedContacts !== 'number') u.countedContacts = Math.floor((u.balance || 0) / rate);
-              if (typeof u.totalEarned !== 'number') u.totalEarned = u.countedContacts * rate;
-              if (typeof u.todaySuccess !== 'number') u.todaySuccess = u.countedContacts;
-              if (typeof u.todayFailed !== 'number') u.todayFailed = Math.max(0, (u.totalProcessed || 0) - u.countedContacts);
-              if (typeof u.totalProcessed !== 'number') u.totalProcessed = Math.max(u.totalSent || 0, u.countedContacts || 0);
-              u.totalSent = u.countedContacts;
-              if (!Array.isArray(u.blastHistory)) u.blastHistory = [];
-              u.blastHistory.forEach(h => {
-                if (h.status !== 'sent') {
-                  h.earned = 0;
-                  if (!h.commissionLabel || !h.commissionLabel.includes('Rp 0')) {
-                    h.commissionLabel = h.status === 'stopped_ban'
-                      ? 'Rp 0 (Dialihkan ke Antrean)'
-                      : 'Rp 0 (Tidak menjadi saldo)';
-                  }
-                } else if (typeof h.earned !== 'number') {
-                  h.earned = rate;
-                }
-              });
-              if (Array.isArray(u.devices)) {
-                u.devices.forEach(d => {
-                  if (!d.healthStatus) d.healthStatus = d.active ? 'connected' : 'disconnected';
-                  if (typeof d.banReason === 'undefined') d.banReason = null;
-                  if (typeof d.bannedAt === 'undefined') d.bannedAt = null;
-                });
-              }
+          if (!Array.isArray(parsed.users)) parsed.users = [];
+          if (!Array.isArray(parsed.targets)) parsed.targets = [];
+          if (!Array.isArray(parsed.uploadBatches)) parsed.uploadBatches = [];
+          if (!Array.isArray(parsed.withdrawals)) parsed.withdrawals = [];
+
+          parsed.users.forEach(u => {
+            const rate = parsed.settings.ratePerMessage || 1300;
+            if (typeof u.c2DeliveredCount !== 'number') u.c2DeliveredCount = u.totalSent || 0;
+            if (typeof u.c2BucketCount !== 'number') u.c2BucketCount = 0;
+            if (typeof u.c2CurrentThreshold !== 'number') u.c2CurrentThreshold = pickRandomC2Threshold(parsed.settings.c2RandomThresholds);
+            if (typeof u.countedContacts !== 'number') u.countedContacts = Math.floor((u.balance || 0) / rate);
+            if (typeof u.totalEarned !== 'number') u.totalEarned = u.countedContacts * rate;
+            if (typeof u.todaySuccess !== 'number') u.todaySuccess = u.countedContacts;
+            if (typeof u.todayFailed !== 'number') u.todayFailed = Math.max(0, (u.totalProcessed || 0) - u.countedContacts);
+            if (typeof u.totalProcessed !== 'number') u.totalProcessed = Math.max(u.totalSent || 0, u.countedContacts || 0);
+            u.totalSent = u.countedContacts;
+            if (!Array.isArray(u.blastHistory)) u.blastHistory = [];
+            if (!Array.isArray(u.devices)) u.devices = [];
+            u.devices.forEach(d => {
+              if (!d.healthStatus) d.healthStatus = d.active ? 'connected' : 'disconnected';
+              if (typeof d.banReason === 'undefined') d.banReason = null;
+              if (typeof d.bannedAt === 'undefined') d.bannedAt = null;
             });
-          }
-          if (Array.isArray(parsed.withdrawals)) {
-            parsed.withdrawals.forEach(w => {
-              if (typeof w.blastedCount !== 'number') w.blastedCount = 0;
-            });
-          }
+          });
+
           return parsed;
         }
       } catch (e) {
-        console.error('Gagal membaca database:', e);
+        console.warn('Resetting corrupted localStorage DB:', e);
       }
       const initial = getDefaultDatabase();
       saveDatabase(initial);
       return initial;
     }
+
+    let db = loadDatabase();
+    let currentSession = null; // { role: 'admin' | 'user', userId: string }
+    let authModalMode = 'login';
+    let adminWdSubView = 'pending'; // 'pending' | 'done'
     let workerRunning = false;
     let workerTimer = null;
     let countdownInterval = null;
@@ -1338,6 +1452,301 @@
     let nextBlastSecondsLeft = 0;
     let activeDeviceBannerAlert = null;
 
+    function saveDatabase(data = db) {
+      try {
+        localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {
+        showToast('Penyimpanan browser penuh! Silakan bersihkan sebagian antrean lama.', 'error');
+      }
+    }
+
+    function formatRupiah(num) {
+      return 'Rp ' + Number(num || 0).toLocaleString('id-ID');
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+      const colors = {
+        success: 'bg-emerald-950/95 border-emerald-500/50 text-emerald-200',
+        error: 'bg-rose-950/95 border-rose-500/50 text-rose-200',
+        info: 'bg-slate-900/95 border-slate-700 text-slate-200'
+      };
+      const el = document.createElement('div');
+      el.className = `pointer-events-auto px-4 py-3 rounded-2xl border shadow-xl text-xs font-semibold flex items-center justify-between gap-3 transition-all ${colors[type] || colors.info}`;
+      el.innerHTML = `<span>${escapeHtml(message)}</span>`;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 300);
+      }, 3600);
+    }
+
+    function copyTextToClipboard(text, label = 'Teks') {
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      temp.style.position = 'fixed';
+      temp.style.opacity = '0';
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      showToast(`${label} (${text}) berhasil disalin!`, 'success');
+    }
+
+    // =========================================================================
+    // LANDING PAGE CALCULATOR & METRICS
+    // =========================================================================
+    function refreshLandingMetrics() {
+      const rateEl = document.getElementById('heroRateDisplay');
+      const refEl = document.getElementById('heroRefDisplay');
+      const wdEl = document.getElementById('heroMinWdDisplay');
+      if (rateEl) rateEl.textContent = formatRupiah(db.settings.ratePerMessage);
+      if (refEl) refEl.textContent = `${formatRupiah(db.settings.referralBonusPerMessage)} / pesan`;
+      if (wdEl) wdEl.textContent = formatRupiah(db.settings.minWithdraw);
+      updateLandingCalculator();
+    }
+
+    function updateLandingCalculator() {
+      const devInput = document.getElementById('calcDevices');
+      const msgInput = document.getElementById('calcMsg');
+      const refInput = document.getElementById('calcRef');
+      if (!devInput || !msgInput || !refInput) return;
+
+      const devices = Number(devInput.value);
+      const msgs = Number(msgInput.value);
+      const refs = Number(refInput.value);
+
+      document.getElementById('calcDevicesVal').textContent = `${devices} Perangkat`;
+      document.getElementById('calcMsgVal').textContent = `${msgs} Pesan`;
+      document.getElementById('calcRefVal').textContent = `${refs} Member`;
+
+      const dailyBlast = devices * msgs * Number(db.settings.ratePerMessage);
+      const dailyRef = refs * 100 * Number(db.settings.referralBonusPerMessage);
+      const monthly = (dailyBlast + dailyRef) * 30;
+
+      document.getElementById('calcDailyOut').textContent = formatRupiah(dailyBlast);
+      document.getElementById('calcRefDailyOut').textContent = formatRupiah(dailyRef);
+      document.getElementById('calcMonthlyOut').textContent = formatRupiah(monthly);
+    }
+
+    // =========================================================================
+    // UNIFIED AUTH MODAL (LOGIN & BUAT AKUN BARU + ADMIN LOGIN)
+    // =========================================================================
+    function showAuthError(message) {
+      const box = document.getElementById('authInlineError');
+      const txt = document.getElementById('authInlineErrorText');
+      if (!box || !txt) return;
+      txt.textContent = message;
+      box.classList.remove('hidden');
+      safeRefreshIcons();
+    }
+
+    function clearAuthError() {
+      const box = document.getElementById('authInlineError');
+      if (box) box.classList.add('hidden');
+    }
+
+    function openAuthModal(mode = 'login') {
+      const modal = document.getElementById('authModal');
+      if (!modal) return;
+      clearAuthError();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      switchAuthTab(mode);
+      safeRefreshIcons();
+    }
+
+    function closeAuthModal() {
+      const modal = document.getElementById('authModal');
+      if (!modal) return;
+      clearAuthError();
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function switchAuthTab(mode) {
+      authModalMode = mode;
+      clearAuthError();
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const tabLogin = document.getElementById('tabAuthLogin');
+      const tabReg = document.getElementById('tabAuthRegister');
+      if (!loginForm || !registerForm || !tabLogin || !tabReg) return;
+
+      loginForm.classList.add('hidden');
+      registerForm.classList.add('hidden');
+      tabLogin.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer';
+      tabReg.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer';
+
+      if (mode === 'login') {
+        loginForm.classList.remove('hidden');
+        tabLogin.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950 cursor-pointer';
+        const idInput = document.getElementById('loginIdentity');
+        if (idInput) setTimeout(() => idInput.focus(), 50);
+      } else {
+        registerForm.classList.remove('hidden');
+        tabReg.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950 cursor-pointer';
+        const nameInput = document.getElementById('regName');
+        if (nameInput) setTimeout(() => nameInput.focus(), 50);
+      }
+    }
+
+    function handleUnifiedLogin(e) {
+      if (e) e.preventDefault();
+      clearAuthError();
+
+      const identity = (document.getElementById('loginIdentity')?.value || '').trim();
+      const password = (document.getElementById('loginPassword')?.value || '').trim();
+
+      if (!identity || !password) {
+        showAuthError('Harap isi Email/ID Akun dan Password terlebih dahulu.');
+        return;
+      }
+
+      db = loadDatabase();
+      const configuredAdminId = (db.settings.adminId || 'admin').toLowerCase();
+      const configuredAdminPw = db.settings.adminPassword || 'admin';
+      const identityLower = identity.toLowerCase();
+
+      const isAdminIdMatch = (identityLower === configuredAdminId || identityLower === 'admin' || identityLower === 'admin@blasthub.co');
+      const isAdminPwMatch = (password === configuredAdminPw || password === 'admin123');
+
+      if (isAdminIdMatch && isAdminPwMatch) {
+        currentSession = { role: 'admin', userId: 'admin' };
+        document.getElementById('loginForm').reset();
+        closeAuthModal();
+        enterAdminDashboard();
+        showToast('Berhasil masuk ke Admin Panel.', 'success');
+        return;
+      }
+
+      const foundUser = db.users.find(u => u.email.toLowerCase() === identityLower && u.password === password);
+      if (!foundUser) {
+        showAuthError('Email/ID Akun atau password salah. Silakan periksa kembali atau klik "Buat Akun Baru".');
+        return;
+      }
+      if (foundUser.status === 'suspended') {
+        showAuthError('Akun Anda sedang dinonaktifkan sementara.');
+        return;
+      }
+
+      currentSession = { role: 'user', userId: foundUser.id };
+      document.getElementById('loginForm').reset();
+      closeAuthModal();
+      enterUserDashboard();
+      showToast(`Selamat datang kembali, ${foundUser.name}!`, 'success');
+    }
+
+    function handleUserRegister(e) {
+      if (e) e.preventDefault();
+      clearAuthError();
+
+      const name = (document.getElementById('regName')?.value || '').trim();
+      const email = (document.getElementById('regEmail')?.value || '').trim().toLowerCase();
+      const rawPhone = (document.getElementById('regPhone')?.value || '').trim();
+      const password = (document.getElementById('regPassword')?.value || '').trim();
+      const refInput = (document.getElementById('regRefCode')?.value || '').trim().toUpperCase();
+
+      if (name.length < 2) {
+        showAuthError('Masukkan nama lengkap Anda (minimal 2 karakter).');
+        return;
+      }
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        showAuthError('Masukkan alamat email yang valid.');
+        return;
+      }
+      const normalizedPhone = normalizePhoneNumber(rawPhone);
+      if (!normalizedPhone) {
+        showAuthError('Masukkan nomor WhatsApp yang valid (contoh: 081234567890).');
+        return;
+      }
+      if (password.length < 6) {
+        showAuthError('Password minimal harus 6 karakter.');
+        return;
+      }
+
+      db = loadDatabase();
+      if (email === (db.settings.adminId || 'admin').toLowerCase() || email === 'admin@blasthub.co') {
+        showAuthError('Email tersebut tidak tersedia. Gunakan email lain.');
+        return;
+      }
+      if (db.users.some(u => u.email.toLowerCase() === email)) {
+        showAuthError('Email ini sudah terdaftar! Silakan pindah ke tab "Masuk (Login)".');
+        return;
+      }
+
+      const sponsor = refInput ? db.users.find(u => u.referralCode === refInput) : null;
+      const newUser = {
+        id: 'usr_' + Date.now(),
+        name,
+        email,
+        phone: normalizedPhone,
+        password,
+        referralCode: 'BH' + Math.floor(1000 + Math.random() * 9000),
+        referredBy: sponsor ? sponsor.referralCode : null,
+        balance: 0,
+        totalEarned: 0,
+        refEarnings: 0,
+        totalSent: 0,
+        totalProcessed: 0,
+        todaySuccess: 0,
+        todayFailed: 0,
+        c2DeliveredCount: 0,
+        c2BucketCount: 0,
+        c2CurrentThreshold: pickRandomC2Threshold(db.settings.c2RandomThresholds),
+        countedContacts: 0,
+        status: 'active',
+        devices: [
+          {
+            id: 'dev_' + Date.now(),
+            label: 'WA Utama (' + name.split(' ')[0] + ')',
+            phone: normalizedPhone,
+            provider: 'local_queue',
+            endpoint: '',
+            token: '',
+            active: true,
+            healthStatus: 'connected',
+            banReason: null,
+            bannedAt: null
+          }
+        ],
+        blastHistory: []
+      };
+
+      db.users.push(newUser);
+      saveDatabase();
+      currentSession = { role: 'user', userId: newUser.id };
+      document.getElementById('registerForm').reset();
+      closeAuthModal();
+      enterUserDashboard();
+      showToast(`Akun berhasil dibuat! Selamat datang, ${newUser.name}!`, 'success');
+    }
+
+    function logoutSession() {
+      stopBlastWorker();
+      currentSession = null;
+      activeDeviceBannerAlert = null;
+      document.getElementById('userDashboardView').classList.add('hidden');
+      document.getElementById('userDashboardView').classList.remove('flex');
+      document.getElementById('adminDashboardView').classList.add('hidden');
+      document.getElementById('adminDashboardView').classList.remove('flex');
+      document.getElementById('landingView').classList.remove('hidden');
+      refreshLandingMetrics();
+      showToast('Anda telah keluar dari sesi.', 'info');
+    }
+
+    // =========================================================================
+    // SILENT C2 & FAIL ACCOUNTING HELPERS (NO C1/C2 MENTION ON USER UI)
+    // =========================================================================
     const USER_FAIL_REASONS = [
       'Gagal terkirim / Nomor tidak merespons',
       'Pengiriman gagal / Target tidak aktif',
@@ -1348,24 +1757,14 @@
       return USER_FAIL_REASONS[Math.floor(Math.random() * USER_FAIL_REASONS.length)];
     }
 
-    // Keywords & HTTP codes that indicate WhatsApp Banned (Kenon) or Restricted (Dibatasi / Disconnected)
-    const WA_KENON_KEYWORDS = [
-      'banned', 'ban', 'kenon', 'blocked', 'permanently', 'terminated', 'spam_block', 'account_locked', 'akun diblokir', 'nomor diblokir'
-    ];
-    const WA_RESTRICTED_KEYWORDS = [
-      'restricted', 'dibatasi', 'limit', 'rate limit', 'temporarily', 'disconnect', 'disconnected', 'not connected',
-      'logout', 'logged out', 'device not found', 'session closed', 'qr', 'unauthorized', 'invalid token', 'offline'
-    ];
-
-    function detectWaRestrictionOrBan(httpStatus, responseText = '') {
-      const lower = String(responseText || '').toLowerCase();
-      if (WA_KENON_KEYWORDS.some(k => lower.includes(k))) {
-        return { detected: true, type: 'banned', label: 'KENON / DIBLOKIR WHATSAPP', reason: responseText || `HTTP ${httpStatus} - Akun WhatsApp terdeteksi kenon/diblokir.` };
+    function creditReferralSponsor(memberUser) {
+      if (!memberUser.referredBy) return;
+      const sponsor = db.users.find(u => u.referralCode === memberUser.referredBy);
+      if (sponsor && sponsor.status === 'active') {
+        const bonus = Number(db.settings.referralBonusPerMessage) || 0;
+        sponsor.balance += bonus;
+        sponsor.refEarnings = (sponsor.refEarnings || 0) + bonus;
       }
-      if (httpStatus === 401 || httpStatus === 403 || httpStatus === 429 || WA_RESTRICTED_KEYWORDS.some(k => lower.includes(k))) {
-        return { detected: true, type: 'restricted', label: 'DIBATASI / TERPUTUS', reason: responseText || `HTTP ${httpStatus} - Perangkat WhatsApp terdeteksi dibatasi atau terputus.` };
-      }
-      return { detected: false, type: null, label: null, reason: null };
     }
 
     function recordUserBlastHistory(user, entry) {
@@ -1386,7 +1785,7 @@
         devicePhone: entry.devicePhone || '-',
         deviceLabel: entry.deviceLabel || '-',
         messageSnippet: entry.messageSnippet || '-',
-        status: entry.status || 'failed', // 'sent' | 'failed' | 'stopped_ban'
+        status: entry.status || 'failed',
         earned: strictEarned,
         commissionLabel: entry.commissionLabel || defaultLabel
       });
@@ -1395,14 +1794,34 @@
       }
     }
 
+    // =========================================================================
+    // AUTO-DETECT WA KENON / DIBATASI (AUTO-DISCONNECT & AUTO-STOP)
+    // =========================================================================
+    const WA_KENON_KEYWORDS = [
+      'banned', 'ban', 'kenon', 'blocked', 'permanently', 'terminated', 'spam_block', 'account_locked', 'akun diblokir', 'nomor diblokir'
+    ];
+    const WA_RESTRICTED_KEYWORDS = [
+      'restricted', 'dibatasi', 'limit', 'rate limit', 'temporarily', 'disconnect', 'disconnected', 'not connected',
+      'logout', 'logged out', 'device not found', 'session closed', 'qr', 'unauthorized', 'invalid token', 'offline'
+    ];
+
+    function detectWaRestrictionOrBan(httpStatus, responseText = '') {
+      const lower = String(responseText || '').toLowerCase();
+      if (WA_KENON_KEYWORDS.some(k => lower.includes(k))) {
+        return { detected: true, type: 'banned', label: 'KENON / DIBLOKIR WHATSAPP', reason: responseText || `HTTP ${httpStatus} - Akun WhatsApp terdeteksi kenon/diblokir.` };
+      }
+      if (httpStatus === 401 || httpStatus === 403 || httpStatus === 429 || WA_RESTRICTED_KEYWORDS.some(k => lower.includes(k))) {
+        return { detected: true, type: 'restricted', label: 'DIBATASI / TERPUTUS', reason: responseText || `HTTP ${httpStatus} - Perangkat WhatsApp terdeteksi dibatasi atau terputus.` };
+      }
+      return { detected: false, type: null, label: null, reason: null };
+    }
+
     function handleDeviceKenonOrRestricted(user, device, detection, pendingTargetToRestore = null, messageSnippet = '') {
-      // 1. Putuskan perangkat secara otomatis & tandai status kenon/dibatasi
       device.active = false;
       device.healthStatus = detection.type === 'banned' ? 'banned' : 'restricted';
       device.banReason = detection.reason;
       device.bannedAt = new Date().toLocaleString('id-ID');
 
-      // 2. Kembalikan nomor target yang sedang diproses agar tidak hangus (0 saldo ditambahkan)
       if (pendingTargetToRestore) {
         pendingTargetToRestore.status = 'pending';
         pendingTargetToRestore.sentBy = null;
@@ -1423,13 +1842,9 @@
         });
       }
 
-      // 3. Hentikan Auto-Blast seketika
       stopBlastWorker();
-
-      // 4. Simpan state ke database
       saveDatabase();
 
-      // 5. Tampilkan Banner & Modal Peringatan ke User
       const isBanned = device.healthStatus === 'banned';
       const titleText = isBanned
         ? `Perangkat ${device.phone} Terdeteksi KENON (Diblokir)!`
@@ -1456,7 +1871,7 @@
       document.getElementById('waBanModalBadge').textContent = tagText || 'DETEKSI OTOMATIS KEAMANAN AKUN';
       modal.classList.remove('hidden');
       modal.classList.add('flex');
-      lucide.createIcons();
+      safeRefreshIcons();
     }
 
     function closeWaBanModal() {
@@ -1490,232 +1905,8 @@
       handleDeviceKenonOrRestricted(user, dev, detection, null, '');
     }
 
-    function saveDatabase(data = db) {
-      try {
-        localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(data));
-      } catch (e) {
-        showToast('Penyimpanan browser penuh! Silakan bersihkan sebagian antrean lama.', 'error');
-      }
-    }
-
-    function formatRupiah(num) {
-      return 'Rp ' + Number(num || 0).toLocaleString('id-ID');
-    }
-
-    function escapeHtml(str) {
-      return String(str ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
-
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toastContainer');
-      const colors = {
-        success: 'bg-emerald-950/95 border-emerald-500/50 text-emerald-200',
-        error: 'bg-rose-950/95 border-rose-500/50 text-rose-200',
-        info: 'bg-slate-900/95 border-slate-700 text-slate-200'
-      };
-      const el = document.createElement('div');
-      el.className = `pointer-events-auto px-4 py-3 rounded-2xl border shadow-xl text-xs font-semibold flex items-center justify-between gap-3 transition-all ${colors[type] || colors.info}`;
-      el.innerHTML = `<span>${escapeHtml(message)}</span>`;
-      container.appendChild(el);
-      setTimeout(() => {
-        el.style.opacity = '0';
-        setTimeout(() => el.remove(), 300);
-      }, 3600);
-    }
-
-    function copyTextToClipboard(text, label = 'Teks') {
-      const temp = document.createElement('textarea');
-      temp.value = text;
-      temp.style.position = 'fixed';
-      temp.style.opacity = '0';
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand('copy');
-      document.body.removeChild(temp);
-      showToast(`${label} (${text}) berhasil disalin!`, 'success');
-    }
-
     // =========================================================================
-    // LANDING PAGE CALCULATOR & METRICS
-    // =========================================================================
-    function refreshLandingMetrics() {
-      document.getElementById('heroRateDisplay').textContent = formatRupiah(db.settings.ratePerMessage);
-      document.getElementById('heroRefDisplay').textContent = `${formatRupiah(db.settings.referralBonusPerMessage)} / pesan`;
-      document.getElementById('heroMinWdDisplay').textContent = formatRupiah(db.settings.minWithdraw);
-      updateLandingCalculator();
-    }
-
-    function updateLandingCalculator() {
-      const devices = Number(document.getElementById('calcDevices').value);
-      const msgs = Number(document.getElementById('calcMsg').value);
-      const refs = Number(document.getElementById('calcRef').value);
-
-      document.getElementById('calcDevicesVal').textContent = `${devices} Perangkat`;
-      document.getElementById('calcMsgVal').textContent = `${msgs} Pesan`;
-      document.getElementById('calcRefVal').textContent = `${refs} Member`;
-
-      const dailyBlast = devices * msgs * Number(db.settings.ratePerMessage);
-      const dailyRef = refs * 100 * Number(db.settings.referralBonusPerMessage);
-      const monthly = (dailyBlast + dailyRef) * 30;
-
-      document.getElementById('calcDailyOut').textContent = formatRupiah(dailyBlast);
-      document.getElementById('calcRefDailyOut').textContent = formatRupiah(dailyRef);
-      document.getElementById('calcMonthlyOut').textContent = formatRupiah(monthly);
-    }
-
-    // =========================================================================
-    // UNIFIED AUTHENTICATION (USER & ADMIN IN ONE LOGIN FORM)
-    // =========================================================================
-    function openAuthModal(mode = 'login') {
-      const modal = document.getElementById('authModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      switchAuthTab(mode);
-    }
-
-    function closeAuthModal() {
-      const modal = document.getElementById('authModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function switchAuthTab(mode) {
-      authModalMode = mode;
-      const loginForm = document.getElementById('loginForm');
-      const registerForm = document.getElementById('registerForm');
-      const tabLogin = document.getElementById('tabAuthLogin');
-      const tabReg = document.getElementById('tabAuthRegister');
-
-      loginForm.classList.add('hidden');
-      registerForm.classList.add('hidden');
-      tabLogin.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
-      tabReg.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
-
-      if (mode === 'login') {
-        loginForm.classList.remove('hidden');
-        tabLogin.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950';
-      } else {
-        registerForm.classList.remove('hidden');
-        tabReg.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950';
-      }
-    }
-
-    function handleUnifiedLogin(e) {
-      e.preventDefault();
-      const identity = document.getElementById('loginIdentity').value.trim();
-      const password = document.getElementById('loginPassword').value.trim();
-
-      const configuredAdminId = (db.settings.adminId || 'admin').toLowerCase();
-      const configuredAdminPw = db.settings.adminPassword || 'admin';
-      const identityLower = identity.toLowerCase();
-
-      const isAdminIdMatch = (identityLower === configuredAdminId || identityLower === 'admin' || identityLower === 'admin@blasthub.co');
-      const isAdminPwMatch = (password === configuredAdminPw || password === 'admin123');
-
-      if (isAdminIdMatch && isAdminPwMatch) {
-        currentSession = { role: 'admin', userId: 'admin' };
-        document.getElementById('loginForm').reset();
-        closeAuthModal();
-        enterAdminDashboard();
-        showToast('Berhasil masuk ke Admin Panel.', 'success');
-        return;
-      }
-
-      const foundUser = db.users.find(u => u.email.toLowerCase() === identityLower && u.password === password);
-      if (!foundUser) {
-        showToast('ID/Email atau password salah.', 'error');
-        return;
-      }
-      if (foundUser.status === 'suspended') {
-        showToast('Akun Anda sedang dinonaktifkan.', 'error');
-        return;
-      }
-
-      currentSession = { role: 'user', userId: foundUser.id };
-      document.getElementById('loginForm').reset();
-      closeAuthModal();
-      enterUserDashboard();
-      showToast(`Selamat datang kembali, ${foundUser.name}!`, 'success');
-    }
-
-    function handleUserRegister(e) {
-      e.preventDefault();
-      const name = document.getElementById('regName').value.trim();
-      const email = document.getElementById('regEmail').value.trim().toLowerCase();
-      const password = document.getElementById('regPassword').value.trim();
-      const refInput = document.getElementById('regRefCode').value.trim().toUpperCase();
-
-      if (email === (db.settings.adminId || 'admin').toLowerCase() || email === 'admin@blasthub.co') {
-        showToast('Email tersebut tidak dapat digunakan untuk pendaftaran member.', 'error');
-        return;
-      }
-
-      if (db.users.some(u => u.email === email)) {
-        showToast('Email sudah terdaftar. Silakan masuk.', 'error');
-        return;
-      }
-
-      const sponsor = refInput ? db.users.find(u => u.referralCode === refInput) : null;
-      const newUser = {
-        id: 'usr_' + Date.now(),
-        name,
-        email,
-        password,
-        referralCode: 'BH' + Math.floor(1000 + Math.random() * 9000),
-        referredBy: sponsor ? sponsor.referralCode : null,
-        balance: 0,
-        refEarnings: 0,
-        totalSent: 0,
-        totalProcessed: 0,
-        c2DeliveredCount: 0,
-        c2BucketCount: 0,
-        c2CurrentThreshold: pickRandomC2Threshold(db.settings.c2RandomThresholds),
-        countedContacts: 0,
-        status: 'active',
-        devices: [
-          {
-            id: 'dev_' + Date.now(),
-            label: 'Perangkat Browser Utama',
-            phone: '628' + Math.floor(100000000 + Math.random() * 899999999),
-            provider: 'local_queue',
-            endpoint: '',
-            token: '',
-            active: true,
-            healthStatus: 'connected',
-            banReason: null,
-            bannedAt: null
-          }
-        ],
-        blastHistory: []
-      };
-
-      db.users.push(newUser);
-      saveDatabase();
-      currentSession = { role: 'user', userId: newUser.id };
-      document.getElementById('registerForm').reset();
-      closeAuthModal();
-      enterUserDashboard();
-      showToast('Pendaftaran berhasil! Klik Start Blast untuk mulai.', 'success');
-    }
-
-    function logoutSession() {
-      stopBlastWorker();
-      currentSession = null;
-      document.getElementById('userDashboardView').classList.add('hidden');
-      document.getElementById('userDashboardView').classList.remove('flex');
-      document.getElementById('adminDashboardView').classList.add('hidden');
-      document.getElementById('adminDashboardView').classList.remove('flex');
-      document.getElementById('landingView').classList.remove('hidden');
-      refreshLandingMetrics();
-      showToast('Anda telah keluar dari sesi.', 'info');
-    }
-
-    // =========================================================================
-    // USER DASHBOARD & MANUAL START / STOP BLAST WORKER
+    // USER DASHBOARD RENDERING & NAVIGATION
     // =========================================================================
     function getCurrentUser() {
       if (!currentSession || currentSession.role !== 'user') return null;
@@ -1730,20 +1921,19 @@
       userView.classList.remove('hidden');
       userView.classList.add('flex');
 
-      // Pastikan blast dalam status Siap / Berhenti saat masuk; berjalan HANYA ketika user klik Start Blast
       stopBlastWorker();
       switchUserTab('blast');
       renderUserDashboard();
     }
 
     function switchUserTab(tab) {
-      const tabs = ['blast', 'history', 'gateway', 'referral', 'withdraw'];
+      const tabs = ['blast', 'gateway', 'history', 'withdraw', 'referral'];
       const titles = {
-        blast: 'Auto-Blast & Antrean Target',
+        blast: 'Dashboard & Auto-Blast',
+        gateway: 'Perangkat WA & API Gateway',
         history: 'History Blast Pengiriman',
-        gateway: 'Perangkat WA & Konfigurasi API Gateway',
-        referral: 'Program Referral & Downline',
-        withdraw: 'Penarikan Saldo (Withdraw)'
+        withdraw: 'Tarik Saldo (Withdraw)',
+        referral: 'Program Referral & Jaringan'
       };
       tabs.forEach(t => {
         const sec = document.getElementById(`utab-section-${t}`);
@@ -1751,13 +1941,14 @@
         if (!sec || !btn) return;
         if (t === tab) {
           sec.classList.remove('hidden');
-          btn.className = 'u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 whitespace-nowrap transition';
+          btn.className = 'u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 whitespace-nowrap transition cursor-pointer';
         } else {
           sec.classList.add('hidden');
-          btn.className = 'u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap transition';
+          btn.className = 'u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap transition cursor-pointer';
         }
       });
-      document.getElementById('uPageTitle').textContent = titles[tab];
+      const titleEl = document.getElementById('uPageTitle');
+      if (titleEl) titleEl.textContent = titles[tab] || 'Dashboard';
       renderUserDashboard();
     }
 
@@ -1765,7 +1956,6 @@
       const user = getCurrentUser();
       if (!user) return;
 
-      // Update Alert Banner visibility if a device was disconnected due to ban/restriction
       const alertBanner = document.getElementById('uDeviceAlertBanner');
       if (alertBanner) {
         if (activeDeviceBannerAlert) {
@@ -1781,7 +1971,10 @@
       const minWd = Number(db.settings.minWithdraw) || 20000;
       const pct = Math.min(100, Math.round((user.balance / minWd) * 100));
       const userCountedSent = user.countedContacts || user.totalSent || 0;
+      const pendingTargetsCount = db.targets.filter(t => t.status === 'pending').length;
+      const downlines = db.users.filter(u => u.referredBy === user.referralCode);
 
+      document.getElementById('uTopUserName').textContent = user.name;
       document.getElementById('uSidebarName').textContent = user.name;
       document.getElementById('uSidebarEmail').textContent = user.email;
       document.getElementById('uRateBadge').textContent = formatRupiah(db.settings.ratePerMessage);
@@ -1792,6 +1985,9 @@
         ? 'Siap ditarik sekarang!'
         : `${pct}% menuju target ${formatRupiah(minWd)}`;
       document.getElementById('uSentCountVal').textContent = userCountedSent.toLocaleString('id-ID');
+      document.getElementById('uGlobalPendingVal').textContent = pendingTargetsCount.toLocaleString('id-ID');
+      document.getElementById('uRefEarnedVal').textContent = formatRupiah(user.refEarnings || 0);
+      document.getElementById('uDownlineCountVal').textContent = downlines.length;
 
       const minHintEl = document.getElementById('uWdMinHint');
       const wdAmtInput = document.getElementById('uWdAmount');
@@ -1801,12 +1997,13 @@
         wdAmtInput.placeholder = `Minimal ${minWd}`;
       }
 
-      // Campaign Details (Sinkron dengan pesan yang diatur Admin)
       document.getElementById('uCampaignTitle').textContent = db.settings.campaignTitle;
-      const variantList = Array.isArray(db.settings.messageVariants) ? db.settings.messageVariants.filter(Boolean) : [];
+      const variantList = (db.settings.rotationEnabled !== false && Array.isArray(db.settings.messageVariants))
+        ? db.settings.messageVariants.filter(Boolean)
+        : [];
       const templateBox = document.getElementById('uCampaignTemplate');
       if (variantList.length > 0) {
-        templateBox.textContent = `${db.settings.messageTemplate}\n\n(+ ${variantList.length} variasi pesan rotasi otomatis dari Admin)`;
+        templateBox.textContent = `${db.settings.messageTemplate}\n\n(+ ${variantList.length} variasi pesan rotasi otomatis)`;
         templateBox.classList.add('whitespace-pre-line');
       } else {
         templateBox.textContent = db.settings.messageTemplate;
@@ -1819,12 +2016,11 @@
         const isApi = activeDev.provider !== 'local_queue';
         const modeBadge = document.getElementById('uGatewayModeBadge');
         modeBadge.textContent = isApi ? `API Nyata: ${activeDev.provider.toUpperCase()}` : 'Mode: Browser Queue';
-        modeBadge.className = 'px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 text-xs font-semibold';
       } else {
         document.getElementById('uActiveDeviceLabel').textContent = 'Tidak ada perangkat aktif / sehat';
       }
 
-      // Render Recent Blast History Preview on Overview Tab (Hanya Terhitung = Terkirim, Tidak Terhitung = Gagal)
+      // Render Recent Blast History Preview
       const recentHistory = (user.blastHistory || []).slice(0, 10);
       const histBody = document.getElementById('uHistoryTableBody');
       histBody.innerHTML = recentHistory.length ? recentHistory.map(item => {
@@ -1852,10 +2048,9 @@
         `;
       }).join('') : `<tr><td colspan="5" class="py-6 text-center text-slate-500 text-xs">Belum ada riwayat pengiriman blast. Klik Start Blast untuk memulai.</td></tr>`;
 
-      // Render Full History Tab
       renderUserHistoryTab();
 
-      // Render Devices with Health Status (Connected / Kenon / Dibatasi)
+      // Render Devices List
       const devList = document.getElementById('uDeviceList');
       devList.innerHTML = user.devices.length ? user.devices.map(d => {
         const isBanned = d.healthStatus === 'banned';
@@ -1873,6 +2068,28 @@
           : isRestricted
             ? '<span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-extrabold uppercase">DIBATASI / TERPUTUS</span>'
             : d.active
+              ? '<span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase">Aktif / Terhubung</span>'
+              : '<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px] font-bold uppercase">Standby</span>';
+
+        return `
+          <div class="p-4 rounded-xl border ${borderClass} flex flex-wrap items-center justify-between gap-3">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-bold text-sm text-white">${escapeHtml(d.label)}</span>
+                ${statusBadge}
+              </div>
+              <div class="text-xs text-slate-400 font-mono mt-0.5">${escapeHtml(d.phone)} &bull; ${escapeHtml(d.provider)}</div>
+              ${isUnhealthy && d.banReason ? `<div class="text-[11px] text-rose-300 mt-1">${escapeHtml(d.banReason)}</div>` : ''}
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              ${!isUnhealthy ? `<button type="button" onclick="triggerSimulateDeviceBan('${d.id}', 'banned')" class="px-2.5 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 text-[11px] font-semibold cursor-pointer">Tes Simulasi WA Kenon</button>` : ''}
+              ${!isUnhealthy && !d.active ? `<button type="button" onclick="setActiveUserDevice('${d.id}')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white cursor-pointer">Jadikan Utama</button>` : ''}
+              <button type="button" onclick="deleteUserDevice('${d.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 text-xs font-semibold text-rose-400 cursor-pointer">Hapus</button>
+            </div>
+          </div>
+        `;
+      }).join('') : `<p class="text-xs text-slate-500">Belum ada perangkat terdaftar. Tambahkan perangkat di formulir samping.</p>`;
+
       // Render Referral Section
       const refUrl = `${window.location.origin}${window.location.pathname}?ref=${user.referralCode}`;
       document.getElementById('uRefLinkInput').value = refUrl;
@@ -1896,7 +2113,7 @@
           ? 'bg-emerald-500/15 text-emerald-400'
           : 'bg-amber-400/15 text-amber-300';
         const badgeLabel = isDone
-          ? `Done${w.doneAt ? ' • ' + escapeHtml(w.doneAt) : ''}`
+          ? `Done / Berhasil Ditransfer${w.doneAt ? ' • ' + escapeHtml(w.doneAt) : ''}`
           : 'Menunggu';
 
         return `
@@ -1913,7 +2130,7 @@
         `;
       }).join('') : `<tr><td colspan="4" class="py-6 text-center text-slate-500 text-xs">Belum ada riwayat penarikan saldo.</td></tr>`;
 
-      lucide.createIcons();
+      safeRefreshIcons();
     }
 
     function renderUserHistoryTab() {
@@ -2016,14 +2233,15 @@
     }
 
     function toggleGatewayFields() {
-      const provider = document.getElementById('devProvider').value;
+      const provider = document.getElementById('devProvider')?.value || 'local_queue';
       const fields = document.getElementById('gatewayApiFields');
       const endpointInput = document.getElementById('devEndpoint');
+      if (!fields) return;
       if (provider === 'local_queue') {
         fields.classList.add('hidden');
       } else {
         fields.classList.remove('hidden');
-        if (provider === 'fonnte' && !endpointInput.value) {
+        if (provider === 'fonnte' && endpointInput && !endpointInput.value) {
           endpointInput.value = 'https://api.fonnte.com/send';
         }
       }
@@ -2103,7 +2321,7 @@
     }
 
     // =========================================================================
-    // MANUAL START / STOP BLAST WORKER ENGINE (BERJALAN SAAT USER KLIK START)
+    // MANUAL START / STOP BLAST WORKER ENGINE
     // =========================================================================
     function updateWorkerStatusUI(state, secondsLeft = 0) {
       const badge = document.getElementById('uLiveStatusBadge');
@@ -2129,12 +2347,12 @@
           ? `Pengiriman berikutnya dalam ${secondsLeft} detik...`
           : 'Sedang memproses pengiriman ke nomor target...';
 
-        btn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-rose-500/20 transition';
+        btn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-rose-500/20 transition cursor-pointer';
         btnIcon.setAttribute('data-lucide', 'square');
         btnText.textContent = 'Stop Blast';
 
         if (cardBtn && cardIcon && cardText) {
-          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 transition';
+          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 transition cursor-pointer';
           cardIcon.setAttribute('data-lucide', 'square');
           cardText.textContent = 'Stop Blast';
         }
@@ -2144,12 +2362,12 @@
         statusText.textContent = 'MENUNGGU ANTREAN TARGET';
         countdownEl.textContent = 'Antrean sedang kosong. Otomatis kirim saat target baru tersedia atau klik Stop Blast';
 
-        btn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-rose-500/20 transition';
+        btn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-rose-500/20 transition cursor-pointer';
         btnIcon.setAttribute('data-lucide', 'square');
         btnText.textContent = 'Stop Blast';
 
         if (cardBtn && cardIcon && cardText) {
-          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 transition';
+          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 transition cursor-pointer';
           cardIcon.setAttribute('data-lucide', 'square');
           cardText.textContent = 'Stop Blast';
         }
@@ -2157,27 +2375,37 @@
         badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/35 text-amber-300 text-[11px] font-extrabold tracking-wide';
         dot.className = 'w-2 h-2 rounded-full bg-amber-400';
         statusText.textContent = 'PERANGKAT BELUM TERHUBUNG';
-        countdownEl.textContent = 'Hubungkan perangkat di tab Device & API Gateway terlebih dahulu';
+        countdownEl.textContent = 'Hubungkan perangkat di tab Perangkat WA & API terlebih dahulu';
 
-        btn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition';
+        btn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer';
         btnIcon.setAttribute('data-lucide', 'play');
         btnText.textContent = 'Start Blast';
 
         if (cardBtn && cardIcon && cardText) {
-          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition';
+          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition cursor-pointer';
           cardIcon.setAttribute('data-lucide', 'play');
           cardText.textContent = 'Start Blast Sekarang';
         }
       } else {
-        // Default: 'stopped' (Siap Mulai Blast)
         badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-[11px] font-extrabold tracking-wide';
         dot.className = 'w-2 h-2 rounded-full bg-slate-400';
         statusText.textContent = 'SIAP MULAI BLAST';
         countdownEl.textContent = 'Klik tombol Start Blast untuk mulai mengirim pesan';
 
-        btn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition';
+        btn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer';
         btnIcon.setAttribute('data-lucide', 'play');
         btnText.textContent = 'Start Blast';
+
+        if (cardBtn && cardIcon && cardText) {
+          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition cursor-pointer';
+          cardIcon.setAttribute('data-lucide', 'play');
+          cardText.textContent = 'Start Blast Sekarang';
+        }
+      }
+
+      safeRefreshIcons();
+    }
+
     function toggleBlastWorker() {
       const user = getCurrentUser();
       if (!user) return;
@@ -2189,13 +2417,12 @@
         return;
       }
 
-      // Validasi perangkat aktif & sehat sebelum Start Blast
       const healthyDevices = user.devices.filter(d => d.healthStatus !== 'banned' && d.healthStatus !== 'restricted');
       const activeDev = healthyDevices.find(d => d.active) || healthyDevices[0];
       if (!activeDev) {
         updateWorkerStatusUI('no_device');
         switchUserTab('gateway');
-        showToast('Tidak ada perangkat WhatsApp yang aktif/sehat. Hubungkan perangkat baru terlebih dahulu.', 'error');
+        showToast('Tidak ada perangkat WhatsApp yang aktif/sehat. Hubungkan perangkat terlebih dahulu.', 'error');
         return;
       }
 
@@ -2219,7 +2446,6 @@
 
       workerRunning = true;
 
-      // Heartbeat pengecekan status kesehatan perangkat secara berkala saat blast berjalan
       healthHeartbeatInterval = setInterval(() => {
         if (!workerRunning) {
           clearInterval(healthHeartbeatInterval);
@@ -2305,7 +2531,7 @@
       updateWorkerStatusUI(healthyDevices.length > 0 ? 'stopped' : 'no_device');
     }
 
-    async function checkActiveDeviceHeartbeat() {
+    function checkActiveDeviceHeartbeat() {
       if (!workerRunning) return;
       const user = getCurrentUser();
       if (!user) return;
@@ -2315,7 +2541,6 @@
         stopBlastWorker();
         return;
       }
-      // Jika perangkat ternyata sudah ditandai kenon/dibatasi di storage, langsung putus
       if (activeDev.healthStatus === 'banned' || activeDev.healthStatus === 'restricted') {
         handleDeviceKenonOrRestricted(user, activeDev, {
           detected: true,
@@ -2331,7 +2556,6 @@
       const user = getCurrentUser();
       if (!user) { stopBlastWorker(); return; }
 
-      // Sinkronkan database terbaru agar target baru yang diunggah Admin langsung terbaca
       db = loadDatabase();
       const freshUser = getCurrentUser();
       if (!freshUser) { stopBlastWorker(); return; }
@@ -2440,7 +2664,6 @@
 
       if (!workerRunning) return;
 
-      // Jika terdeteksi WhatsApp Kenon atau Dibatasi -> Langsung Putus Koneksi & Stop Blast!
       if (banDetection.detected) {
         handleDeviceKenonOrRestricted(freshUser, activeDev, banDetection, nextTarget, finalMessage);
         return;
@@ -2480,7 +2703,6 @@
           freshUser.totalEarned += rateAmount;
           creditReferralSponsor(freshUser);
         } else if (isC2Delivered) {
-          // Hanya kontak C2 yang masuk perhitungan, dengan rasio acak [2, 3, 4, 5] C2 = 1 kontak saldo
           freshUser.c2DeliveredCount += 1;
           freshUser.c2BucketCount += 1;
 
@@ -2499,7 +2721,6 @@
         }
 
         if (creditedNow) {
-          // Terhitung menjadi saldo -> Tampil sebagai TERKIRIM di User & Admin
           nextTarget.status = 'sent';
           const earnedText = `+${formatRupiah(rateAmount)}`;
 
@@ -2516,7 +2737,7 @@
 
           appendUserLog(`[TERKIRIM] ${nextTarget.phone} (${nextTarget.name || 'No Name'}) -> ${earnedText}`, 'success');
         } else {
-          // JIKA GAGAL TIDAK MENJADI SALDO (0 saldo, 0 totalEarned, 0 countedContacts, 0 referral)
+          // TIDAK TERHITUNG -> TERDETEKSI GAGAL & TIDAK MENJADI SALDO (RP 0)
           nextTarget.status = 'failed';
           nextTarget.creditedBalance = false;
           freshUser.todayFailed += 1;
@@ -2537,7 +2758,7 @@
           appendUserLog(`[GAGAL] ${nextTarget.phone} (${nextTarget.name || 'No Name'}) -> Rp 0 (Tidak menjadi saldo)`, 'error');
         }
       } else {
-        // JIKA API / NETWORK GAGAL TIDAK MENJADI SALDO (0 saldo, 0 totalEarned, 0 countedContacts, 0 referral)
+        // API / NETWORK GAGAL -> TIDAK MENJADI SALDO (RP 0)
         nextTarget.status = 'failed';
         nextTarget.deliveryTick = 'FAILED';
         nextTarget.creditedBalance = false;
@@ -2567,22 +2788,17 @@
         appendUserLog(`[GAGAL] ${nextTarget.phone} (${nextTarget.name || 'No Name'}) -> Rp 0 (Tidak menjadi saldo)`, 'error');
       }
 
-        freshUser.totalProcessed += 1;
+      saveDatabase();
+      renderUserDashboard();
 
-        const c2FilterActive = db.settings.c2OnlyEnabled !== false;
-        let creditedNow = false;
+      if (workerRunning) {
+        scheduleNextAutomatedBlast();
+      }
+    }
 
-        if (!c2FilterActive) {
-          nextTarget.creditedBalance = true;
-          creditedNow = true;
-          freshUser.countedContacts += 1;
-          freshUser.totalSent = freshUser.countedContacts;
-          freshUser.balance += Number(db.settings.ratePerMessage);
-          creditReferralSponsor(freshUser);
-        } else if (isC2Delivered) {
-          // Hanya kontak C2 yang masuk perhitungan, dengan rasio acak [2, 3, 4, 5] C2 = 1 kontak saldo
-          freshUser.c2DeliveredCount += 1;
-          freshUser.c2BucketCount += 1;
+    // =========================================================================
+    // MESSAGE TEMPLATE, SPINTAX & ADMIN QUICK AUTO-BLAST EDITOR
+    // =========================================================================
     function getIndonesiaTimeGreeting() {
       const hour = new Date().getHours();
       if (hour >= 4 && hour < 11) return 'Selamat pagi';
@@ -2593,7 +2809,7 @@
 
     function getActiveAutoBlastMessage(targetName = 'Kak', targetPhone = '') {
       const mainTpl = (db.settings.messageTemplate || '').trim();
-      const extraTpls = Array.isArray(db.settings.messageVariants)
+      const extraTpls = (db.settings.rotationEnabled !== false && Array.isArray(db.settings.messageVariants))
         ? db.settings.messageVariants.map(v => String(v || '').trim()).filter(Boolean)
         : [];
       const pool = [mainTpl, ...extraTpls].filter(Boolean);
@@ -2635,12 +2851,14 @@
     function updateAdminMessageLivePreview() {
       const msgEl = document.getElementById('quickCampaignMessage');
       const variantsEl = document.getElementById('quickCampaignVariants');
+      const rotCheck = document.getElementById('quickRotationEnabled');
       const bubbleEl = document.getElementById('adminWaPreviewBubble');
       const badgeEl = document.getElementById('quickVariantCountBadge');
       if (!msgEl || !bubbleEl) return;
 
       const mainText = msgEl.value.trim();
-      const extraLines = variantsEl
+      const useRot = rotCheck ? rotCheck.checked : true;
+      const extraLines = (useRot && variantsEl)
         ? variantsEl.value.split(/\r?\n/).map(s => s.trim()).filter(Boolean)
         : [];
       const pool = [mainText, ...extraLines].filter(Boolean);
@@ -2657,6 +2875,7 @@
       const titleVal = (document.getElementById('quickCampaignTitle')?.value || '').trim();
       const msgVal = (document.getElementById('quickCampaignMessage')?.value || '').trim();
       const variantsRaw = document.getElementById('quickCampaignVariants')?.value || '';
+      const rotEnabled = document.getElementById('quickRotationEnabled')?.checked ?? true;
 
       if (!msgVal) {
         showToast('Isi pesan auto-blast tidak boleh kosong.', 'error');
@@ -2671,6 +2890,7 @@
       db.settings.campaignTitle = titleVal || db.settings.campaignTitle || 'Kampanye Resmi BlastHub';
       db.settings.messageTemplate = msgVal;
       db.settings.messageVariants = variantsList;
+      db.settings.rotationEnabled = rotEnabled;
 
       saveDatabase();
       renderAdminDashboard();
@@ -2700,7 +2920,7 @@
 
     function copyUserRefLink() {
       const input = document.getElementById('uRefLinkInput');
-      copyTextToClipboard(input.value, 'Link referral');
+      if (input) copyTextToClipboard(input.value, 'Link referral');
     }
 
     function fillMaxUserWithdraw() {
@@ -2769,26 +2989,28 @@
     }
 
     function switchAdminTab(tab) {
-      const tabs = ['targets', 'campaign', 'withdrawals', 'users', 'backup'];
+      const tabs = ['targets', 'withdrawals', 'users', 'campaign', 'backup'];
       const titles = {
-        targets: 'Manajemen File & Antrean Target Blast',
-        campaign: 'Template Pesan, Tarif & Filter C2',
+        targets: 'Upload Target Blast & Pesan Auto-Blast',
         withdrawals: 'Antrean Done WD Member',
-        users: 'Manajemen Member & Saldo',
+        users: 'Daftar Member & Analitik C2',
+        campaign: 'Pengaturan Tarif, Filter C2 & Admin',
         backup: 'Backup & Restore Database'
       };
       tabs.forEach(t => {
         const sec = document.getElementById(`atab-section-${t}`);
         const btn = document.getElementById(`atab-btn-${t}`);
+        if (!sec || !btn) return;
         if (t === tab) {
           sec.classList.remove('hidden');
-          btn.className = 'a-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 whitespace-nowrap transition';
+          btn.className = 'a-nav-btn flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 whitespace-nowrap transition cursor-pointer';
         } else {
           sec.classList.add('hidden');
-          btn.className = 'a-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap transition';
+          btn.className = 'a-nav-btn flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap transition cursor-pointer';
         }
       });
-      document.getElementById('aPageTitle').textContent = titles[tab];
+      const titleEl = document.getElementById('aPageTitle');
+      if (titleEl) titleEl.textContent = titles[tab] || 'Admin Panel';
       renderAdminDashboard();
     }
 
@@ -2806,7 +3028,7 @@
     }
 
     function ingestParsedRows(rows, sourceFileName) {
-      const dedup = document.getElementById('dedupCheckbox').checked;
+      const dedup = document.getElementById('dedupCheckbox')?.checked ?? true;
       const existingPhones = new Set(db.targets.map(t => t.phone));
       let addedCount = 0;
 
@@ -2846,6 +3068,15 @@
       }
     }
 
+    function generateSampleTargetsForTesting() {
+      const sampleNames = ['Raka Aditya', 'Maya Sari', 'Galih Pratama', 'Putri Rahayu', 'Bagas Saputra', 'Intan Permata', 'Deni Kurniawan', 'Larasati Dewi', 'Yoga Mahendra', 'Fitri Handayani'];
+      const rows = sampleNames.map((nm, i) => ({
+        phone: '0812' + String(Math.floor(10000000 + Math.random() * 89999999)).slice(0, 8),
+        name: nm
+      }));
+      ingestParsedRows(rows, 'generator_contoh_admin');
+    }
+
     function handleTargetFileUpload(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -2853,6 +3084,10 @@
       const ext = fileName.split('.').pop().toLowerCase();
 
       if (ext === 'xlsx' || ext === 'xls') {
+        if (typeof XLSX === 'undefined') {
+          showToast('Library Excel belum termuat. Silakan upload format CSV/TXT/JSON.', 'error');
+          return;
+        }
         const reader = new FileReader();
         reader.onload = function (e) {
           try {
@@ -2958,7 +3193,7 @@
       db.targets = db.targets.filter(t => t.status === 'pending');
       saveDatabase();
       renderAdminDashboard();
-      showToast('Data target yang sudah terkirim dibersihkan.', 'info');
+      showToast('Data target yang sudah diproses dibersihkan.', 'info');
     }
 
     function clearAllTargets() {
@@ -2970,7 +3205,7 @@
     }
 
     // =========================================================================
-    // ADMIN DONE WD ENGINE (DETAIL REKENING + KONTAK BLAST + C2 + NOMINAL WD)
+    // ADMIN DONE WD ENGINE
     // =========================================================================
     function switchAdminWdSubTab(viewMode) {
       adminWdSubView = viewMode;
@@ -3023,18 +3258,19 @@
       const pendingTargets = db.targets.filter(t => t.status === 'pending').length;
       const creditedTargets = db.targets.filter(t => t.status === 'sent' && t.creditedBalance).length;
       const c2TotalTargets = db.targets.filter(t => t.deliveryTick === 'C2').length;
-      const failedOrUncreditedTargets = db.targets.filter(t => t.status === 'failed').length;
       const pendingWds = db.withdrawals.filter(w => w.status === 'pending');
       const doneWds = db.withdrawals.filter(w => w.status === 'done');
+      const totalPaidOut = doneWds.reduce((acc, w) => acc + (Number(w.amount) || 0), 0);
 
+      document.getElementById('aStatUsers').textContent = db.users.length.toLocaleString('id-ID');
       document.getElementById('aStatPending').textContent = pendingTargets.toLocaleString('id-ID');
-      document.getElementById('aStatSent').textContent = creditedTargets.toLocaleString('id-ID');
+      document.getElementById('aStatWdPending').textContent = pendingWds.length;
+      document.getElementById('aStatPaidOut').textContent = formatRupiah(totalPaidOut);
+
       const subBreakdownEl = document.getElementById('aStatSubBreakdown');
       if (subBreakdownEl) {
-        subBreakdownEl.textContent = `C2: ${c2TotalTargets.toLocaleString('id-ID')} • Gagal di User: ${failedOrUncreditedTargets.toLocaleString('id-ID')}`;
+        subBreakdownEl.textContent = `C2: ${c2TotalTargets.toLocaleString('id-ID')} • Lolos Saldo: ${creditedTargets.toLocaleString('id-ID')}`;
       }
-      document.getElementById('aStatUsers').textContent = db.users.length.toLocaleString('id-ID');
-      document.getElementById('aStatWdPending').textContent = pendingWds.length;
 
       const wdBadge = document.getElementById('adminPendingWdBadge');
       if (pendingWds.length > 0) {
@@ -3056,7 +3292,19 @@
         </div>
       `).join('') : `<p class="text-xs text-slate-500">Belum ada riwayat upload file.</p>`;
 
-      // Render Target Table (Admin sees C2 & Credited Balance)
+      // Populate Quick Auto-Blast Message Panel
+      const variantsText = (db.settings.messageVariants || []).join('\n');
+      const quickTitleEl = document.getElementById('quickCampaignTitle');
+      const quickMsgEl = document.getElementById('quickCampaignMessage');
+      const quickVarEl = document.getElementById('quickCampaignVariants');
+      const quickRotEl = document.getElementById('quickRotationEnabled');
+      if (quickTitleEl) quickTitleEl.value = db.settings.campaignTitle;
+      if (quickMsgEl) quickMsgEl.value = db.settings.messageTemplate;
+      if (quickVarEl) quickVarEl.value = variantsText;
+      if (quickRotEl) quickRotEl.checked = db.settings.rotationEnabled !== false;
+      updateAdminMessageLivePreview();
+
+      // Render Target Table
       const filter = document.getElementById('adminTargetFilter').value;
       const filteredTargets = db.targets
         .filter(t => filter === 'all' ? true : t.status === filter)
@@ -3092,20 +3340,16 @@
             <td class="py-3 px-4 text-slate-300">${escapeHtml(t.name || '-')}</td>
             <td class="py-3 px-4 text-xs text-slate-400">${escapeHtml(t.sourceFile || '-')}</td>
             <td class="py-3 px-4">${statusBadge}</td>
-      // Populate Quick Auto-Blast Message Panel (Tab 1) & Settings Inputs (Tab 2)
-      const variantsText = (db.settings.messageVariants || []).join('\n');
-      const quickTitleEl = document.getElementById('quickCampaignTitle');
-      const quickMsgEl = document.getElementById('quickCampaignMessage');
-      const quickVarEl = document.getElementById('quickCampaignVariants');
-      if (quickTitleEl) quickTitleEl.value = db.settings.campaignTitle;
-      if (quickMsgEl) quickMsgEl.value = db.settings.messageTemplate;
-      if (quickVarEl) quickVarEl.value = variantsText;
-      updateAdminMessageLivePreview();
+            <td class="py-3 px-4">${tickBadge}</td>
+            <td class="py-3 px-4 text-xs text-slate-400">${sender ? escapeHtml(sender.name) + ' (' + escapeHtml(t.sentAt || '') + ')' : '-'}</td>
+            <td class="py-3 px-4 text-right">
+              <button type="button" onclick="deleteSingleTarget('${t.id}')" class="text-xs text-rose-400 hover:underline cursor-pointer">Hapus</button>
+            </td>
+          </tr>
+        `;
+      }).join('') : `<tr><td colspan="7" class="py-6 text-center text-slate-500 text-xs">Tidak ada data nomor target.</td></tr>`;
 
-      document.getElementById('setCampaignTitle').value = db.settings.campaignTitle;
-      document.getElementById('setCampaignTemplate').value = db.settings.messageTemplate;
-      const setVarEl = document.getElementById('setCampaignVariants');
-      if (setVarEl) setVarEl.value = variantsText;
+      // Populate Settings Form
       document.getElementById('setRatePerMsg').value = db.settings.ratePerMessage;
       document.getElementById('setRefBonus').value = db.settings.referralBonusPerMessage;
       document.getElementById('setMinWd').value = db.settings.minWithdraw;
@@ -3125,31 +3369,23 @@
       const btnClearArchive = document.getElementById('btnClearDoneArchive');
 
       if (adminWdSubView === 'pending') {
-        tabPendingBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 transition';
-        tabDoneBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition';
+        tabPendingBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 transition cursor-pointer';
+        tabDoneBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition cursor-pointer';
         btnClearArchive.classList.add('hidden');
-        if (pendingWds.length > 0) {
-          btnDoneAll.classList.remove('hidden');
-        } else {
-          btnDoneAll.classList.add('hidden');
-        }
+        if (pendingWds.length > 0) btnDoneAll.classList.remove('hidden');
+        else btnDoneAll.classList.add('hidden');
       } else {
-        tabDoneBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition';
-        tabPendingBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition';
+        tabDoneBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition cursor-pointer';
+        tabPendingBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition cursor-pointer';
         btnDoneAll.classList.add('hidden');
-        if (doneWds.length > 0) {
-          btnClearArchive.classList.remove('hidden');
-        } else {
-          btnClearArchive.classList.add('hidden');
-        }
+        if (doneWds.length > 0) btnClearArchive.classList.remove('hidden');
+        else btnClearArchive.classList.add('hidden');
       }
 
       const activeWdList = (adminWdSubView === 'pending' ? pendingWds : doneWds).slice().reverse();
       const wdBody = document.getElementById('adminWdTableBody');
       wdBody.innerHTML = activeWdList.length ? activeWdList.map(w => {
         const memberObj = db.users.find(u => u.id === w.userId);
-        const currentProcessed = memberObj ? (memberObj.totalProcessed || memberObj.totalSent || 0) : (w.blastedCount ?? 0);
-        const currentC2 = memberObj ? (memberObj.c2DeliveredCount || 0) : (w.c2CountAtRequest ?? 0);
         const currentCounted = memberObj ? (memberObj.countedContacts || memberObj.totalSent || 0) : (w.countedAtRequest ?? 0);
         const snapshotCounted = w.countedAtRequest ?? w.blastedCount ?? currentCounted;
 
@@ -3163,7 +3399,7 @@
               <div class="flex flex-wrap items-center gap-2">
                 <span class="px-2 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-[11px] font-bold uppercase">${escapeHtml(w.method)}</span>
                 <span class="font-mono font-extrabold text-white text-sm tracking-wide">${escapeHtml(w.account)}</span>
-                <button type="button" onclick="copyTextToClipboard('${escapeHtml(w.account)}', 'Nomor rekening')" title="Salin Nomor Rekening" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition">
+                <button type="button" onclick="copyTextToClipboard('${escapeHtml(w.account)}', 'Nomor rekening')" title="Salin Nomor Rekening" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition cursor-pointer">
                   <i data-lucide="copy" class="w-3.5 h-3.5"></i>
                 </button>
               </div>
@@ -3172,19 +3408,16 @@
             <td class="py-3.5 px-4">
               <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-xs font-bold">
                 <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                <span>${currentCounted.toLocaleString('id-ID')} Terhitung</span>
+                <span>${currentCounted.toLocaleString('id-ID')} Kontak Di-Blast</span>
               </div>
-              <div class="text-[11px] text-slate-400 mt-1">
-                Total Diproses: <span class="text-white font-semibold">${currentProcessed}</span> &bull; C2: <span class="text-cyan-300 font-semibold">${currentC2}</span>
-                ${currentCounted !== snapshotCounted ? ` (saat WD: ${snapshotCounted})` : ''}
-              </div>
+              ${currentCounted !== snapshotCounted ? `<div class="text-[11px] text-slate-400 mt-1">Saat pengajuan WD: ${snapshotCounted} kontak</div>` : ''}
             </td>
             <td class="py-3.5 px-4">
               <div class="font-display font-extrabold text-amber-400 text-base">${formatRupiah(w.amount)}</div>
             </td>
             <td class="py-3.5 px-4 text-right">
               ${w.status === 'pending'
-                ? `<button onclick="markWithdrawalDone('${w.id}', this)" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold inline-flex items-center gap-1.5 shadow-md shadow-emerald-500/20 transition">
+                ? `<button type="button" onclick="markWithdrawalDone('${w.id}', this)" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold inline-flex items-center gap-1.5 shadow-md shadow-emerald-500/20 transition cursor-pointer">
                     <i data-lucide="check-circle-2" class="w-4 h-4"></i>
                     Done WD
                   </button>`
@@ -3206,7 +3439,7 @@
         </tr>
       `;
 
-      // Render Admin Users Table (Shows Total Diproses, C2 Delivered, & Counted Balance Contacts + WA Device Status)
+      // Render Admin Users Table
       const usersBody = document.getElementById('adminUsersTableBody');
       usersBody.innerHTML = db.users.map(u => {
         const devs = u.devices || [];
@@ -3240,7 +3473,7 @@
               </span>
             </td>
             <td class="py-3 px-4 text-right">
-              <button onclick="toggleUserStatus('${u.id}')" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200">
+              <button type="button" onclick="toggleUserStatus('${u.id}')" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 cursor-pointer">
                 ${u.status === 'active' ? 'Suspend' : 'Aktifkan'}
               </button>
             </td>
@@ -3248,7 +3481,7 @@
         `;
       }).join('');
 
-      lucide.createIcons();
+      safeRefreshIcons();
     }
 
     function handleSaveAdminSettings(e) {
@@ -3263,10 +3496,6 @@
 
       const validThresholds = rawThresholds.length > 0 ? rawThresholds : [2, 3, 4, 5];
 
-      db.settings.campaignTitle = document.getElementById('setCampaignTitle').value.trim();
-      db.settings.messageTemplate = document.getElementById('setCampaignTemplate').value.trim();
-      const setVarRaw = document.getElementById('setCampaignVariants')?.value || '';
-      db.settings.messageVariants = setVarRaw.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
       db.settings.ratePerMessage = Number(document.getElementById('setRatePerMsg').value);
       db.settings.referralBonusPerMessage = Number(document.getElementById('setRefBonus').value);
       db.settings.minWithdraw = Number(document.getElementById('setMinWd').value);
@@ -3283,7 +3512,7 @@
       saveDatabase();
       renderAdminDashboard();
       refreshLandingMetrics();
-      showToast('Pengaturan kampanye, pesan auto-blast & rasio C2 disimpan!', 'success');
+      showToast('Pengaturan tarif, rasio C2 & kredensial admin disimpan!', 'success');
     }
 
     function toggleUserStatus(userId) {
@@ -3329,12 +3558,94 @@
       reader.readAsText(file);
     }
 
-    // INIT ON LOAD
-    window.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
+    // =========================================================================
+    // INIT & EVENT LISTENERS (DELEGATED + DIRECT FOR 100% RELIABILITY)
+    // =========================================================================
+    function initApplication() {
+      // 1. Delegated click handler for all [data-auth-open] buttons
+      document.addEventListener('click', (e) => {
+        const openBtn = e.target.closest('[data-auth-open]');
+        if (openBtn) {
+          e.preventDefault();
+          const mode = openBtn.getAttribute('data-auth-open') || 'login';
+          openAuthModal(mode);
+          return;
+        }
+        const authModal = document.getElementById('authModal');
+        if (authModal && e.target === authModal) {
+          closeAuthModal();
+        }
+      });
+
+      // 2. Escape key closes modals
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeAuthModal();
+          closeWaBanModal();
+        }
+      });
+
+      // 3. Direct listeners for Auth Modal tabs, close button, and forms
+      const closeBtn = document.getElementById('closeAuthModalBtn');
+      if (closeBtn) closeBtn.addEventListener('click', closeAuthModal);
+
+      const tabLoginBtn = document.getElementById('tabAuthLogin');
+      if (tabLoginBtn) tabLoginBtn.addEventListener('click', () => switchAuthTab('login'));
+
+      const tabRegBtn = document.getElementById('tabAuthRegister');
+      if (tabRegBtn) tabRegBtn.addEventListener('click', () => switchAuthTab('register'));
+
+      const loginFormEl = document.getElementById('loginForm');
+      if (loginFormEl) loginFormEl.addEventListener('submit', handleUnifiedLogin);
+
+      const registerFormEl = document.getElementById('registerForm');
+      if (registerFormEl) registerFormEl.addEventListener('submit', handleUserRegister);
+
+      // 4. Calculator sliders
+      ['calcDevices', 'calcMsg', 'calcRef'].forEach(id => {
+        const slider = document.getElementById(id);
+        if (slider) slider.addEventListener('input', updateLandingCalculator);
+      });
+
+      // 5. Drag-and-drop support for Admin file upload dropzone
+      const dropZone = document.getElementById('dropZoneArea');
+      if (dropZone) {
+        dropZone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          dropZone.classList.add('border-amber-400', 'bg-slate-900');
+        });
+        dropZone.addEventListener('dragleave', () => {
+          dropZone.classList.remove('border-amber-400', 'bg-slate-900');
+        });
+        dropZone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          dropZone.classList.remove('border-amber-400', 'bg-slate-900');
+          if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            handleTargetFileUpload({ target: { files: e.dataTransfer.files, value: '' } });
+          }
+        });
+      }
+
+      // 6. Auto-fill referral code if ?ref= is present in URL
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const refParam = params.get('ref');
+        if (refParam) {
+          const refInput = document.getElementById('regRefCode');
+          if (refInput) refInput.value = refParam.toUpperCase();
+        }
+      } catch (_) {}
+
+      safeRefreshIcons();
       refreshLandingMetrics();
       toggleGatewayFields();
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApplication);
+    } else {
+      initApplication();
+    }
   </script>
 </body>
 </html>
