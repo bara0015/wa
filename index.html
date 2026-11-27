@@ -1,0 +1,3651 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlastHub — Platform Penghasil Uang dari WhatsApp Blast</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #020617;
+      color: #f8fafc;
+    }
+    .hero-grid {
+      background-image: radial-gradient(rgba(16, 185, 129, 0.14) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .wd-row-removing {
+      opacity: 0;
+      transform: translateX(28px);
+      transition: opacity 0.32s ease, transform 0.32s ease;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #10b981;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-emerald-500 selection:text-slate-950 overflow-x-hidden">
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed top-5 right-5 z-[120] flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+  <!-- ===================================================================== -->
+  <!-- 1. PUBLIC LANDING PAGE (100% CLEAN - TANPA TOMBOL ATAU INFO ADMIN)    -->
+  <!-- ===================================================================== -->
+  <div id="landingView" class="min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <header class="sticky top-0 z-40 backdrop-blur-xl bg-slate-950/85 border-b border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+            <i data-lucide="send" class="w-5 h-5 text-slate-950"></i>
+          </div>
+          <span class="font-display font-extrabold text-xl tracking-tight text-white">
+            Blast<span class="text-emerald-400">Hub</span>
+          </span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <a href="#cara-kerja" class="hover:text-emerald-400 transition">Cara Kerja</a>
+          <a href="#kalkulator" class="hover:text-emerald-400 transition">Kalkulator Komisi</a>
+          <a href="#keunggulan" class="hover:text-emerald-400 transition">Keunggulan</a>
+          <a href="#testimoni" class="hover:text-emerald-400 transition">Testimoni</a>
+        </nav>
+
+        <div class="flex items-center gap-2.5">
+          <button type="button" data-auth-open="login" class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800 transition cursor-pointer">
+            Login
+          </button>
+          <button type="button" data-auth-open="register" class="px-4 py-2 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-500/20 transition cursor-pointer">
+            Daftar Gratis
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Landing Content -->
+    <main class="flex-1">
+      <!-- Hero Section -->
+      <section class="relative hero-grid pt-14 pb-20 sm:pt-20 sm:pb-28 border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-6">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            Sistem Antrean Kampanye WhatsApp Real-Time
+          </div>
+
+          <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight max-w-4xl mx-auto leading-tight">
+            Ubah Koneksi WhatsApp Anda Menjadi <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-300">Penghasilan Harian</span>
+          </h1>
+
+          <p class="mt-5 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Hubungkan perangkat WhatsApp atau API Gateway Anda, klik tombol Start Blast, dan dapatkan komisi otomatis setiap pesan promosi berhasil terkirim.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+            <button type="button" data-auth-open="register" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-base shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 transition cursor-pointer">
+              <i data-lucide="rocket" class="w-5 h-5"></i>
+              Daftar &amp; Mulai Hasilkan Uang
+            </button>
+            <button type="button" data-auth-open="login" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-semibold text-base flex items-center justify-center gap-2 transition cursor-pointer">
+              <i data-lucide="log-in" class="w-5 h-5 text-emerald-400"></i>
+              Masuk ke Akun
+            </button>
+          </div>
+
+          <!-- Rate Highlight Cards -->
+          <div class="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto text-left">
+            <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Komisi per Pesan</span>
+                <i data-lucide="banknote" class="w-5 h-5 text-emerald-400"></i>
+              </div>
+              <div id="heroRateDisplay" class="font-display font-extrabold text-2xl sm:text-3xl text-white">Rp 1.300</div>
+              <p class="text-xs text-emerald-400 mt-1">Langsung masuk ke saldo akun</p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Bonus Referral</span>
+                <i data-lucide="users" class="w-5 h-5 text-teal-400"></i>
+              </div>
+              <div id="heroRefDisplay" class="font-display font-extrabold text-2xl sm:text-3xl text-white">Rp 50 / pesan</div>
+              <p class="text-xs text-teal-400 mt-1">Pasif income dari aktivitas downline</p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Minimal Withdraw</span>
+                <i data-lucide="wallet" class="w-5 h-5 text-cyan-400"></i>
+              </div>
+              <div id="heroMinWdDisplay" class="font-display font-extrabold text-2xl sm:text-3xl text-white">Rp 20.000</div>
+              <p class="text-xs text-cyan-400 mt-1">BCA, BRI, Mandiri, DANA, OVO, GoPay</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Earnings Calculator -->
+      <section id="kalkulator" class="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white">Kalkulator Estimasi Penghasilan</h2>
+          <p class="text-slate-400 mt-2 text-sm sm:text-base">Sesuaikan jumlah perangkat aktif dan target pesan harian Anda</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-10">
+          <div class="lg:col-span-7 space-y-6">
+            <div>
+              <div class="flex justify-between text-sm font-semibold mb-2">
+                <span class="text-slate-300">Jumlah Perangkat WhatsApp Aktif</span>
+                <span id="calcDevicesVal" class="text-emerald-400 font-bold">2 Perangkat</span>
+              </div>
+              <input id="calcDevices" type="range" min="1" max="15" value="2" class="w-full accent-emerald-500 cursor-pointer" />
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm font-semibold mb-2">
+                <span class="text-slate-300">Pesan Terkirim / Hari per Perangkat</span>
+                <span id="calcMsgVal" class="text-emerald-400 font-bold">150 Pesan</span>
+              </div>
+              <input id="calcMsg" type="range" min="20" max="1000" step="10" value="150" class="w-full accent-emerald-500 cursor-pointer" />
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm font-semibold mb-2">
+                <span class="text-slate-300">Jumlah Referral Aktif (100 pesan/hari)</span>
+                <span id="calcRefVal" class="text-teal-400 font-bold">5 Member</span>
+              </div>
+              <input id="calcRef" type="range" min="0" max="50" value="5" class="w-full accent-teal-500 cursor-pointer" />
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-gradient-to-br from-emerald-950/80 via-slate-900 to-slate-950 border border-emerald-500/30 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Potensi Penghasilan Bulanan</span>
+              <div id="calcMonthlyOut" class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2">Rp 12.450.000</div>
+              <div class="mt-4 pt-4 border-t border-slate-800 space-y-2 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Komisi Blast Harian:</span>
+                  <span id="calcDailyOut" class="font-semibold text-white">Rp 390.000</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Pasif Referral Harian:</span>
+                  <span id="calcRefDailyOut" class="font-semibold text-teal-400">Rp 25.000</span>
+                </div>
+              </div>
+            </div>
+            <button type="button" data-auth-open="register" class="mt-6 w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition cursor-pointer">
+              Daftar &amp; Mulai Sekarang
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4-Step Member How It Works -->
+      <section id="cara-kerja" class="py-16 border-t border-slate-800/80 bg-slate-950/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white">Cara Kerja BlastHub</h2>
+            <p class="text-slate-400 mt-2 text-sm sm:text-base">Mulai hasilkan saldo dari WhatsApp hanya dalam 4 langkah mudah</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 transition">
+              <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4 font-display font-extrabold text-lg">
+                1
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Daftar Akun Gratis</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Buat akun member dalam hitungan detik tanpa biaya pendaftaran dan langsung akses dashboard kerja Anda.</p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 transition">
+              <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4 font-display font-extrabold text-lg">
+                2
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Hubungkan Perangkat WA</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Tambahkan nomor WhatsApp atau integrasikan token API Gateway (Fonnte, Wablas, atau Custom Baileys).</p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 transition">
+              <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4 font-display font-extrabold text-lg">
+                3
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Klik Start Blast Otomatis</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Tekan tombol Start Blast, sistem akan mengambil daftar target dari antrean dan mengirim pesan beruntun sesuai jeda aman.</p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 transition">
+              <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4 font-display font-extrabold text-lg">
+                4
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Tarik Saldo Minimal Rp 20.000</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Cairkan komisi kapan saja mulai dari Rp 20.000 langsung ke rekening Bank lokal atau E-Wallet pilihan Anda.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Grid -->
+      <section id="keunggulan" class="py-16 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white">Keunggulan Platform BlastHub</h2>
+            <p class="text-slate-400 mt-2 text-sm sm:text-base">Dirancang untuk perlindungan nomor dan kecepatan pencairan komisi member</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
+              <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4">
+                <i data-lucide="shield-check" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Deteksi Kenon Otomatis</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Sistem memantau kesehatan perangkat secara real-time dan otomatis memutus sesi apabila terdeteksi pembatasan WhatsApp.</p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
+              <div class="w-11 h-11 rounded-xl bg-teal-500/15 text-teal-400 flex items-center justify-center mb-4">
+                <i data-lucide="cpu" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Multi-Gateway &amp; Multi-Device</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Mendukung penyedia API Gateway resmi maupun antrean browser ringan yang berjalan stabil dari HP maupun laptop.</p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
+              <div class="w-11 h-11 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center mb-4">
+                <i data-lucide="zap" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-2">Pencairan Cepat Rp 20.000</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">Minimal penarikan ringan hanya Rp 20.000 dengan pemantauan status transfer secara real-time langsung dari dashboard.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Member Testimonials -->
+      <section id="testimoni" class="py-16 border-t border-slate-800/80 bg-slate-950/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white">Dipercaya Ribuan Mitra Aktif</h2>
+            <p class="text-slate-400 mt-2 text-sm sm:text-base">Pengalaman member yang menjalankan kampanye harian di BlastHub</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <p class="text-sm text-slate-300 leading-relaxed">"Tinggal klik Start Blast dari HP, antrean pesan langsung jalan otomatis dan saldo cepat tembus minimal WD Rp 20.000 setiap hari."</p>
+              <div class="flex items-center gap-3 pt-2 border-t border-slate-800">
+                <div class="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs flex items-center justify-center">RP</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Rizky Pratama</div>
+                  <div class="text-xs text-slate-400">Mitra Aktif &bull; Jakarta</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <p class="text-sm text-slate-300 leading-relaxed">"Integrasi ke Fonnte dan Baileys gampang banget. History blast juga rapi, bisa diekspor ke CSV buat laporan harian."</p>
+              <div class="flex items-center gap-3 pt-2 border-t border-slate-800">
+                <div class="w-9 h-9 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xs flex items-center justify-center">AN</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Aulia Ningsih</div>
+                  <div class="text-xs text-slate-400">Mitra Gateway &bull; Bandung</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <p class="text-sm text-slate-300 leading-relaxed">"Komisi referralnya lumayan banget buat pasif income. Penarikan ke DANA dan BCA juga diproses cepat tanpa ribet."</p>
+              <div class="flex items-center gap-3 pt-2 border-t border-slate-800">
+                <div class="w-9 h-9 rounded-full bg-cyan-500/20 text-cyan-400 font-bold text-xs flex items-center justify-center">DF</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Dimas Firmansyah</div>
+                  <div class="text-xs text-slate-400">Mitra Aktif &bull; Surabaya</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
+      &copy; 2026 BlastHub Indonesia. Platform Kemitraan WhatsApp Blast &amp; Manajemen Antrean Terpadu.
+    </footer>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 2. UNIFIED AUTH MODAL (LOGIN & BUAT AKUN BARU + ADMIN LOGIN)          -->
+  <!-- ===================================================================== -->
+  <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
+    <div id="authModalCard" class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+      <button type="button" id="closeAuthModalBtn" aria-label="Tutup" class="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-2.5 mb-5">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
+          <i data-lucide="send" class="w-4 h-4 text-slate-950"></i>
+        </div>
+        <span class="font-display font-extrabold text-lg text-white">Blast<span class="text-emerald-400">Hub</span></span>
+      </div>
+
+      <!-- Tab Switcher: Masuk (Login) vs Buat Akun Baru (Daftar) -->
+      <div class="flex gap-1.5 p-1 bg-slate-950 rounded-xl border border-slate-800 mb-5">
+        <button type="button" id="tabAuthLogin" class="flex-1 py-2.5 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950 cursor-pointer">
+          Masuk (Login)
+        </button>
+        <button type="button" id="tabAuthRegister" class="flex-1 py-2.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer">
+          Buat Akun Baru (Daftar)
+        </button>
+      </div>
+
+      <!-- Inline Validation Error Box -->
+      <div id="authInlineError" class="hidden mb-4 p-3 rounded-xl bg-rose-950/90 border border-rose-500/50 text-rose-200 text-xs font-semibold flex items-start gap-2">
+        <i data-lucide="alert-circle" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i>
+        <span id="authInlineErrorText">Terjadi kesalahan.</span>
+      </div>
+
+      <!-- Unified Login Form (User & Admin in One Form) -->
+      <form id="loginForm" novalidate class="space-y-4">
+        <div>
+          <label for="loginIdentity" class="block text-xs font-semibold text-slate-300 mb-1.5">Email atau ID Akun</label>
+          <input id="loginIdentity" type="text" autocomplete="username" placeholder="Masukkan email atau ID akun" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+        </div>
+        <div>
+          <label for="loginPassword" class="block text-xs font-semibold text-slate-300 mb-1.5">Password</label>
+          <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Masukkan password" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+        </div>
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 transition cursor-pointer">
+          Masuk Sekarang
+        </button>
+      </form>
+
+      <!-- Register Form ("Buat Akun Baru") -->
+      <form id="registerForm" novalidate class="space-y-3.5 hidden">
+        <div>
+          <label for="regName" class="block text-xs font-semibold text-slate-300 mb-1">Nama Lengkap</label>
+          <input id="regName" type="text" placeholder="Contoh: Budi Santoso" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+        </div>
+        <div>
+          <label for="regEmail" class="block text-xs font-semibold text-slate-300 mb-1">Email Aktif</label>
+          <input id="regEmail" type="email" placeholder="nama@email.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+        </div>
+        <div>
+          <label for="regPhone" class="block text-xs font-semibold text-slate-300 mb-1">Nomor WhatsApp</label>
+          <input id="regPhone" type="tel" placeholder="Contoh: 081234567890" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+        </div>
+        <div>
+          <label for="regPassword" class="block text-xs font-semibold text-slate-300 mb-1">Password</label>
+          <input id="regPassword" type="password" placeholder="Minimal 6 karakter" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white" />
+        </div>
+        <div>
+          <label for="regRefCode" class="block text-xs font-semibold text-slate-300 mb-1">Kode Referral (Opsional)</label>
+          <input id="regRefCode" type="text" placeholder="Contoh: BLAST01" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-sm text-white uppercase" />
+        </div>
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 transition cursor-pointer">
+          Buat Akun &amp; Masuk
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 3. MEMBER (USER) DASHBOARD VIEW (100% BEBAS INDIKATOR C1/C2/RASIO)    -->
+  <!-- ===================================================================== -->
+  <div id="userDashboardView" class="min-h-screen hidden flex-col lg:flex-row bg-slate-950">
+    <!-- User Sidebar -->
+    <aside class="w-full lg:w-64 bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800 flex flex-col shrink-0">
+      <div class="p-5 flex items-center justify-between border-b border-slate-800">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
+            <i data-lucide="send" class="w-4 h-4 text-slate-950"></i>
+          </div>
+          <span class="font-display font-extrabold text-lg text-white">Blast<span class="text-emerald-400">Hub</span></span>
+        </div>
+        <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 text-[10px] font-bold uppercase">Member</span>
+      </div>
+
+      <nav class="p-3 flex lg:flex-col gap-1.5 overflow-x-auto">
+        <button type="button" onclick="switchUserTab('blast')" id="utab-btn-blast" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 whitespace-nowrap cursor-pointer">
+          <i data-lucide="zap" class="w-4 h-4"></i> Dashboard &amp; Auto-Blast
+        </button>
+        <button type="button" onclick="switchUserTab('gateway')" id="utab-btn-gateway" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="smartphone" class="w-4 h-4"></i> Perangkat WA &amp; API
+        </button>
+        <button type="button" onclick="switchUserTab('history')" id="utab-btn-history" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="history" class="w-4 h-4"></i> History Blast
+        </button>
+        <button type="button" onclick="switchUserTab('withdraw')" id="utab-btn-withdraw" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="wallet" class="w-4 h-4"></i> Tarik Saldo (WD)
+        </button>
+        <button type="button" onclick="switchUserTab('referral')" id="utab-btn-referral" class="u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="users" class="w-4 h-4"></i> Referral
+        </button>
+      </nav>
+
+      <div class="mt-auto p-4 border-t border-slate-800 hidden lg:block">
+        <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 mb-3">
+          <div id="uSidebarName" class="text-sm font-bold text-white truncate">Member</div>
+          <div id="uSidebarEmail" class="text-xs text-slate-400 truncate">member@blasthub.co</div>
+        </div>
+        <button type="button" onclick="logoutSession()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-rose-500/20 hover:text-rose-400 text-slate-300 text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer">
+          <i data-lucide="log-out" class="w-4 h-4"></i> Keluar Akun
+        </button>
+      </div>
+    </aside>
+
+    <!-- User Main Content -->
+    <div class="flex-1 flex flex-col min-w-0">
+      <header class="bg-slate-900/60 border-b border-slate-800 px-4 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <h1 id="uPageTitle" class="font-display font-bold text-lg sm:text-xl text-white">Dashboard &amp; Auto-Blast</h1>
+            <span id="uLiveStatusBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-[11px] font-extrabold tracking-wide">
+              <span id="uLiveStatusDot" class="w-2 h-2 rounded-full bg-slate-400"></span>
+              <span id="uLiveStatusText">SIAP MULAI BLAST</span>
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">
+            Halo, <span id="uTopUserName" class="text-white font-semibold">Member</span> &bull;
+            Komisi: <span id="uRateBadge" class="text-emerald-400 font-bold">Rp 1.300</span> / pesan &bull;
+            <span id="uCountdownText" class="text-slate-300 font-medium">Klik tombol Start Blast untuk mulai mengirim pesan</span>
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5">
+          <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl text-xs">
+            <span class="text-slate-400">Jeda Kirim:</span>
+            <input id="blastDelayInput" type="number" min="1" max="60" value="3" onchange="onDelayChanged()" class="w-12 bg-slate-950 border border-slate-700 rounded px-1.5 py-0.5 text-center text-emerald-400 font-bold" />
+            <span class="text-slate-400">dtk</span>
+          </div>
+
+          <button type="button" id="uStartWorkerBtn" onclick="toggleBlastWorker()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer">
+            <i id="uWorkerBtnIcon" data-lucide="play" class="w-4 h-4"></i>
+            <span id="uWorkerBtnText">Start Blast</span>
+          </button>
+
+          <button type="button" onclick="logoutSession()" class="lg:hidden px-3 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold cursor-pointer">
+            Keluar
+          </button>
+        </div>
+      </header>
+
+      <div class="p-4 sm:p-8 max-w-7xl w-full mx-auto space-y-6">
+        <!-- ALERT BANNER: WHATSAPP KENON / DIBATASI AUTO-DISCONNECT -->
+        <div id="uDeviceAlertBanner" class="hidden p-4 sm:p-5 rounded-2xl bg-rose-950/90 border border-rose-500/50 shadow-xl shadow-rose-950/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0 mt-0.5">
+              <i data-lucide="shield-alert" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="uDeviceAlertTitle" class="font-display font-extrabold text-sm sm:text-base text-rose-200">Perangkat WhatsApp Terdeteksi Kenon / Dibatasi!</span>
+                <span id="uDeviceAlertTag" class="px-2 py-0.5 rounded bg-rose-500/25 text-rose-300 text-[10px] font-extrabold uppercase">AUTO-DISCONNECTED</span>
+              </div>
+              <p id="uDeviceAlertDesc" class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+                Koneksi perangkat otomatis diputus dan proses blast dihentikan untuk melindungi antrean target.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0 w-full sm:w-auto justify-end">
+            <button type="button" onclick="switchUserTab('gateway')" class="px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-1.5 transition cursor-pointer">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i> Ganti Perangkat WA
+            </button>
+            <button type="button" onclick="dismissUserDeviceAlert()" class="px-3 py-2.5 rounded-xl bg-rose-900/60 hover:bg-rose-900 text-rose-200 text-xs font-semibold transition cursor-pointer">
+              Tutup
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-gradient-to-br from-emerald-950/70 to-slate-900 border border-emerald-500/35">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase text-emerald-300">Saldo Tersedia</span>
+              <span id="uWdTargetBadge" class="text-[11px] font-bold text-emerald-400">Min. Rp 20.000</span>
+            </div>
+            <div id="uBalanceVal" class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1">Rp 0</div>
+            <div class="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden mt-2.5">
+              <div id="uWdProgressBar" class="h-full bg-emerald-400 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <span id="uWdProgressLabel" class="text-[11px] text-slate-400">0% dari min. WD</span>
+              <button type="button" onclick="switchUserTab('withdraw')" class="text-xs text-emerald-400 font-semibold hover:underline cursor-pointer">Tarik Saldo &rarr;</button>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Total Terkirim</span>
+            <div id="uSentCountVal" class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1">0</div>
+            <div class="text-xs text-slate-400 mt-2">Pesan berhasil terkirim &amp; terhitung saldo</div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Antrean Target Tersedia</span>
+            <div id="uGlobalPendingVal" class="font-display font-extrabold text-2xl sm:text-3xl text-cyan-400 mt-1">0</div>
+            <div class="text-xs text-slate-400 mt-2">Nomor target siap dikirim</div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Komisi Referral</span>
+            <div id="uRefEarnedVal" class="font-display font-extrabold text-2xl sm:text-3xl text-teal-400 mt-1">Rp 0</div>
+            <div class="text-xs text-slate-400 mt-2"><span id="uDownlineCountVal">0</span> downline aktif</div>
+          </div>
+        </div>
+
+        <!-- TAB 1: DASHBOARD & AUTO-BLAST -->
+        <div id="utab-section-blast" class="space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Campaign Info & Start Control -->
+            <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 flex flex-col justify-between">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="font-display font-bold text-base text-white">Kampanye Aktif</h3>
+                  <span id="uGatewayModeBadge" class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 text-xs font-semibold">Mode: Browser Queue</span>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                  <div class="text-xs text-slate-400 mb-1">Judul Kampanye:</div>
+                  <div id="uCampaignTitle" class="font-bold text-sm text-white">Promo Resmi</div>
+                  <div class="text-xs text-slate-400 mt-3 mb-1">Pesan Auto-Blast Aktif:</div>
+                  <p id="uCampaignTemplate" class="text-xs text-emerald-300 bg-slate-900 p-3 rounded-lg border border-slate-800 leading-relaxed"></p>
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                <div class="text-xs text-slate-400">
+                  Perangkat aktif: <span id="uActiveDeviceLabel" class="text-white font-semibold">-</span>
+                </div>
+                <button type="button" id="uCardStartBtn" onclick="toggleBlastWorker()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
+                  <i id="uCardStartIcon" data-lucide="play" class="w-4 h-4"></i>
+                  <span id="uCardStartText">Start Blast Sekarang</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Live Execution Console -->
+            <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-display font-bold text-base text-white">Log Pengiriman Real-Time</h3>
+                <button type="button" onclick="clearUserConsole()" class="text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white cursor-pointer">Clear</button>
+              </div>
+              <div id="uConsoleLogs" class="flex-1 h-56 overflow-y-auto bg-slate-950 border border-slate-800 rounded-xl p-3.5 font-mono text-xs space-y-2">
+                <div class="text-slate-400">[SYSTEM] Mesin siap. Tekan tombol <span class="text-emerald-400 font-bold">Start Blast</span> untuk memulai pengiriman.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Blast History Preview -->
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <h3 class="font-display font-bold text-base text-white">Riwayat Pengiriman Terbaru</h3>
+              <button type="button" onclick="switchUserTab('history')" class="text-xs font-semibold text-emerald-400 hover:underline flex items-center gap-1 cursor-pointer">
+                Lihat Semua History Blast &rarr;
+              </button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+                    <th class="py-3 px-4">Waktu</th>
+                    <th class="py-3 px-4">Nomor Target</th>
+                    <th class="py-3 px-4">Perangkat</th>
+                    <th class="py-3 px-4">Status</th>
+                    <th class="py-3 px-4 text-right">Komisi</th>
+                  </tr>
+                </thead>
+                <tbody id="uHistoryTableBody" class="divide-y divide-slate-800/70"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: PERANGKAT WA & API GATEWAY -->
+        <div id="utab-section-gateway" class="hidden space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-5 p-6 rounded-2xl bg-slate-900 border border-slate-800">
+              <h3 class="font-display font-bold text-base text-white mb-1">Tambah Perangkat / API Gateway</h3>
+              <p class="text-xs text-slate-400 mb-4">Hubungkan nomor WhatsApp atau API WA Gateway nyata (Fonnte, Wablas, Baileys REST).</p>
+
+              <form id="addDeviceForm" onsubmit="handleAddUserDevice(event)" class="space-y-3.5">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1">Label Perangkat</label>
+                  <input id="devLabel" type="text" required placeholder="Contoh: WA Bisnis 1" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1">Nomor WhatsApp Pengirim</label>
+                  <input id="devPhone" type="text" required placeholder="081234567890" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1">Metode Koneksi</label>
+                  <select id="devProvider" onchange="toggleGatewayFields()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white">
+                    <option value="local_queue">Browser Queue Pairing (Langsung Aktif)</option>
+                    <option value="fonnte">Fonnte API (https://api.fonnte.com/send)</option>
+                    <option value="wablas">Wablas API Gateway</option>
+                    <option value="custom_webhook">Custom Baileys / Node.js REST API</option>
+                  </select>
+                </div>
+
+                <div id="gatewayApiFields" class="hidden space-y-3 pt-1">
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Endpoint URL API</label>
+                    <input id="devEndpoint" type="url" placeholder="https://api.fonnte.com/send" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white font-mono" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">API Token / Authorization Key</label>
+                    <input id="devToken" type="text" placeholder="Masukkan token API gateway Anda" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white font-mono" />
+                  </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition cursor-pointer">
+                  Simpan &amp; Hubungkan Perangkat
+                </button>
+              </form>
+            </div>
+
+            <div class="lg:col-span-7 p-6 rounded-2xl bg-slate-900 border border-slate-800">
+              <h3 class="font-display font-bold text-base text-white mb-4">Daftar Perangkat Terhubung</h3>
+              <div id="uDeviceList" class="space-y-3"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: HISTORY BLAST LENGKAP -->
+        <div id="utab-section-history" class="hidden space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+              <span class="text-xs font-semibold uppercase text-slate-400">Total Diproses</span>
+              <div id="uHistTotalStat" class="font-display font-extrabold text-2xl text-white mt-1">0</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+              <span class="text-xs font-semibold uppercase text-slate-400">Terkirim (Masuk Saldo)</span>
+              <div id="uHistSuccessStat" class="font-display font-extrabold text-2xl text-emerald-400 mt-1">0</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+              <span class="text-xs font-semibold uppercase text-slate-400">Gagal (Tidak Masuk Saldo)</span>
+              <div id="uHistFailedStat" class="font-display font-extrabold text-2xl text-rose-400 mt-1">0</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+              <span class="text-xs font-semibold uppercase text-slate-400">Total Komisi Blast</span>
+              <div id="uHistEarnedStat" class="font-display font-extrabold text-2xl text-emerald-400 mt-1">Rp 0</div>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+              <div>
+                <h3 class="font-display font-bold text-base text-white">Log Lengkap History Blast</h3>
+                <p class="text-xs text-slate-400 mt-0.5">Rekam jejak seluruh pengiriman pesan beserta detail perangkat, status, dan komisi</p>
+              </div>
+              <div class="flex flex-wrap items-center gap-2.5">
+                <input id="uHistSearchInput" type="text" oninput="renderUserHistoryTab()" placeholder="Cari nomor atau nama..." class="w-full sm:w-56 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:outline-none text-xs text-white" />
+                <select id="uHistStatusFilter" onchange="renderUserHistoryTab()" class="px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white">
+                  <option value="all">Semua Status</option>
+                  <option value="sent">Terkirim</option>
+                  <option value="failed">Gagal</option>
+                  <option value="stopped_ban">Terhenti - WA Kenon</option>
+                </select>
+                <button type="button" onclick="exportUserBlastHistoryCsv()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer">
+                  <i data-lucide="download" class="w-3.5 h-3.5"></i> Export CSV
+                </button>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+                    <th class="py-3 px-4">Waktu Kirim</th>
+                    <th class="py-3 px-4">Nomor &amp; Nama Target</th>
+                    <th class="py-3 px-4">Perangkat Pengirim</th>
+                    <th class="py-3 px-4">Cuplikan Pesan</th>
+                    <th class="py-3 px-4">Status</th>
+                    <th class="py-3 px-4 text-right">Komisi</th>
+                  </tr>
+                </thead>
+                <tbody id="uFullHistoryTableBody" class="divide-y divide-slate-800/70"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: TARIK SALDO (WITHDRAW) -->
+        <div id="utab-section-withdraw" class="hidden space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-5 p-6 rounded-2xl bg-slate-900 border border-slate-800">
+              <h3 class="font-display font-bold text-base text-white mb-4">Ajukan Penarikan Saldo</h3>
+              <form id="userWithdrawForm" onsubmit="handleUserWithdraw(event)" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1.5">Metode Bank / E-Wallet</label>
+                  <select id="uWdMethod" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white">
+                    <option value="BCA">Transfer Bank BCA</option>
+                    <option value="BRI">Transfer Bank BRI</option>
+                    <option value="BNI">Transfer Bank BNI</option>
+                    <option value="Mandiri">Transfer Bank Mandiri</option>
+                    <option value="DANA">E-Wallet DANA</option>
+                    <option value="OVO">E-Wallet OVO</option>
+                    <option value="GoPay">E-Wallet GoPay</option>
+                    <option value="ShopeePay">E-Wallet ShopeePay</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nomor Rekening / Nomor HP E-Wallet</label>
+                  <input id="uWdAccount" type="text" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama Pemilik Rekening</label>
+                  <input id="uWdHolder" type="text" required placeholder="Nama sesuai rekening tujuan" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white" />
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <label class="font-semibold text-slate-300">Nominal Penarikan (Min. <span id="uWdMinHint">Rp 20.000</span>)</label>
+                    <button type="button" onclick="fillMaxUserWithdraw()" class="text-emerald-400 hover:underline font-semibold cursor-pointer">Tarik Maksimal</button>
+                  </div>
+                  <input id="uWdAmount" type="number" min="20000" required placeholder="Minimal 20000" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white font-bold text-sm" />
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition cursor-pointer">
+                  Kirim Permintaan Withdraw
+                </button>
+              </form>
+            </div>
+
+            <div class="lg:col-span-7 p-6 rounded-2xl bg-slate-900 border border-slate-800">
+              <h3 class="font-display font-bold text-base text-white mb-4">Riwayat Penarikan Anda</h3>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                  <thead>
+                    <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+                      <th class="py-3 px-4">Tanggal</th>
+                      <th class="py-3 px-4">Tujuan</th>
+                      <th class="py-3 px-4">Nominal</th>
+                      <th class="py-3 px-4">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="uWdHistoryBody" class="divide-y divide-slate-800/70"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: REFERRAL -->
+        <div id="utab-section-referral" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-gradient-to-r from-teal-950/70 to-slate-900 border border-teal-500/30">
+            <h3 class="font-display font-bold text-lg text-white">Bagikan Link Referral Anda</h3>
+            <p class="text-xs text-slate-300 mt-1">Dapatkan bonus otomatis setiap kali downline Anda berhasil mengirimkan pesan blast.</p>
+            <div class="mt-4 flex flex-col sm:flex-row gap-2.5">
+              <input id="uRefLinkInput" type="text" readonly class="flex-1 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-emerald-400" />
+              <button type="button" onclick="copyUserRefLink()" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition cursor-pointer">
+                <i data-lucide="copy" class="w-4 h-4"></i> Salin Link
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+            <h3 class="font-display font-bold text-base text-white mb-4">Daftar Downline Anda</h3>
+            <div id="uDownlineList" class="space-y-2.5 text-sm"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 4. ADMIN DASHBOARD VIEW (UPLOAD TARGET, PESAN AUTO-BLAST, DONE WD)    -->
+  <!-- ===================================================================== -->
+  <div id="adminDashboardView" class="min-h-screen hidden flex-col lg:flex-row bg-slate-950">
+    <!-- Admin Sidebar -->
+    <aside class="w-full lg:w-68 bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800 flex flex-col shrink-0">
+      <div class="p-5 flex items-center justify-between border-b border-slate-800">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-amber-400 flex items-center justify-center">
+            <i data-lucide="shield" class="w-4 h-4 text-slate-950"></i>
+          </div>
+          <span class="font-display font-extrabold text-lg text-white">Blast<span class="text-amber-400">Admin</span></span>
+        </div>
+        <span class="px-2 py-0.5 rounded bg-amber-400/15 text-amber-300 text-[10px] font-bold uppercase">Admin</span>
+      </div>
+
+      <nav class="p-3 flex lg:flex-col gap-1.5 overflow-x-auto">
+        <button type="button" onclick="switchAdminTab('targets')" id="atab-btn-targets" class="a-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 whitespace-nowrap cursor-pointer">
+          <i data-lucide="upload-cloud" class="w-4 h-4"></i> Upload Target &amp; Pesan
+        </button>
+        <button type="button" onclick="switchAdminTab('withdrawals')" id="atab-btn-withdrawals" class="a-nav-btn flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <span class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Antrean Done WD</span>
+          <span id="adminPendingWdBadge" class="px-2 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-bold hidden">0</span>
+        </button>
+        <button type="button" onclick="switchAdminTab('users')" id="atab-btn-users" class="a-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="users" class="w-4 h-4"></i> Member &amp; Analitik C2
+        </button>
+        <button type="button" onclick="switchAdminTab('campaign')" id="atab-btn-campaign" class="a-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="sliders" class="w-4 h-4"></i> Pengaturan &amp; Rasio C2
+        </button>
+        <button type="button" onclick="switchAdminTab('backup')" id="atab-btn-backup" class="a-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap cursor-pointer">
+          <i data-lucide="database" class="w-4 h-4"></i> Backup Database
+        </button>
+      </nav>
+
+      <div class="mt-auto p-4 border-t border-slate-800 hidden lg:block">
+        <button type="button" onclick="logoutSession()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-rose-500/20 hover:text-rose-400 text-slate-300 text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer">
+          <i data-lucide="log-out" class="w-4 h-4"></i> Keluar Admin
+        </button>
+      </div>
+    </aside>
+
+    <!-- Admin Main Content -->
+    <div class="flex-1 flex flex-col min-w-0">
+      <header class="bg-slate-900/60 border-b border-slate-800 px-4 sm:px-8 py-4 flex items-center justify-between">
+        <div>
+          <h1 id="aPageTitle" class="font-display font-bold text-lg sm:text-xl text-white">Upload Target Blast &amp; Pesan Auto-Blast</h1>
+          <p class="text-xs text-slate-400 mt-0.5">Kelola daftar nomor target, pesan otomatis, analitik C2, serta antrean Done WD</p>
+        </div>
+        <button type="button" onclick="logoutSession()" class="lg:hidden px-3 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold cursor-pointer">
+          Keluar
+        </button>
+      </header>
+
+      <div class="p-4 sm:p-8 max-w-7xl w-full mx-auto space-y-6">
+        <!-- Admin Stats Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Total Member</span>
+            <div id="aStatUsers" class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1">0</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Antrean Target Pending</span>
+            <div id="aStatPending" class="font-display font-extrabold text-2xl sm:text-3xl text-amber-400 mt-1">0</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Antrean WD Menunggu</span>
+            <div id="aStatWdPending" class="font-display font-extrabold text-2xl sm:text-3xl text-rose-400 mt-1">0</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <span class="text-xs font-semibold uppercase text-slate-400">Total Saldo Terbayar (Done)</span>
+            <div id="aStatPaidOut" class="font-display font-extrabold text-xl sm:text-2xl text-emerald-400 mt-1">Rp 0</div>
+            <div id="aStatSubBreakdown" class="text-[11px] text-slate-400 mt-1">C2: 0 &bull; Lolos Saldo: 0</div>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 1: SIDE-BY-SIDE TARGET UPLOADER & PESAN AUTO-BLAST -->
+        <div id="atab-section-targets" class="space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- LEFT CARD: UPLOAD TARGET BLAST FILE & MANUAL PASTE -->
+            <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 flex flex-col justify-between">
+              <div class="space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
+                    <i data-lucide="upload-cloud" class="w-5 h-5 text-amber-400"></i>
+                    Upload File Nomor Target
+                  </h3>
+                  <div class="flex items-center gap-3">
+                    <button type="button" onclick="generateSampleTargetsForTesting()" class="text-xs text-emerald-400 hover:underline font-semibold cursor-pointer">
+                      +10 Nomor Contoh
+                    </button>
+                    <button type="button" onclick="downloadSampleCsvTemplate()" class="text-xs text-amber-400 hover:underline font-semibold cursor-pointer">
+                      Unduh CSV
+                    </button>
+                  </div>
+                </div>
+
+                <label id="dropZoneArea" for="targetFileInput" class="border-2 border-dashed border-slate-700 hover:border-amber-400 bg-slate-950/70 rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition">
+                  <div class="w-11 h-11 rounded-2xl bg-amber-400/15 text-amber-400 flex items-center justify-center mb-2.5">
+                    <i data-lucide="file-up" class="w-5 h-5"></i>
+                  </div>
+                  <p class="text-sm font-bold text-white">Klik untuk pilih file atau seret file ke sini</p>
+                  <p class="text-xs text-slate-400 mt-1">Mendukung <span class="text-amber-300 font-semibold">.xlsx, .xls, .csv, .txt, .json</span></p>
+                  <p class="text-[11px] text-slate-500 mt-1.5">Otomatis normalisasi nomor 08xx &rarr; 628xx dan filter duplikat</p>
+                  <input id="targetFileInput" type="file" accept=".xlsx,.xls,.csv,.txt,.json" onchange="handleTargetFileUpload(event)" class="hidden" />
+                </label>
+
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1.5">Atau Paste Daftar Nomor Secara Langsung (1 baris = 1 nomor)</label>
+                  <textarea id="manualTargetTextarea" rows="3" placeholder="081234567890, Andi&#10;6285711223344, Sinta&#10;089655443322" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-amber-400 focus:outline-none text-xs font-mono text-white"></textarea>
+                  <div class="mt-2.5 flex items-center justify-between gap-3">
+                    <label class="inline-flex items-center gap-2 text-xs text-slate-400 cursor-pointer">
+                      <input id="dedupCheckbox" type="checkbox" checked class="accent-amber-400 rounded" />
+                      Filter nomor duplikat
+                    </label>
+                    <button type="button" onclick="handleManualTargetImport()" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs transition cursor-pointer">
+                      Masukkan ke Antrean
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Riwayat Batch File Diunggah -->
+              <div class="pt-3 border-t border-slate-800">
+                <div class="flex items-center justify-between mb-2.5">
+                  <h4 class="font-display font-bold text-xs uppercase tracking-wider text-slate-300">Riwayat Batch File Diunggah</h4>
+                  <div class="flex gap-2">
+                    <button type="button" onclick="clearSentTargets()" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-300 font-semibold cursor-pointer">
+                      Hapus Selesai
+                    </button>
+                    <button type="button" onclick="clearAllTargets()" class="px-2.5 py-1 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 text-[11px] text-rose-400 font-semibold cursor-pointer">
+                      Reset Semua
+                    </button>
+                  </div>
+                </div>
+                <div id="adminUploadBatchList" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
+              </div>
+            </div>
+
+            <!-- RIGHT CARD: PESAN AUTO-BLAST EDITOR & LIVE WA PREVIEW -->
+            <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-emerald-500/35 space-y-4 flex flex-col justify-between">
+              <div class="space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div>
+                    <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
+                      <i data-lucide="message-square-plus" class="w-5 h-5 text-emerald-400"></i>
+                      Pesan Auto-Blast (Terkirim Otomatis)
+                    </h3>
+                    <p class="text-[11px] text-slate-400 mt-0.5">Teks pesan yang otomatis dikirim ke seluruh nomor target saat member klik Start Blast</p>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px] font-extrabold uppercase">Sinkron ke Member</span>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1">Judul Kampanye</label>
+                  <input id="quickCampaignTitle" type="text" oninput="updateAdminMessageLivePreview()" placeholder="Contoh: Promo Cashback & Katalog Resmi" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-400 focus:outline-none text-xs text-white font-semibold" />
+                </div>
+
+                <div>
+                  <div class="flex flex-wrap items-center justify-between gap-1.5 mb-1.5">
+                    <label class="text-xs font-semibold text-slate-300">Isi Pesan Utama</label>
+                    <div class="flex flex-wrap items-center gap-1">
+                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{nama}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition cursor-pointer">+ {nama}</button>
+                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{nomor}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition cursor-pointer">+ {nomor}</button>
+                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{sapaan_waktu}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-emerald-500/20 text-emerald-300 border border-slate-700 text-[11px] font-mono transition cursor-pointer">+ {sapaan_waktu}</button>
+                      <button type="button" onclick="insertAutoBlastVar('quickCampaignMessage', '{Halo|Hai|Selamat siang}')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 text-[11px] font-mono transition cursor-pointer">+ Spintax</button>
+                    </div>
+                  </div>
+                  <textarea id="quickCampaignMessage" rows="3" oninput="updateAdminMessageLivePreview()" placeholder="Tulis pesan auto-blast di sini..." class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-400 focus:outline-none text-xs text-white leading-relaxed"></textarea>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <label class="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 cursor-pointer">
+                      <input id="quickRotationEnabled" type="checkbox" checked onchange="updateAdminMessageLivePreview()" class="accent-cyan-400 rounded" />
+                      Aktifkan Rotasi Multi-Pesan (1 baris = 1 variasi)
+                    </label>
+                    <span id="quickVariantCountBadge" class="text-[11px] font-semibold text-cyan-400">1 variasi aktif</span>
+                  </div>
+                  <textarea id="quickCampaignVariants" rows="2" oninput="updateAdminMessageLivePreview()" placeholder="Tambahkan variasi pesan lain per baris agar setiap pengiriman bervariasi otomatis..." class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 focus:border-cyan-400 focus:outline-none text-xs text-slate-200 leading-relaxed"></textarea>
+                </div>
+
+                <!-- Live Preview Bubble Chat WhatsApp -->
+                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      Live Preview Bubble WhatsApp
+                    </span>
+                    <button type="button" onclick="updateAdminMessageLivePreview()" class="text-[11px] text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer">
+                      <i data-lucide="refresh-cw" class="w-3 h-3"></i> Acak Spintax
+                    </button>
+                  </div>
+                  <div class="bg-[#0b141a] border border-slate-800/90 rounded-xl p-3">
+                    <div class="max-w-[92%] ml-auto bg-[#005c4b] text-slate-100 rounded-2xl rounded-tr-sm px-3.5 py-2 shadow">
+                      <p id="adminWaPreviewBubble" class="text-xs whitespace-pre-line leading-relaxed"></p>
+                      <div class="text-[10px] text-emerald-200/70 text-right mt-1">&#10003;&#10003;</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-2 flex flex-wrap items-center justify-between gap-2.5">
+                <span id="quickMsgSavedIndicator" class="text-[11px] text-slate-400">Sinkron otomatis ke seluruh Member</span>
+                <button type="button" onclick="saveQuickAutoBlastMessage()" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer">
+                  <i data-lucide="check-circle" class="w-4 h-4"></i>
+                  Simpan &amp; Terapkan
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Master Target Queue Table -->
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <h3 class="font-display font-bold text-base text-white">Daftar Nomor Target Blast (100 Terbaru)</h3>
+              <select id="adminTargetFilter" onchange="renderAdminDashboard()" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white">
+                <option value="all">Semua Status</option>
+                <option value="pending">Pending (Belum Dikirim)</option>
+                <option value="sent">Terkirim (Lolos Saldo)</option>
+                <option value="failed">Gagal / Tidak Terhitung</option>
+              </select>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+                    <th class="py-3 px-4">Nomor Target</th>
+                    <th class="py-3 px-4">Nama</th>
+                    <th class="py-3 px-4">Sumber File</th>
+                    <th class="py-3 px-4">Status Kirim</th>
+                    <th class="py-3 px-4">Status Ack / Saldo</th>
+                    <th class="py-3 px-4">Eksekutor</th>
+                    <th class="py-3 px-4 text-right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="adminTargetTableBody" class="divide-y divide-slate-800/70"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 2: ANTREAN DONE WD -->
+        <div id="atab-section-withdrawals" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
+              <div>
+                <h3 class="font-display font-bold text-base text-white">Antrean Penarikan Saldo (Done WD)</h3>
+                <p class="text-xs text-slate-400 mt-0.5">Menampilkan Nomor Rekening Tujuan, Jumlah Kontak Sudah Di-Blast, dan Nominal WD. Klik <span class="text-emerald-400 font-semibold">Done WD</span> untuk menyelesaikan dan menghapus dari antrean.</p>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2">
+                <div class="inline-flex p-1 rounded-xl bg-slate-950 border border-slate-800">
+                  <button type="button" id="wdSubTabPending" onclick="switchAdminWdSubTab('pending')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 transition cursor-pointer">
+                    Antrean Menunggu (<span id="wdPendingTabCount">0</span>)
+                  </button>
+                  <button type="button" id="wdSubTabDone" onclick="switchAdminWdSubTab('done')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition cursor-pointer">
+                    Arsip Done (<span id="wdDoneTabCount">0</span>)
+                  </button>
+                </div>
+
+                <button type="button" id="btnDoneAllWd" onclick="markAllWithdrawalsDone()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-500/20 transition hidden cursor-pointer">
+                  <i data-lucide="check-check" class="w-4 h-4"></i>
+                  Done Semua Antrean
+                </button>
+
+                <button type="button" id="btnClearDoneArchive" onclick="clearDoneWithdrawalsArchive()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs hidden transition cursor-pointer">
+                  Bersihkan Arsip Done
+                </button>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+                    <th class="py-3 px-4">Member &amp; Waktu</th>
+                    <th class="py-3 px-4">Nomor Rekening Tujuan</th>
+                    <th class="py-3 px-4">Jumlah Kontak Sudah Di-Blast</th>
+                    <th class="py-3 px-4">Nominal WD</th>
+                    <th class="py-3 px-4 text-right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="adminWdTableBody" class="divide-y divide-slate-800/70"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 3: USERS & ANALITIK C2 -->
+        <div id="atab-section-users" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+            <h3 class="font-display font-bold text-base text-white mb-4">Daftar Member &amp; Analitik C2 vs Lolos Saldo</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+                    <th class="py-3 px-4">Nama &amp; Email</th>
+                    <th class="py-3 px-4">Perangkat WA</th>
+                    <th class="py-3 px-4">Proses / C2 / Lolos Saldo</th>
+                    <th class="py-3 px-4">Saldo</th>
+                    <th class="py-3 px-4">Status</th>
+                    <th class="py-3 px-4 text-right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersTableBody" class="divide-y divide-slate-800/70"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 4: SETTINGS, TARIF & RASIO ACU C2 -->
+        <div id="atab-section-campaign" class="hidden space-y-6">
+          <div class="max-w-3xl p-6 sm:p-8 rounded-2xl bg-slate-900 border border-slate-800">
+            <h3 class="font-display font-bold text-lg text-white mb-1">Pengaturan Tarif, Filter C2 &amp; Kredensial Admin</h3>
+            <p class="text-xs text-slate-400 mb-6">Perubahan langsung diterapkan ke seluruh akun member secara real-time.</p>
+
+            <form id="adminSettingsForm" onsubmit="handleSaveAdminSettings(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1.5">Komisi per Kontak Lolos (Rp)</label>
+                  <input id="setRatePerMsg" type="number" min="1" required class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-emerald-400 font-bold" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1.5">Bonus Referral (Rp)</label>
+                  <input id="setRefBonus" type="number" min="0" required class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-teal-400 font-bold" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1.5">Minimal Withdraw (Rp)</label>
+                  <input id="setMinWd" type="number" min="1000" required class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-cyan-400 font-bold" />
+                </div>
+              </div>
+
+              <!-- Pengaturan Filter C2 & Rasio Acak (Khusus Admin) -->
+              <div class="pt-4 border-t border-slate-800 space-y-3">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400">Filter C2 (Centang 2) &amp; Rasio Konversi Acak</h4>
+                    <p class="text-[11px] text-slate-400 mt-0.5">Pengaturan ini berjalan diam-diam tanpa keterangan pada tampilan Member.</p>
+                  </div>
+                  <label class="inline-flex items-center gap-2 text-xs font-semibold text-white cursor-pointer">
+                    <input id="setC2OnlyEnabled" type="checkbox" class="accent-emerald-400 w-4 h-4 rounded" />
+                    Aktifkan Filter C2
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Pilihan Rasio Kontak C2 = 1 Saldo (Pisah Koma)</label>
+                    <input id="setC2Thresholds" type="text" required placeholder="2, 3, 4, 5" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-emerald-400 font-mono font-bold" />
+                    <p class="text-[11px] text-slate-500 mt-1">Default: <code class="text-slate-300">2, 3, 4, 5</code> (tiap siklus acak membutuhkan 2, 3, 4, atau 5 kontak C2 = 1 kontak terhitung saldo).</p>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Persentase C2 pada Browser Queue (%)</label>
+                    <input id="setC2LocalProb" type="number" min="10" max="100" required class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white font-bold" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Kredensial Login Admin -->
+              <div class="pt-4 border-t border-slate-800">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-3">Kredensial Login Admin (Form Login Terpadu)</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">ID Admin</label>
+                    <input id="setAdminId" type="text" required placeholder="admin" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white font-mono" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Password Admin</label>
+                    <input id="setAdminPassword" type="text" required placeholder="admin" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white font-mono" />
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm transition cursor-pointer">
+                Simpan Pengaturan
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 5: BACKUP & RESTORE -->
+        <div id="atab-section-backup" class="hidden space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <h3 class="font-display font-bold text-base text-white">Export Database JSON</h3>
+              <p class="text-xs text-slate-400">Unduh seluruh data target blast, member, saldo, dan riwayat withdraw sebagai file cadangan JSON.</p>
+              <button type="button" onclick="exportDatabaseJson()" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
+                <i data-lucide="download" class="w-4 h-4"></i> Unduh Backup (.json)
+              </button>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <h3 class="font-display font-bold text-base text-white">Restore / Import Database JSON</h3>
+              <p class="text-xs text-slate-400">Pulihkan data dari file backup JSON sebelumnya.</p>
+              <input type="file" accept=".json" onchange="importDatabaseJson(event)" class="block w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-400 file:text-slate-950 hover:file:bg-amber-300 cursor-pointer" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 5. MODAL PERINGATAN DARURAT: WHATSAPP KENON / DIBATASI                -->
+  <!-- ===================================================================== -->
+  <div id="waBanAlertModal" class="fixed inset-0 z-[90] hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
+    <div class="bg-slate-900 border border-rose-500/50 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl shadow-rose-950/50 relative text-center">
+      <div class="w-16 h-16 rounded-2xl bg-rose-500/15 border border-rose-500/30 text-rose-400 flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="alert-octagon" class="w-9 h-9"></i>
+      </div>
+      <span id="waBanModalBadge" class="inline-block px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-[11px] font-extrabold uppercase tracking-wider mb-2">
+        DETEKSI OTOMATIS KEAMANAN AKUN
+      </span>
+      <h3 id="waBanModalTitle" class="font-display font-extrabold text-xl text-white">WhatsApp Terdeteksi Kenon / Dibatasi</h3>
+      <p id="waBanModalMessage" class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
+        Perangkat WhatsApp Anda terdeteksi mengalami pembatasan atau pemblokiran. Koneksi perangkat langsung diputus otomatis dan proses blast dihentikan.
+      </p>
+      <div class="mt-4 p-3 rounded-xl bg-slate-950 border border-slate-800 text-left text-xs text-slate-400 space-y-1">
+        <div>&bull; Status perangkat otomatis diubah menjadi <span class="text-rose-400 font-bold">Terputus (Kenon/Dibatasi)</span>.</div>
+        <div>&bull; Nomor target yang belum terkirim otomatis dikembalikan ke antrean.</div>
+        <div>&bull; Hubungkan nomor WhatsApp baru untuk melanjutkan blast.</div>
+      </div>
+      <div class="mt-6 flex flex-col sm:flex-row gap-2.5">
+        <button type="button" onclick="closeWaBanModalAndGoGateway()" class="flex-1 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition cursor-pointer">
+          Hubungkan Perangkat Baru
+        </button>
+        <button type="button" onclick="closeWaBanModal()" class="py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition cursor-pointer">
+          Mengerti
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 6. JAVASCRIPT APPLICATION ENGINE (ZERO SYNTAX ERROR, ROCK-SOLID)      -->
+  <!-- ===================================================================== -->
+  <script>
+    const DB_STORAGE_KEY = 'blasthub_prod_db_v2';
+
+    function safeRefreshIcons() {
+      try {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      } catch (err) {
+        console.warn('Lucide icon render skipped:', err);
+      }
+    }
+
+    function pickRandomC2Threshold(thresholds) {
+      const list = Array.isArray(thresholds) && thresholds.length > 0 ? thresholds : [2, 3, 4, 5];
+      return Number(list[Math.floor(Math.random() * list.length)]) || 3;
+    }
+
+    function getDefaultDatabase() {
+      return {
+        settings: {
+          campaignTitle: 'Promo Cashback & Katalog Resmi',
+          messageTemplate: '{Halo|Hai|Selamat siang} Kak {nama}! Dapatkan penawaran spesial & voucher eksklusif hari ini melalui layanan resmi mitra kami. Info lengkap balas YA.',
+          messageVariants: [],
+          rotationEnabled: true,
+          ratePerMessage: 1300,
+          referralBonusPerMessage: 50,
+          minWithdraw: 20000,
+          adminId: 'admin',
+          adminPassword: 'admin',
+          c2OnlyEnabled: true,
+          c2RandomThresholds: [2, 3, 4, 5],
+          c2LocalProbability: 75
+        },
+        users: [
+          {
+            id: 'usr_demo_01',
+            name: 'Rizky Pratama',
+            email: 'member@blasthub.co',
+            phone: '6281234567890',
+            password: 'user123',
+            referralCode: 'BLAST01',
+            referredBy: null,
+            balance: 26000,
+            totalEarned: 26000,
+            refEarnings: 1250,
+            totalSent: 20,
+            totalProcessed: 68,
+            todaySuccess: 20,
+            todayFailed: 48,
+            c2DeliveredCount: 52,
+            c2BucketCount: 1,
+            c2CurrentThreshold: 3,
+            countedContacts: 20,
+            status: 'active',
+            devices: [
+              {
+                id: 'dev_default_1',
+                label: 'Perangkat Utama',
+                phone: '6281234567890',
+                provider: 'local_queue',
+                endpoint: '',
+                token: '',
+                active: true,
+                healthStatus: 'connected',
+                banReason: null,
+                bannedAt: null
+              }
+            ],
+            blastHistory: [
+              {
+                id: 'bh_init_1',
+                timestamp: new Date(Date.now() - 3600000).toLocaleString('id-ID'),
+                phone: '6281233445566',
+                targetName: 'Ahmad Fauzi',
+                devicePhone: '6281234567890',
+                deviceLabel: 'Perangkat Utama',
+                messageSnippet: 'Halo Kak Ahmad Fauzi! Dapatkan penawaran spesial & voucher eksklusif hari ini...',
+                status: 'sent',
+                earned: 1300,
+                commissionLabel: '+Rp 1.300'
+              },
+              {
+                id: 'bh_init_2',
+                timestamp: new Date(Date.now() - 3540000).toLocaleString('id-ID'),
+                phone: '6281998877665',
+                targetName: 'Dina Kusuma',
+                devicePhone: '6281234567890',
+                deviceLabel: 'Perangkat Utama',
+                messageSnippet: 'Hai Kak Dina Kusuma! Dapatkan penawaran spesial & voucher eksklusif hari ini...',
+                status: 'failed',
+                earned: 0,
+                commissionLabel: 'Rp 0 (Tidak menjadi saldo)'
+              }
+            ]
+          }
+        ],
+        uploadBatches: [
+          {
+            id: 'batch_init',
+            fileName: 'data_target_awal.csv',
+            uploadedAt: new Date().toLocaleString('id-ID'),
+            count: 8
+          }
+        ],
+        targets: [
+          { id: 'trg_1', phone: '6281290011223', name: 'Andi Saputra', sourceFile: 'data_target_awal.csv', status: 'pending', sentBy: null, sentAt: null, gatewayUsed: null, deliveryTick: null, creditedBalance: false },
+          { id: 'trg_2', phone: '6285788990011', name: 'Siti Aminah', sourceFile: 'data_target_awal.csv', status: 'pending', sentBy: null, sentAt: null, gatewayUsed: null, deliveryTick: null, creditedBalance: false },
+          { id: 'trg_3', phone: '6289677665544', name: 'Budi Hartono', sourceFile: 'data_target_awal.csv', status: 'pending', sentBy: null, sentAt: null, gatewayUsed: null, deliveryTick: null, creditedBalance: false },
+          { id: 'trg_4', phone: '6281344556677', name: 'Dewi Lestari', sourceFile: 'data_target_awal.csv', status: 'pending', sentBy: null, sentAt: null, gatewayUsed: null, deliveryTick: null, creditedBalance: false },
+          { id: 'trg_5', phone: '6282133445566', name: 'Fajar Nugroho', sourceFile: 'data_target_awal.csv', status: 'pending', sentBy: null, sentAt: null, gatewayUsed: null, deliveryTick: null, creditedBalance: false },
+          { id: 'trg_6', phone: '6287811229988', name: 'Nadia Putri', sourceFile: 'data_target_awal.csv', status: 'pending', sentBy: null, sentAt: null, gatewayUsed: null, deliveryTick: null, creditedBalance: false },
+          { id: 'trg_7', phone: '6285266778899', name: 'Hendra Wijaya', sourceFile: 'data_target_awal.csv', status: 'pending', sentBy: null, sentAt: null, gatewayUsed: null, deliveryTick: null, creditedBalance: false },
+          { id: 'trg_8', phone: '6281900998877', name: 'Rina Marlina', sourceFile: 'data_target_awal.csv', status: 'pending', sentBy: null, sentAt: null, gatewayUsed: null, deliveryTick: null, creditedBalance: false }
+        ],
+        withdrawals: [
+          {
+            id: 'wd_sample_1',
+            userId: 'usr_demo_01',
+            userName: 'Rizky Pratama',
+            method: 'DANA',
+            account: '081234567890',
+            holder: 'Rizky Pratama',
+            amount: 20000,
+            blastedCount: 68,
+            c2CountAtRequest: 52,
+            countedAtRequest: 20,
+            status: 'pending',
+            createdAt: new Date().toLocaleString('id-ID'),
+            doneAt: null
+          }
+        ]
+      };
+    }
+
+    function loadDatabase() {
+      try {
+        const raw = localStorage.getItem(DB_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (!parsed || typeof parsed !== 'object') throw new Error('Corrupt DB');
+          if (!parsed.settings) parsed.settings = {};
+          if (!Array.isArray(parsed.settings.messageVariants)) parsed.settings.messageVariants = [];
+          if (typeof parsed.settings.rotationEnabled !== 'boolean') parsed.settings.rotationEnabled = true;
+          if (!parsed.settings.minWithdraw || parsed.settings.minWithdraw < 20000) {
+            parsed.settings.minWithdraw = 20000;
+          }
+          if (!parsed.settings.adminId) parsed.settings.adminId = 'admin';
+          if (!parsed.settings.adminPassword) parsed.settings.adminPassword = 'admin';
+          if (typeof parsed.settings.c2OnlyEnabled !== 'boolean') parsed.settings.c2OnlyEnabled = true;
+          if (!Array.isArray(parsed.settings.c2RandomThresholds) || !parsed.settings.c2RandomThresholds.length) {
+            parsed.settings.c2RandomThresholds = [2, 3, 4, 5];
+          }
+          if (typeof parsed.settings.c2LocalProbability !== 'number') {
+            parsed.settings.c2LocalProbability = 75;
+          }
+          if (!Array.isArray(parsed.users)) parsed.users = [];
+          if (!Array.isArray(parsed.targets)) parsed.targets = [];
+          if (!Array.isArray(parsed.uploadBatches)) parsed.uploadBatches = [];
+          if (!Array.isArray(parsed.withdrawals)) parsed.withdrawals = [];
+
+          parsed.users.forEach(u => {
+            const rate = parsed.settings.ratePerMessage || 1300;
+            if (typeof u.c2DeliveredCount !== 'number') u.c2DeliveredCount = u.totalSent || 0;
+            if (typeof u.c2BucketCount !== 'number') u.c2BucketCount = 0;
+            if (typeof u.c2CurrentThreshold !== 'number') u.c2CurrentThreshold = pickRandomC2Threshold(parsed.settings.c2RandomThresholds);
+            if (typeof u.countedContacts !== 'number') u.countedContacts = Math.floor((u.balance || 0) / rate);
+            if (typeof u.totalEarned !== 'number') u.totalEarned = u.countedContacts * rate;
+            if (typeof u.todaySuccess !== 'number') u.todaySuccess = u.countedContacts;
+            if (typeof u.todayFailed !== 'number') u.todayFailed = Math.max(0, (u.totalProcessed || 0) - u.countedContacts);
+            if (typeof u.totalProcessed !== 'number') u.totalProcessed = Math.max(u.totalSent || 0, u.countedContacts || 0);
+            u.totalSent = u.countedContacts;
+            if (!Array.isArray(u.blastHistory)) u.blastHistory = [];
+            if (!Array.isArray(u.devices)) u.devices = [];
+            u.devices.forEach(d => {
+              if (!d.healthStatus) d.healthStatus = d.active ? 'connected' : 'disconnected';
+              if (typeof d.banReason === 'undefined') d.banReason = null;
+              if (typeof d.bannedAt === 'undefined') d.bannedAt = null;
+            });
+          });
+
+          return parsed;
+        }
+      } catch (e) {
+        console.warn('Resetting corrupted localStorage DB:', e);
+      }
+      const initial = getDefaultDatabase();
+      saveDatabase(initial);
+      return initial;
+    }
+
+    let db = loadDatabase();
+    let currentSession = null; // { role: 'admin' | 'user', userId: string }
+    let authModalMode = 'login';
+    let adminWdSubView = 'pending'; // 'pending' | 'done'
+    let workerRunning = false;
+    let workerTimer = null;
+    let countdownInterval = null;
+    let healthHeartbeatInterval = null;
+    let nextBlastSecondsLeft = 0;
+    let activeDeviceBannerAlert = null;
+
+    function saveDatabase(data = db) {
+      try {
+        localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {
+        showToast('Penyimpanan browser penuh! Silakan bersihkan sebagian antrean lama.', 'error');
+      }
+    }
+
+    function formatRupiah(num) {
+      return 'Rp ' + Number(num || 0).toLocaleString('id-ID');
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+      const colors = {
+        success: 'bg-emerald-950/95 border-emerald-500/50 text-emerald-200',
+        error: 'bg-rose-950/95 border-rose-500/50 text-rose-200',
+        info: 'bg-slate-900/95 border-slate-700 text-slate-200'
+      };
+      const el = document.createElement('div');
+      el.className = `pointer-events-auto px-4 py-3 rounded-2xl border shadow-xl text-xs font-semibold flex items-center justify-between gap-3 transition-all ${colors[type] || colors.info}`;
+      el.innerHTML = `<span>${escapeHtml(message)}</span>`;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 300);
+      }, 3600);
+    }
+
+    function copyTextToClipboard(text, label = 'Teks') {
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      temp.style.position = 'fixed';
+      temp.style.opacity = '0';
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      showToast(`${label} (${text}) berhasil disalin!`, 'success');
+    }
+
+    // =========================================================================
+    // LANDING PAGE CALCULATOR & METRICS
+    // =========================================================================
+    function refreshLandingMetrics() {
+      const rateEl = document.getElementById('heroRateDisplay');
+      const refEl = document.getElementById('heroRefDisplay');
+      const wdEl = document.getElementById('heroMinWdDisplay');
+      if (rateEl) rateEl.textContent = formatRupiah(db.settings.ratePerMessage);
+      if (refEl) refEl.textContent = `${formatRupiah(db.settings.referralBonusPerMessage)} / pesan`;
+      if (wdEl) wdEl.textContent = formatRupiah(db.settings.minWithdraw);
+      updateLandingCalculator();
+    }
+
+    function updateLandingCalculator() {
+      const devInput = document.getElementById('calcDevices');
+      const msgInput = document.getElementById('calcMsg');
+      const refInput = document.getElementById('calcRef');
+      if (!devInput || !msgInput || !refInput) return;
+
+      const devices = Number(devInput.value);
+      const msgs = Number(msgInput.value);
+      const refs = Number(refInput.value);
+
+      document.getElementById('calcDevicesVal').textContent = `${devices} Perangkat`;
+      document.getElementById('calcMsgVal').textContent = `${msgs} Pesan`;
+      document.getElementById('calcRefVal').textContent = `${refs} Member`;
+
+      const dailyBlast = devices * msgs * Number(db.settings.ratePerMessage);
+      const dailyRef = refs * 100 * Number(db.settings.referralBonusPerMessage);
+      const monthly = (dailyBlast + dailyRef) * 30;
+
+      document.getElementById('calcDailyOut').textContent = formatRupiah(dailyBlast);
+      document.getElementById('calcRefDailyOut').textContent = formatRupiah(dailyRef);
+      document.getElementById('calcMonthlyOut').textContent = formatRupiah(monthly);
+    }
+
+    // =========================================================================
+    // UNIFIED AUTH MODAL (LOGIN & BUAT AKUN BARU + ADMIN LOGIN)
+    // =========================================================================
+    function showAuthError(message) {
+      const box = document.getElementById('authInlineError');
+      const txt = document.getElementById('authInlineErrorText');
+      if (!box || !txt) return;
+      txt.textContent = message;
+      box.classList.remove('hidden');
+      safeRefreshIcons();
+    }
+
+    function clearAuthError() {
+      const box = document.getElementById('authInlineError');
+      if (box) box.classList.add('hidden');
+    }
+
+    function openAuthModal(mode = 'login') {
+      const modal = document.getElementById('authModal');
+      if (!modal) return;
+      clearAuthError();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      switchAuthTab(mode);
+      safeRefreshIcons();
+    }
+
+    function closeAuthModal() {
+      const modal = document.getElementById('authModal');
+      if (!modal) return;
+      clearAuthError();
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function switchAuthTab(mode) {
+      authModalMode = mode;
+      clearAuthError();
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const tabLogin = document.getElementById('tabAuthLogin');
+      const tabReg = document.getElementById('tabAuthRegister');
+      if (!loginForm || !registerForm || !tabLogin || !tabReg) return;
+
+      loginForm.classList.add('hidden');
+      registerForm.classList.add('hidden');
+      tabLogin.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer';
+      tabReg.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer';
+
+      if (mode === 'login') {
+        loginForm.classList.remove('hidden');
+        tabLogin.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950 cursor-pointer';
+        const idInput = document.getElementById('loginIdentity');
+        if (idInput) setTimeout(() => idInput.focus(), 50);
+      } else {
+        registerForm.classList.remove('hidden');
+        tabReg.className = 'flex-1 py-2.5 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950 cursor-pointer';
+        const nameInput = document.getElementById('regName');
+        if (nameInput) setTimeout(() => nameInput.focus(), 50);
+      }
+    }
+
+    function handleUnifiedLogin(e) {
+      if (e) e.preventDefault();
+      clearAuthError();
+
+      const identity = (document.getElementById('loginIdentity')?.value || '').trim();
+      const password = (document.getElementById('loginPassword')?.value || '').trim();
+
+      if (!identity || !password) {
+        showAuthError('Harap isi Email/ID Akun dan Password terlebih dahulu.');
+        return;
+      }
+
+      db = loadDatabase();
+      const configuredAdminId = (db.settings.adminId || 'admin').toLowerCase();
+      const configuredAdminPw = db.settings.adminPassword || 'admin';
+      const identityLower = identity.toLowerCase();
+
+      const isAdminIdMatch = (identityLower === configuredAdminId || identityLower === 'admin' || identityLower === 'admin@blasthub.co');
+      const isAdminPwMatch = (password === configuredAdminPw || password === 'admin123');
+
+      if (isAdminIdMatch && isAdminPwMatch) {
+        currentSession = { role: 'admin', userId: 'admin' };
+        document.getElementById('loginForm').reset();
+        closeAuthModal();
+        enterAdminDashboard();
+        showToast('Berhasil masuk ke Admin Panel.', 'success');
+        return;
+      }
+
+      const foundUser = db.users.find(u => u.email.toLowerCase() === identityLower && u.password === password);
+      if (!foundUser) {
+        showAuthError('Email/ID Akun atau password salah. Silakan periksa kembali atau klik "Buat Akun Baru".');
+        return;
+      }
+      if (foundUser.status === 'suspended') {
+        showAuthError('Akun Anda sedang dinonaktifkan sementara.');
+        return;
+      }
+
+      currentSession = { role: 'user', userId: foundUser.id };
+      document.getElementById('loginForm').reset();
+      closeAuthModal();
+      enterUserDashboard();
+      showToast(`Selamat datang kembali, ${foundUser.name}!`, 'success');
+    }
+
+    function handleUserRegister(e) {
+      if (e) e.preventDefault();
+      clearAuthError();
+
+      const name = (document.getElementById('regName')?.value || '').trim();
+      const email = (document.getElementById('regEmail')?.value || '').trim().toLowerCase();
+      const rawPhone = (document.getElementById('regPhone')?.value || '').trim();
+      const password = (document.getElementById('regPassword')?.value || '').trim();
+      const refInput = (document.getElementById('regRefCode')?.value || '').trim().toUpperCase();
+
+      if (name.length < 2) {
+        showAuthError('Masukkan nama lengkap Anda (minimal 2 karakter).');
+        return;
+      }
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        showAuthError('Masukkan alamat email yang valid.');
+        return;
+      }
+      const normalizedPhone = normalizePhoneNumber(rawPhone);
+      if (!normalizedPhone) {
+        showAuthError('Masukkan nomor WhatsApp yang valid (contoh: 081234567890).');
+        return;
+      }
+      if (password.length < 6) {
+        showAuthError('Password minimal harus 6 karakter.');
+        return;
+      }
+
+      db = loadDatabase();
+      if (email === (db.settings.adminId || 'admin').toLowerCase() || email === 'admin@blasthub.co') {
+        showAuthError('Email tersebut tidak tersedia. Gunakan email lain.');
+        return;
+      }
+      if (db.users.some(u => u.email.toLowerCase() === email)) {
+        showAuthError('Email ini sudah terdaftar! Silakan pindah ke tab "Masuk (Login)".');
+        return;
+      }
+
+      const sponsor = refInput ? db.users.find(u => u.referralCode === refInput) : null;
+      const newUser = {
+        id: 'usr_' + Date.now(),
+        name,
+        email,
+        phone: normalizedPhone,
+        password,
+        referralCode: 'BH' + Math.floor(1000 + Math.random() * 9000),
+        referredBy: sponsor ? sponsor.referralCode : null,
+        balance: 0,
+        totalEarned: 0,
+        refEarnings: 0,
+        totalSent: 0,
+        totalProcessed: 0,
+        todaySuccess: 0,
+        todayFailed: 0,
+        c2DeliveredCount: 0,
+        c2BucketCount: 0,
+        c2CurrentThreshold: pickRandomC2Threshold(db.settings.c2RandomThresholds),
+        countedContacts: 0,
+        status: 'active',
+        devices: [
+          {
+            id: 'dev_' + Date.now(),
+            label: 'WA Utama (' + name.split(' ')[0] + ')',
+            phone: normalizedPhone,
+            provider: 'local_queue',
+            endpoint: '',
+            token: '',
+            active: true,
+            healthStatus: 'connected',
+            banReason: null,
+            bannedAt: null
+          }
+        ],
+        blastHistory: []
+      };
+
+      db.users.push(newUser);
+      saveDatabase();
+      currentSession = { role: 'user', userId: newUser.id };
+      document.getElementById('registerForm').reset();
+      closeAuthModal();
+      enterUserDashboard();
+      showToast(`Akun berhasil dibuat! Selamat datang, ${newUser.name}!`, 'success');
+    }
+
+    function logoutSession() {
+      stopBlastWorker();
+      currentSession = null;
+      activeDeviceBannerAlert = null;
+      document.getElementById('userDashboardView').classList.add('hidden');
+      document.getElementById('userDashboardView').classList.remove('flex');
+      document.getElementById('adminDashboardView').classList.add('hidden');
+      document.getElementById('adminDashboardView').classList.remove('flex');
+      document.getElementById('landingView').classList.remove('hidden');
+      refreshLandingMetrics();
+      showToast('Anda telah keluar dari sesi.', 'info');
+    }
+
+    // =========================================================================
+    // SILENT C2 & FAIL ACCOUNTING HELPERS (NO C1/C2 MENTION ON USER UI)
+    // =========================================================================
+    const USER_FAIL_REASONS = [
+      'Gagal terkirim / Nomor tidak merespons',
+      'Pengiriman gagal / Target tidak aktif',
+      'Gagal mengirim pesan ke nomor tujuan'
+    ];
+
+    function pickUserFailReason() {
+      return USER_FAIL_REASONS[Math.floor(Math.random() * USER_FAIL_REASONS.length)];
+    }
+
+    function creditReferralSponsor(memberUser) {
+      if (!memberUser.referredBy) return;
+      const sponsor = db.users.find(u => u.referralCode === memberUser.referredBy);
+      if (sponsor && sponsor.status === 'active') {
+        const bonus = Number(db.settings.referralBonusPerMessage) || 0;
+        sponsor.balance += bonus;
+        sponsor.refEarnings = (sponsor.refEarnings || 0) + bonus;
+      }
+    }
+
+    function recordUserBlastHistory(user, entry) {
+      if (!Array.isArray(user.blastHistory)) user.blastHistory = [];
+      const isSent = entry.status === 'sent';
+      const strictEarned = isSent ? Math.max(0, Number(entry.earned) || 0) : 0;
+      const defaultLabel = isSent
+        ? `+${formatRupiah(strictEarned)}`
+        : entry.status === 'stopped_ban'
+          ? 'Rp 0 (Dialihkan ke Antrean)'
+          : 'Rp 0 (Tidak menjadi saldo)';
+
+      user.blastHistory.unshift({
+        id: 'bh_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+        timestamp: new Date().toLocaleString('id-ID'),
+        phone: entry.phone || '-',
+        targetName: entry.targetName || '-',
+        devicePhone: entry.devicePhone || '-',
+        deviceLabel: entry.deviceLabel || '-',
+        messageSnippet: entry.messageSnippet || '-',
+        status: entry.status || 'failed',
+        earned: strictEarned,
+        commissionLabel: entry.commissionLabel || defaultLabel
+      });
+      if (user.blastHistory.length > 500) {
+        user.blastHistory = user.blastHistory.slice(0, 500);
+      }
+    }
+
+    // =========================================================================
+    // AUTO-DETECT WA KENON / DIBATASI (AUTO-DISCONNECT & AUTO-STOP)
+    // =========================================================================
+    const WA_KENON_KEYWORDS = [
+      'banned', 'ban', 'kenon', 'blocked', 'permanently', 'terminated', 'spam_block', 'account_locked', 'akun diblokir', 'nomor diblokir'
+    ];
+    const WA_RESTRICTED_KEYWORDS = [
+      'restricted', 'dibatasi', 'limit', 'rate limit', 'temporarily', 'disconnect', 'disconnected', 'not connected',
+      'logout', 'logged out', 'device not found', 'session closed', 'qr', 'unauthorized', 'invalid token', 'offline'
+    ];
+
+    function detectWaRestrictionOrBan(httpStatus, responseText = '') {
+      const lower = String(responseText || '').toLowerCase();
+      if (WA_KENON_KEYWORDS.some(k => lower.includes(k))) {
+        return { detected: true, type: 'banned', label: 'KENON / DIBLOKIR WHATSAPP', reason: responseText || `HTTP ${httpStatus} - Akun WhatsApp terdeteksi kenon/diblokir.` };
+      }
+      if (httpStatus === 401 || httpStatus === 403 || httpStatus === 429 || WA_RESTRICTED_KEYWORDS.some(k => lower.includes(k))) {
+        return { detected: true, type: 'restricted', label: 'DIBATASI / TERPUTUS', reason: responseText || `HTTP ${httpStatus} - Perangkat WhatsApp terdeteksi dibatasi atau terputus.` };
+      }
+      return { detected: false, type: null, label: null, reason: null };
+    }
+
+    function handleDeviceKenonOrRestricted(user, device, detection, pendingTargetToRestore = null, messageSnippet = '') {
+      device.active = false;
+      device.healthStatus = detection.type === 'banned' ? 'banned' : 'restricted';
+      device.banReason = detection.reason;
+      device.bannedAt = new Date().toLocaleString('id-ID');
+
+      if (pendingTargetToRestore) {
+        pendingTargetToRestore.status = 'pending';
+        pendingTargetToRestore.sentBy = null;
+        pendingTargetToRestore.sentAt = null;
+        pendingTargetToRestore.gatewayUsed = null;
+        pendingTargetToRestore.deliveryTick = null;
+        pendingTargetToRestore.creditedBalance = false;
+
+        recordUserBlastHistory(user, {
+          phone: pendingTargetToRestore.phone,
+          targetName: pendingTargetToRestore.name || '-',
+          devicePhone: device.phone,
+          deviceLabel: device.label,
+          messageSnippet: messageSnippet || db.settings.messageTemplate,
+          status: 'stopped_ban',
+          earned: 0,
+          commissionLabel: 'Rp 0 (Dialihkan ke Antrean)'
+        });
+      }
+
+      stopBlastWorker();
+      saveDatabase();
+
+      const isBanned = device.healthStatus === 'banned';
+      const titleText = isBanned
+        ? `Perangkat ${device.phone} Terdeteksi KENON (Diblokir)!`
+        : `Perangkat ${device.phone} Terdeteksi DIBATASI / Terputus!`;
+      const descText = `Perangkat "${device.label}" (${device.phone}) otomatis diputus (${detection.reason}) dan proses blast langsung dihentikan agar antrean tetap aman. Silakan hubungkan perangkat WhatsApp lain.`;
+
+      activeDeviceBannerAlert = {
+        title: titleText,
+        tag: isBanned ? 'WA KENON • AUTO-PUTUS' : 'WA DIBATASI • AUTO-PUTUS',
+        desc: descText
+      };
+
+      appendUserLog(`[DARURAT] ${titleText} Koneksi diputus otomatis & blast dihentikan.`, 'error');
+      renderUserDashboard();
+      openWaBanModal(titleText, descText, activeDeviceBannerAlert.tag);
+      showToast(titleText, 'error');
+    }
+
+    function openWaBanModal(title, message, tagText) {
+      const modal = document.getElementById('waBanAlertModal');
+      if (!modal) return;
+      document.getElementById('waBanModalTitle').textContent = title;
+      document.getElementById('waBanModalMessage').textContent = message;
+      document.getElementById('waBanModalBadge').textContent = tagText || 'DETEKSI OTOMATIS KEAMANAN AKUN';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      safeRefreshIcons();
+    }
+
+    function closeWaBanModal() {
+      const modal = document.getElementById('waBanAlertModal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function closeWaBanModalAndGoGateway() {
+      closeWaBanModal();
+      switchUserTab('gateway');
+    }
+
+    function dismissUserDeviceAlert() {
+      activeDeviceBannerAlert = null;
+      const banner = document.getElementById('uDeviceAlertBanner');
+      if (banner) banner.classList.add('hidden');
+    }
+
+    function triggerSimulateDeviceBan(devId, mode = 'banned') {
+      const user = getCurrentUser();
+      if (!user) return;
+      const dev = user.devices.find(d => d.id === devId);
+      if (!dev) return;
+
+      const detection = mode === 'banned'
+        ? { detected: true, type: 'banned', label: 'KENON / DIBLOKIR', reason: 'Akun WhatsApp terdeteksi kenon / diblokir permanen oleh sistem WA.' }
+        : { detected: true, type: 'restricted', label: 'DIBATASI', reason: 'Akun WhatsApp terkena pembatasan pengiriman sementara (Restricted).' };
+
+      handleDeviceKenonOrRestricted(user, dev, detection, null, '');
+    }
+
+    // =========================================================================
+    // USER DASHBOARD RENDERING & NAVIGATION
+    // =========================================================================
+    function getCurrentUser() {
+      if (!currentSession || currentSession.role !== 'user') return null;
+      return db.users.find(u => u.id === currentSession.userId) || null;
+    }
+
+    function enterUserDashboard() {
+      document.getElementById('landingView').classList.add('hidden');
+      document.getElementById('adminDashboardView').classList.add('hidden');
+      document.getElementById('adminDashboardView').classList.remove('flex');
+      const userView = document.getElementById('userDashboardView');
+      userView.classList.remove('hidden');
+      userView.classList.add('flex');
+
+      stopBlastWorker();
+      switchUserTab('blast');
+      renderUserDashboard();
+    }
+
+    function switchUserTab(tab) {
+      const tabs = ['blast', 'gateway', 'history', 'withdraw', 'referral'];
+      const titles = {
+        blast: 'Dashboard & Auto-Blast',
+        gateway: 'Perangkat WA & API Gateway',
+        history: 'History Blast Pengiriman',
+        withdraw: 'Tarik Saldo (Withdraw)',
+        referral: 'Program Referral & Jaringan'
+      };
+      tabs.forEach(t => {
+        const sec = document.getElementById(`utab-section-${t}`);
+        const btn = document.getElementById(`utab-btn-${t}`);
+        if (!sec || !btn) return;
+        if (t === tab) {
+          sec.classList.remove('hidden');
+          btn.className = 'u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 whitespace-nowrap transition cursor-pointer';
+        } else {
+          sec.classList.add('hidden');
+          btn.className = 'u-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap transition cursor-pointer';
+        }
+      });
+      const titleEl = document.getElementById('uPageTitle');
+      if (titleEl) titleEl.textContent = titles[tab] || 'Dashboard';
+      renderUserDashboard();
+    }
+
+    function renderUserDashboard() {
+      const user = getCurrentUser();
+      if (!user) return;
+
+      const alertBanner = document.getElementById('uDeviceAlertBanner');
+      if (alertBanner) {
+        if (activeDeviceBannerAlert) {
+          document.getElementById('uDeviceAlertTitle').textContent = activeDeviceBannerAlert.title;
+          document.getElementById('uDeviceAlertTag').textContent = activeDeviceBannerAlert.tag;
+          document.getElementById('uDeviceAlertDesc').textContent = activeDeviceBannerAlert.desc;
+          alertBanner.classList.remove('hidden');
+        } else {
+          alertBanner.classList.add('hidden');
+        }
+      }
+
+      const minWd = Number(db.settings.minWithdraw) || 20000;
+      const pct = Math.min(100, Math.round((user.balance / minWd) * 100));
+      const userCountedSent = user.countedContacts || user.totalSent || 0;
+      const pendingTargetsCount = db.targets.filter(t => t.status === 'pending').length;
+      const downlines = db.users.filter(u => u.referredBy === user.referralCode);
+
+      document.getElementById('uTopUserName').textContent = user.name;
+      document.getElementById('uSidebarName').textContent = user.name;
+      document.getElementById('uSidebarEmail').textContent = user.email;
+      document.getElementById('uRateBadge').textContent = formatRupiah(db.settings.ratePerMessage);
+      document.getElementById('uBalanceVal').textContent = formatRupiah(user.balance);
+      document.getElementById('uWdTargetBadge').textContent = `Min. ${formatRupiah(minWd)}`;
+      document.getElementById('uWdProgressBar').style.width = `${pct}%`;
+      document.getElementById('uWdProgressLabel').textContent = pct >= 100
+        ? 'Siap ditarik sekarang!'
+        : `${pct}% menuju target ${formatRupiah(minWd)}`;
+      document.getElementById('uSentCountVal').textContent = userCountedSent.toLocaleString('id-ID');
+      document.getElementById('uGlobalPendingVal').textContent = pendingTargetsCount.toLocaleString('id-ID');
+      document.getElementById('uRefEarnedVal').textContent = formatRupiah(user.refEarnings || 0);
+      document.getElementById('uDownlineCountVal').textContent = downlines.length;
+
+      const minHintEl = document.getElementById('uWdMinHint');
+      const wdAmtInput = document.getElementById('uWdAmount');
+      if (minHintEl) minHintEl.textContent = formatRupiah(minWd);
+      if (wdAmtInput) {
+        wdAmtInput.min = minWd;
+        wdAmtInput.placeholder = `Minimal ${minWd}`;
+      }
+
+      document.getElementById('uCampaignTitle').textContent = db.settings.campaignTitle;
+      const variantList = (db.settings.rotationEnabled !== false && Array.isArray(db.settings.messageVariants))
+        ? db.settings.messageVariants.filter(Boolean)
+        : [];
+      const templateBox = document.getElementById('uCampaignTemplate');
+      if (variantList.length > 0) {
+        templateBox.textContent = `${db.settings.messageTemplate}\n\n(+ ${variantList.length} variasi pesan rotasi otomatis)`;
+        templateBox.classList.add('whitespace-pre-line');
+      } else {
+        templateBox.textContent = db.settings.messageTemplate;
+      }
+
+      const healthyDevices = user.devices.filter(d => d.healthStatus !== 'banned' && d.healthStatus !== 'restricted');
+      const activeDev = healthyDevices.find(d => d.active) || healthyDevices[0];
+      if (activeDev) {
+        document.getElementById('uActiveDeviceLabel').textContent = `${activeDev.label} (${activeDev.phone})`;
+        const isApi = activeDev.provider !== 'local_queue';
+        const modeBadge = document.getElementById('uGatewayModeBadge');
+        modeBadge.textContent = isApi ? `API Nyata: ${activeDev.provider.toUpperCase()}` : 'Mode: Browser Queue';
+      } else {
+        document.getElementById('uActiveDeviceLabel').textContent = 'Tidak ada perangkat aktif / sehat';
+      }
+
+      // Render Recent Blast History Preview
+      const recentHistory = (user.blastHistory || []).slice(0, 10);
+      const histBody = document.getElementById('uHistoryTableBody');
+      histBody.innerHTML = recentHistory.length ? recentHistory.map(item => {
+        const isSent = item.status === 'sent';
+        const isStoppedBan = item.status === 'stopped_ban';
+        const statusBadge = isSent
+          ? '<span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400">Terkirim</span>'
+          : isStoppedBan
+            ? '<span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300">Terhenti (WA Kenon)</span>'
+            : '<span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-rose-500/15 text-rose-400">Gagal</span>';
+
+        return `
+          <tr>
+            <td class="py-3 px-4 text-slate-400 text-xs">${escapeHtml(item.timestamp)}</td>
+            <td class="py-3 px-4">
+              <div class="font-mono text-white text-xs">${escapeHtml(item.phone)}</div>
+              <div class="text-[11px] text-slate-400">${escapeHtml(item.targetName || '-')}</div>
+            </td>
+            <td class="py-3 px-4 text-xs text-slate-400 font-mono">${escapeHtml(item.devicePhone || '-')}</td>
+            <td class="py-3 px-4">${statusBadge}</td>
+            <td class="py-3 px-4 text-right font-semibold text-xs ${isSent ? 'text-emerald-400' : isStoppedBan ? 'text-amber-300' : 'text-rose-400'}">
+              ${escapeHtml(item.commissionLabel || (isSent ? `+${formatRupiah(db.settings.ratePerMessage)}` : 'Rp 0 (Tidak menjadi saldo)'))}
+            </td>
+          </tr>
+        `;
+      }).join('') : `<tr><td colspan="5" class="py-6 text-center text-slate-500 text-xs">Belum ada riwayat pengiriman blast. Klik Start Blast untuk memulai.</td></tr>`;
+
+      renderUserHistoryTab();
+
+      // Render Devices List
+      const devList = document.getElementById('uDeviceList');
+      devList.innerHTML = user.devices.length ? user.devices.map(d => {
+        const isBanned = d.healthStatus === 'banned';
+        const isRestricted = d.healthStatus === 'restricted';
+        const isUnhealthy = isBanned || isRestricted;
+
+        const borderClass = isUnhealthy
+          ? 'border-rose-500/50 bg-rose-950/20'
+          : d.active
+            ? 'border-emerald-500/40 bg-slate-950'
+            : 'border-slate-800 bg-slate-950';
+
+        const statusBadge = isBanned
+          ? '<span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 text-[10px] font-extrabold uppercase">KENON / TERPUTUS</span>'
+          : isRestricted
+            ? '<span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-extrabold uppercase">DIBATASI / TERPUTUS</span>'
+            : d.active
+              ? '<span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase">Aktif / Terhubung</span>'
+              : '<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px] font-bold uppercase">Standby</span>';
+
+        return `
+          <div class="p-4 rounded-xl border ${borderClass} flex flex-wrap items-center justify-between gap-3">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-bold text-sm text-white">${escapeHtml(d.label)}</span>
+                ${statusBadge}
+              </div>
+              <div class="text-xs text-slate-400 font-mono mt-0.5">${escapeHtml(d.phone)} &bull; ${escapeHtml(d.provider)}</div>
+              ${isUnhealthy && d.banReason ? `<div class="text-[11px] text-rose-300 mt-1">${escapeHtml(d.banReason)}</div>` : ''}
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              ${!isUnhealthy ? `<button type="button" onclick="triggerSimulateDeviceBan('${d.id}', 'banned')" class="px-2.5 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 text-[11px] font-semibold cursor-pointer">Tes Simulasi WA Kenon</button>` : ''}
+              ${!isUnhealthy && !d.active ? `<button type="button" onclick="setActiveUserDevice('${d.id}')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white cursor-pointer">Jadikan Utama</button>` : ''}
+              <button type="button" onclick="deleteUserDevice('${d.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 text-xs font-semibold text-rose-400 cursor-pointer">Hapus</button>
+            </div>
+          </div>
+        `;
+      }).join('') : `<p class="text-xs text-slate-500">Belum ada perangkat terdaftar. Tambahkan perangkat di formulir samping.</p>`;
+
+      // Render Referral Section
+      const refUrl = `${window.location.origin}${window.location.pathname}?ref=${user.referralCode}`;
+      document.getElementById('uRefLinkInput').value = refUrl;
+      const downlineBox = document.getElementById('uDownlineList');
+      downlineBox.innerHTML = downlines.length ? downlines.map(dl => `
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+          <div>
+            <div class="font-bold text-white text-sm">${escapeHtml(dl.name)}</div>
+            <div class="text-xs text-slate-400">${dl.countedContacts || dl.totalSent || 0} pesan terkirim</div>
+          </div>
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-400 text-xs font-bold">Aktif</span>
+        </div>
+      `).join('') : `<p class="text-xs text-slate-500">Belum ada downline yang mendaftar menggunakan kode referral Anda (${escapeHtml(user.referralCode)}).</p>`;
+
+      // Render User Withdraw History
+      const userWds = db.withdrawals.filter(w => w.userId === user.id).slice().reverse();
+      const wdBody = document.getElementById('uWdHistoryBody');
+      wdBody.innerHTML = userWds.length ? userWds.map(w => {
+        const isDone = w.status === 'done';
+        const badgeClass = isDone
+          ? 'bg-emerald-500/15 text-emerald-400'
+          : 'bg-amber-400/15 text-amber-300';
+        const badgeLabel = isDone
+          ? `Done / Berhasil Ditransfer${w.doneAt ? ' • ' + escapeHtml(w.doneAt) : ''}`
+          : 'Menunggu';
+
+        return `
+          <tr>
+            <td class="py-3 px-4 text-xs text-slate-400">${escapeHtml(w.createdAt)}</td>
+            <td class="py-3 px-4 text-xs text-white font-semibold">${escapeHtml(w.method)} - ${escapeHtml(w.account)}</td>
+            <td class="py-3 px-4 font-bold text-white">${formatRupiah(w.amount)}</td>
+            <td class="py-3 px-4">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold ${badgeClass}">
+                ${badgeLabel}
+              </span>
+            </td>
+          </tr>
+        `;
+      }).join('') : `<tr><td colspan="4" class="py-6 text-center text-slate-500 text-xs">Belum ada riwayat penarikan saldo.</td></tr>`;
+
+      safeRefreshIcons();
+    }
+
+    function renderUserHistoryTab() {
+      const user = getCurrentUser();
+      if (!user) return;
+      const list = user.blastHistory || [];
+
+      const total = list.length;
+      const sentTotal = list.filter(i => i.status === 'sent').length;
+      const failedTotal = list.filter(i => i.status === 'failed').length;
+      const totalCommission = Number(user.totalEarned ?? ((user.countedContacts || user.totalSent || 0) * (db.settings.ratePerMessage || 1300)));
+
+      const elTotal = document.getElementById('uHistTotalStat');
+      const elSent = document.getElementById('uHistSuccessStat');
+      const elFailed = document.getElementById('uHistFailedStat');
+      const elEarned = document.getElementById('uHistEarnedStat');
+      if (elTotal) elTotal.textContent = total.toLocaleString('id-ID');
+      if (elSent) elSent.textContent = sentTotal.toLocaleString('id-ID');
+      if (elFailed) elFailed.textContent = failedTotal.toLocaleString('id-ID');
+      if (elEarned) elEarned.textContent = formatRupiah(totalCommission);
+
+      const searchVal = (document.getElementById('uHistSearchInput')?.value || '').trim().toLowerCase();
+      const statusFilter = document.getElementById('uHistStatusFilter')?.value || 'all';
+
+      const filtered = list.filter(item => {
+        const matchStatus = statusFilter === 'all' ? true : item.status === statusFilter;
+        const matchQuery = !searchVal
+          || String(item.phone).toLowerCase().includes(searchVal)
+          || String(item.targetName).toLowerCase().includes(searchVal)
+          || String(item.devicePhone).toLowerCase().includes(searchVal);
+        return matchStatus && matchQuery;
+      });
+
+      const tbody = document.getElementById('uFullHistoryTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = filtered.length ? filtered.map(item => {
+        const isSent = item.status === 'sent';
+        const isStoppedBan = item.status === 'stopped_ban';
+
+        const badge = isSent
+          ? '<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400">Terkirim</span>'
+          : isStoppedBan
+            ? '<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300">Terhenti - WA Kenon</span>'
+            : '<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-500/15 text-rose-400">Gagal</span>';
+
+        return `
+          <tr>
+            <td class="py-3 px-4 text-xs text-slate-400 whitespace-nowrap">${escapeHtml(item.timestamp)}</td>
+            <td class="py-3 px-4">
+              <div class="font-mono font-semibold text-white text-xs">${escapeHtml(item.phone)}</div>
+              <div class="text-[11px] text-slate-400">${escapeHtml(item.targetName || '-')}</div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-mono text-xs text-slate-300">${escapeHtml(item.devicePhone || '-')}</div>
+              <div class="text-[11px] text-slate-500">${escapeHtml(item.deviceLabel || '-')}</div>
+            </td>
+            <td class="py-3 px-4 text-xs text-slate-300 max-w-xs truncate" title="${escapeHtml(item.messageSnippet || '')}">
+              ${escapeHtml(item.messageSnippet || '-')}
+            </td>
+            <td class="py-3 px-4 whitespace-nowrap">${badge}</td>
+            <td class="py-3 px-4 text-right font-semibold text-xs whitespace-nowrap ${isSent ? 'text-emerald-400' : isStoppedBan ? 'text-amber-300' : 'text-rose-400'}">
+              ${escapeHtml(item.commissionLabel || (isSent ? `+${formatRupiah(db.settings.ratePerMessage)}` : 'Rp 0 (Tidak menjadi saldo)'))}
+            </td>
+          </tr>
+        `;
+      }).join('') : `<tr><td colspan="6" class="py-8 text-center text-slate-500 text-xs">Tidak ditemukan data riwayat blast sesuai filter.</td></tr>`;
+    }
+
+    function exportUserBlastHistoryCsv() {
+      const user = getCurrentUser();
+      if (!user || !user.blastHistory || !user.blastHistory.length) {
+        showToast('Belum ada riwayat blast untuk diunduh.', 'error');
+        return;
+      }
+      const headers = ['Waktu Kirim', 'Nomor Target', 'Nama Target', 'Perangkat Pengirim', 'Status', 'Komisi (Rp)', 'Keterangan'];
+      const rows = user.blastHistory.map(item => {
+        const isSent = item.status === 'sent';
+        const earnedRp = isSent ? (Number(item.earned) || Number(db.settings.ratePerMessage) || 0) : 0;
+        return [
+          `"${String(item.timestamp).replace(/"/g, '""')}"`,
+          `"${String(item.phone).replace(/"/g, '""')}"`,
+          `"${String(item.targetName || '-').replace(/"/g, '""')}"`,
+          `"${String(item.devicePhone || '-').replace(/"/g, '""')}"`,
+          `"${isSent ? 'Terkirim' : item.status === 'stopped_ban' ? 'Terhenti - WA Kenon' : 'Gagal'}"`,
+          `"${earnedRp}"`,
+          `"${String(item.commissionLabel || (isSent ? `+${formatRupiah(earnedRp)}` : 'Rp 0 (Tidak menjadi saldo)')).replace(/"/g, '""')}"`
+        ].join(',');
+      });
+
+      const csv = [headers.join(','), ...rows].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `history_blast_${user.referralCode}_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('File CSV History Blast berhasil diunduh!', 'success');
+    }
+
+    function toggleGatewayFields() {
+      const provider = document.getElementById('devProvider')?.value || 'local_queue';
+      const fields = document.getElementById('gatewayApiFields');
+      const endpointInput = document.getElementById('devEndpoint');
+      if (!fields) return;
+      if (provider === 'local_queue') {
+        fields.classList.add('hidden');
+      } else {
+        fields.classList.remove('hidden');
+        if (provider === 'fonnte' && endpointInput && !endpointInput.value) {
+          endpointInput.value = 'https://api.fonnte.com/send';
+        }
+      }
+    }
+
+    function handleAddUserDevice(e) {
+      e.preventDefault();
+      const user = getCurrentUser();
+      if (!user) return;
+
+      const label = document.getElementById('devLabel').value.trim();
+      const phone = normalizePhoneNumber(document.getElementById('devPhone').value.trim());
+      const provider = document.getElementById('devProvider').value;
+      const endpoint = document.getElementById('devEndpoint').value.trim();
+      const token = document.getElementById('devToken').value.trim();
+
+      if (!phone) {
+        showToast('Format nomor WhatsApp tidak valid.', 'error');
+        return;
+      }
+
+      user.devices.forEach(d => d.active = false);
+      user.devices.push({
+        id: 'dev_' + Date.now(),
+        label,
+        phone,
+        provider,
+        endpoint,
+        token,
+        active: true,
+        healthStatus: 'connected',
+        banReason: null,
+        bannedAt: null
+      });
+
+      dismissUserDeviceAlert();
+      saveDatabase();
+      e.target.reset();
+      toggleGatewayFields();
+      renderUserDashboard();
+      if (!workerRunning) {
+        updateWorkerStatusUI('stopped');
+      }
+      showToast(`Perangkat "${label}" terhubung! Klik Start Blast untuk memulai.`, 'success');
+    }
+
+    function setActiveUserDevice(devId) {
+      const user = getCurrentUser();
+      if (!user) return;
+      const targetDev = user.devices.find(d => d.id === devId);
+      if (!targetDev) return;
+      if (targetDev.healthStatus === 'banned' || targetDev.healthStatus === 'restricted') {
+        showToast('Perangkat ini sudah terdeteksi kenon/dibatasi dan tidak bisa diaktifkan kembali.', 'error');
+        return;
+      }
+      user.devices.forEach(d => d.active = (d.id === devId));
+      saveDatabase();
+      renderUserDashboard();
+      showToast('Perangkat pengirim aktif diperbarui.', 'info');
+    }
+
+    function deleteUserDevice(devId) {
+      const user = getCurrentUser();
+      if (!user) return;
+      user.devices = user.devices.filter(d => d.id !== devId);
+      const healthyList = user.devices.filter(d => d.healthStatus !== 'banned' && d.healthStatus !== 'restricted');
+      if (healthyList.length && !healthyList.some(d => d.active)) {
+        healthyList[0].active = true;
+      }
+      saveDatabase();
+      renderUserDashboard();
+      if (healthyList.length === 0) {
+        stopBlastWorker();
+        updateWorkerStatusUI('no_device');
+      }
+      showToast('Perangkat dihapus.', 'info');
+    }
+
+    // =========================================================================
+    // MANUAL START / STOP BLAST WORKER ENGINE
+    // =========================================================================
+    function updateWorkerStatusUI(state, secondsLeft = 0) {
+      const badge = document.getElementById('uLiveStatusBadge');
+      const dot = document.getElementById('uLiveStatusDot');
+      const statusText = document.getElementById('uLiveStatusText');
+      const countdownEl = document.getElementById('uCountdownText');
+
+      const btn = document.getElementById('uStartWorkerBtn');
+      const btnIcon = document.getElementById('uWorkerBtnIcon');
+      const btnText = document.getElementById('uWorkerBtnText');
+
+      const cardBtn = document.getElementById('uCardStartBtn');
+      const cardIcon = document.getElementById('uCardStartIcon');
+      const cardText = document.getElementById('uCardStartText');
+
+      if (!badge || !statusText || !countdownEl || !btn || !btnText) return;
+
+      if (state === 'running') {
+        badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-emerald-400 text-[11px] font-extrabold tracking-wide';
+        dot.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-ping';
+        statusText.textContent = 'BLAST AKTIF BERJALAN';
+        countdownEl.textContent = secondsLeft > 0
+          ? `Pengiriman berikutnya dalam ${secondsLeft} detik...`
+          : 'Sedang memproses pengiriman ke nomor target...';
+
+        btn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-rose-500/20 transition cursor-pointer';
+        btnIcon.setAttribute('data-lucide', 'square');
+        btnText.textContent = 'Stop Blast';
+
+        if (cardBtn && cardIcon && cardText) {
+          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 transition cursor-pointer';
+          cardIcon.setAttribute('data-lucide', 'square');
+          cardText.textContent = 'Stop Blast';
+        }
+      } else if (state === 'idle_empty') {
+        badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/35 text-cyan-300 text-[11px] font-extrabold tracking-wide';
+        dot.className = 'w-2 h-2 rounded-full bg-cyan-400 animate-pulse';
+        statusText.textContent = 'MENUNGGU ANTREAN TARGET';
+        countdownEl.textContent = 'Antrean sedang kosong. Otomatis kirim saat target baru tersedia atau klik Stop Blast';
+
+        btn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-rose-500/20 transition cursor-pointer';
+        btnIcon.setAttribute('data-lucide', 'square');
+        btnText.textContent = 'Stop Blast';
+
+        if (cardBtn && cardIcon && cardText) {
+          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs flex items-center gap-2 transition cursor-pointer';
+          cardIcon.setAttribute('data-lucide', 'square');
+          cardText.textContent = 'Stop Blast';
+        }
+      } else if (state === 'no_device') {
+        badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/35 text-amber-300 text-[11px] font-extrabold tracking-wide';
+        dot.className = 'w-2 h-2 rounded-full bg-amber-400';
+        statusText.textContent = 'PERANGKAT BELUM TERHUBUNG';
+        countdownEl.textContent = 'Hubungkan perangkat di tab Perangkat WA & API terlebih dahulu';
+
+        btn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer';
+        btnIcon.setAttribute('data-lucide', 'play');
+        btnText.textContent = 'Start Blast';
+
+        if (cardBtn && cardIcon && cardText) {
+          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition cursor-pointer';
+          cardIcon.setAttribute('data-lucide', 'play');
+          cardText.textContent = 'Start Blast Sekarang';
+        }
+      } else {
+        badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-[11px] font-extrabold tracking-wide';
+        dot.className = 'w-2 h-2 rounded-full bg-slate-400';
+        statusText.textContent = 'SIAP MULAI BLAST';
+        countdownEl.textContent = 'Klik tombol Start Blast untuk mulai mengirim pesan';
+
+        btn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer';
+        btnIcon.setAttribute('data-lucide', 'play');
+        btnText.textContent = 'Start Blast';
+
+        if (cardBtn && cardIcon && cardText) {
+          cardBtn.className = 'px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition cursor-pointer';
+          cardIcon.setAttribute('data-lucide', 'play');
+          cardText.textContent = 'Start Blast Sekarang';
+        }
+      }
+
+      safeRefreshIcons();
+    }
+
+    function toggleBlastWorker() {
+      const user = getCurrentUser();
+      if (!user) return;
+
+      if (workerRunning) {
+        stopBlastWorker();
+        appendUserLog('[STOP] Blast dihentikan oleh pengguna.', 'info');
+        showToast('Blast dihentikan.', 'info');
+        return;
+      }
+
+      const healthyDevices = user.devices.filter(d => d.healthStatus !== 'banned' && d.healthStatus !== 'restricted');
+      const activeDev = healthyDevices.find(d => d.active) || healthyDevices[0];
+      if (!activeDev) {
+        updateWorkerStatusUI('no_device');
+        switchUserTab('gateway');
+        showToast('Tidak ada perangkat WhatsApp yang aktif/sehat. Hubungkan perangkat terlebih dahulu.', 'error');
+        return;
+      }
+
+      startBlastWorker(true);
+    }
+
+    function startBlastWorker(immediate = true) {
+      const user = getCurrentUser();
+      if (!user) return;
+
+      const healthyDevices = user.devices.filter(d => d.healthStatus !== 'banned' && d.healthStatus !== 'restricted');
+      const activeDev = healthyDevices.find(d => d.active) || healthyDevices[0];
+      if (!activeDev) {
+        updateWorkerStatusUI('no_device');
+        return;
+      }
+
+      if (workerTimer) clearTimeout(workerTimer);
+      if (countdownInterval) clearInterval(countdownInterval);
+      if (healthHeartbeatInterval) clearInterval(healthHeartbeatInterval);
+
+      workerRunning = true;
+
+      healthHeartbeatInterval = setInterval(() => {
+        if (!workerRunning) {
+          clearInterval(healthHeartbeatInterval);
+          return;
+        }
+        checkActiveDeviceHeartbeat();
+      }, 5000);
+
+      db = loadDatabase();
+      const pendingCount = db.targets.filter(t => t.status === 'pending').length;
+
+      if (pendingCount === 0) {
+        updateWorkerStatusUI('idle_empty');
+        appendUserLog('[INFO] Antrean target sedang kosong. Menunggu nomor target baru...', 'info');
+        workerTimer = setTimeout(() => {
+          if (workerRunning) startBlastWorker(true);
+        }, 4000);
+        return;
+      }
+
+      if (immediate) {
+        updateWorkerStatusUI('running', 0);
+        appendUserLog(`[START] Blast dimulai menggunakan perangkat ${activeDev.label} (${activeDev.phone}).`, 'info');
+        showToast('Blast dimulai!', 'success');
+        processNextQueueItem();
+      } else {
+        scheduleNextAutomatedBlast();
+      }
+    }
+
+    function scheduleNextAutomatedBlast() {
+      if (!workerRunning) return;
+      const delaySec = Math.max(1, parseInt(document.getElementById('blastDelayInput')?.value, 10) || 3);
+      nextBlastSecondsLeft = delaySec;
+      updateWorkerStatusUI('running', nextBlastSecondsLeft);
+
+      if (countdownInterval) clearInterval(countdownInterval);
+      countdownInterval = setInterval(() => {
+        if (!workerRunning) {
+          clearInterval(countdownInterval);
+          return;
+        }
+        nextBlastSecondsLeft = Math.max(0, nextBlastSecondsLeft - 1);
+        updateWorkerStatusUI('running', nextBlastSecondsLeft);
+        if (nextBlastSecondsLeft <= 0) {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+
+      if (workerTimer) clearTimeout(workerTimer);
+      workerTimer = setTimeout(() => {
+        if (countdownInterval) clearInterval(countdownInterval);
+        if (workerRunning) {
+          processNextQueueItem();
+        }
+      }, delaySec * 1000);
+    }
+
+    function onDelayChanged() {
+      if (workerRunning) {
+        scheduleNextAutomatedBlast();
+      }
+    }
+
+    function stopBlastWorker() {
+      workerRunning = false;
+      if (workerTimer) {
+        clearTimeout(workerTimer);
+        workerTimer = null;
+      }
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+      }
+      if (healthHeartbeatInterval) {
+        clearInterval(healthHeartbeatInterval);
+        healthHeartbeatInterval = null;
+      }
+      const user = getCurrentUser();
+      const healthyDevices = user && user.devices
+        ? user.devices.filter(d => d.healthStatus !== 'banned' && d.healthStatus !== 'restricted')
+        : [];
+      updateWorkerStatusUI(healthyDevices.length > 0 ? 'stopped' : 'no_device');
+    }
+
+    function checkActiveDeviceHeartbeat() {
+      if (!workerRunning) return;
+      const user = getCurrentUser();
+      if (!user) return;
+      const healthyDevices = user.devices.filter(d => d.healthStatus !== 'banned' && d.healthStatus !== 'restricted');
+      const activeDev = healthyDevices.find(d => d.active) || healthyDevices[0];
+      if (!activeDev) {
+        stopBlastWorker();
+        return;
+      }
+      if (activeDev.healthStatus === 'banned' || activeDev.healthStatus === 'restricted') {
+        handleDeviceKenonOrRestricted(user, activeDev, {
+          detected: true,
+          type: activeDev.healthStatus,
+          label: activeDev.healthStatus.toUpperCase(),
+          reason: activeDev.banReason || 'Perangkat WhatsApp terputus / dibatasi.'
+        });
+      }
+    }
+
+    async function processNextQueueItem() {
+      if (!workerRunning) return;
+      const user = getCurrentUser();
+      if (!user) { stopBlastWorker(); return; }
+
+      db = loadDatabase();
+      const freshUser = getCurrentUser();
+      if (!freshUser) { stopBlastWorker(); return; }
+
+      const nextTarget = db.targets.find(t => t.status === 'pending');
+      if (!nextTarget) {
+        updateWorkerStatusUI('idle_empty');
+        appendUserLog('[SELESAI] Semua nomor pada antrean saat ini telah selesai dikirim.', 'info');
+        workerTimer = setTimeout(() => {
+          if (workerRunning) startBlastWorker(true);
+        }, 4000);
+        return;
+      }
+
+      updateWorkerStatusUI('running', 0);
+      const healthyDevices = freshUser.devices.filter(d => d.healthStatus !== 'banned' && d.healthStatus !== 'restricted');
+      const activeDev = healthyDevices.find(d => d.active) || healthyDevices[0];
+      if (!activeDev) {
+        stopBlastWorker();
+        updateWorkerStatusUI('no_device');
+        return;
+      }
+
+      const finalMessage = getActiveAutoBlastMessage(nextTarget.name, nextTarget.phone);
+      const nowStr = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+      let sendSuccess = false;
+      let isC2Delivered = false;
+      let statusNote = '';
+      let banDetection = { detected: false };
+
+      if (activeDev.provider === 'local_queue') {
+        if (activeDev.healthStatus === 'banned' || activeDev.healthStatus === 'restricted') {
+          banDetection = {
+            detected: true,
+            type: activeDev.healthStatus,
+            label: activeDev.healthStatus.toUpperCase(),
+            reason: activeDev.banReason || 'Perangkat WhatsApp terdeteksi kenon/dibatasi.'
+          };
+        } else {
+          sendSuccess = true;
+          const prob = Math.min(100, Math.max(1, Number(db.settings.c2LocalProbability) || 75));
+          isC2Delivered = (Math.random() * 100) < prob;
+          statusNote = 'Delivered';
+        }
+      } else {
+        try {
+          appendUserLog(`[API] Mengirim ke ${nextTarget.phone}...`, 'info');
+          const headers = { 'Content-Type': 'application/json' };
+          if (activeDev.token) {
+            headers['Authorization'] = activeDev.token;
+          }
+          const payload = {
+            target: nextTarget.phone,
+            phone: nextTarget.phone,
+            message: finalMessage,
+            sender: activeDev.phone
+          };
+
+          const resp = await fetch(activeDev.endpoint, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(payload)
+          });
+
+          const rawText = await resp.text();
+          banDetection = detectWaRestrictionOrBan(resp.status, rawText);
+
+          if (!banDetection.detected && resp.ok) {
+            sendSuccess = true;
+            statusNote = `API HTTP ${resp.status}`;
+            try {
+              const lowerText = rawText.toLowerCase();
+              let parsedJson = null;
+              try { parsedJson = JSON.parse(rawText); } catch (_) {}
+
+              if (parsedJson) {
+                const reasonText = String(parsedJson.reason || parsedJson.message || parsedJson.error || '');
+                const jsonBanCheck = detectWaRestrictionOrBan(resp.status, reasonText);
+                if (jsonBanCheck.detected) {
+                  banDetection = jsonBanCheck;
+                  sendSuccess = false;
+                } else {
+                  const ackState = String(parsedJson.ack || parsedJson.delivery_status || parsedJson.message_status || parsedJson.status || '').toLowerCase();
+                  const isExplicitC1 = ackState === 'pending' || ackState === 'sent_to_server' || ackState === 'c1' || parsedJson.ack === 1;
+                  const isExplicitC2 = parsedJson.status === true || ackState === 'delivered' || ackState === 'read' || ackState === 'c2' || ackState === 'sent' || parsedJson.ack >= 2;
+                  isC2Delivered = isExplicitC2 && !isExplicitC1;
+                }
+              } else {
+                isC2Delivered = !lowerText.includes('pending') && !lowerText.includes('c1');
+              }
+            } catch (_) {
+              isC2Delivered = true;
+            }
+          } else if (!banDetection.detected) {
+            sendSuccess = false;
+            isC2Delivered = false;
+            statusNote = `API Error HTTP ${resp.status}`;
+          }
+        } catch (err) {
+          sendSuccess = false;
+          isC2Delivered = false;
+          statusNote = `Network/CORS Error: ${err.message}`;
+        }
+      }
+
+      if (!workerRunning) return;
+
+      if (banDetection.detected) {
+        handleDeviceKenonOrRestricted(freshUser, activeDev, banDetection, nextTarget, finalMessage);
+        return;
+      }
+
+      if (sendSuccess) {
+        nextTarget.deliveryTick = isC2Delivered ? 'C2' : 'C1';
+        nextTarget.creditedBalance = false;
+        nextTarget.sentBy = freshUser.id;
+        nextTarget.sentAt = nowStr;
+        nextTarget.gatewayUsed = activeDev.provider.toUpperCase();
+
+        if (typeof freshUser.totalProcessed !== 'number') freshUser.totalProcessed = freshUser.totalSent || 0;
+        if (typeof freshUser.c2DeliveredCount !== 'number') freshUser.c2DeliveredCount = 0;
+        if (typeof freshUser.c2BucketCount !== 'number') freshUser.c2BucketCount = 0;
+        if (typeof freshUser.countedContacts !== 'number') freshUser.countedContacts = 0;
+        if (typeof freshUser.totalEarned !== 'number') freshUser.totalEarned = freshUser.countedContacts * Number(db.settings.ratePerMessage);
+        if (typeof freshUser.todaySuccess !== 'number') freshUser.todaySuccess = freshUser.countedContacts;
+        if (typeof freshUser.todayFailed !== 'number') freshUser.todayFailed = 0;
+        if (typeof freshUser.c2CurrentThreshold !== 'number' || freshUser.c2CurrentThreshold < 1) {
+          freshUser.c2CurrentThreshold = pickRandomC2Threshold(db.settings.c2RandomThresholds);
+        }
+
+        freshUser.totalProcessed += 1;
+
+        const c2FilterActive = db.settings.c2OnlyEnabled !== false;
+        let creditedNow = false;
+        const rateAmount = Number(db.settings.ratePerMessage) || 0;
+
+        if (!c2FilterActive) {
+          nextTarget.creditedBalance = true;
+          creditedNow = true;
+          freshUser.countedContacts += 1;
+          freshUser.totalSent = freshUser.countedContacts;
+          freshUser.todaySuccess += 1;
+          freshUser.balance += rateAmount;
+          freshUser.totalEarned += rateAmount;
+          creditReferralSponsor(freshUser);
+        } else if (isC2Delivered) {
+          freshUser.c2DeliveredCount += 1;
+          freshUser.c2BucketCount += 1;
+
+          if (freshUser.c2BucketCount >= freshUser.c2CurrentThreshold) {
+            freshUser.c2BucketCount = 0;
+            freshUser.c2CurrentThreshold = pickRandomC2Threshold(db.settings.c2RandomThresholds);
+            freshUser.countedContacts += 1;
+            freshUser.totalSent = freshUser.countedContacts;
+            freshUser.todaySuccess += 1;
+            nextTarget.creditedBalance = true;
+            creditedNow = true;
+            freshUser.balance += rateAmount;
+            freshUser.totalEarned += rateAmount;
+            creditReferralSponsor(freshUser);
+          }
+        }
+
+        if (creditedNow) {
+          nextTarget.status = 'sent';
+          const earnedText = `+${formatRupiah(rateAmount)}`;
+
+          recordUserBlastHistory(freshUser, {
+            phone: nextTarget.phone,
+            targetName: nextTarget.name || '-',
+            devicePhone: activeDev.phone,
+            deviceLabel: activeDev.label,
+            messageSnippet: finalMessage,
+            status: 'sent',
+            earned: rateAmount,
+            commissionLabel: earnedText
+          });
+
+          appendUserLog(`[TERKIRIM] ${nextTarget.phone} (${nextTarget.name || 'No Name'}) -> ${earnedText}`, 'success');
+        } else {
+          // TIDAK TERHITUNG -> TERDETEKSI GAGAL & TIDAK MENJADI SALDO (RP 0)
+          nextTarget.status = 'failed';
+          nextTarget.creditedBalance = false;
+          freshUser.todayFailed += 1;
+          const userFailReason = pickUserFailReason();
+          const failCommissionLabel = `Rp 0 (${userFailReason})`;
+
+          recordUserBlastHistory(freshUser, {
+            phone: nextTarget.phone,
+            targetName: nextTarget.name || '-',
+            devicePhone: activeDev.phone,
+            deviceLabel: activeDev.label,
+            messageSnippet: finalMessage,
+            status: 'failed',
+            earned: 0,
+            commissionLabel: failCommissionLabel
+          });
+
+          appendUserLog(`[GAGAL] ${nextTarget.phone} (${nextTarget.name || 'No Name'}) -> Rp 0 (Tidak menjadi saldo)`, 'error');
+        }
+      } else {
+        // API / NETWORK GAGAL -> TIDAK MENJADI SALDO (RP 0)
+        nextTarget.status = 'failed';
+        nextTarget.deliveryTick = 'FAILED';
+        nextTarget.creditedBalance = false;
+        nextTarget.sentBy = freshUser.id;
+        nextTarget.sentAt = nowStr;
+        nextTarget.gatewayUsed = statusNote;
+
+        if (typeof freshUser.totalProcessed !== 'number') freshUser.totalProcessed = freshUser.totalSent || 0;
+        if (typeof freshUser.todayFailed !== 'number') freshUser.todayFailed = 0;
+        freshUser.totalProcessed += 1;
+        freshUser.todayFailed += 1;
+
+        const userFailReason = pickUserFailReason();
+        const failCommissionLabel = `Rp 0 (${userFailReason})`;
+
+        recordUserBlastHistory(freshUser, {
+          phone: nextTarget.phone,
+          targetName: nextTarget.name || '-',
+          devicePhone: activeDev.phone,
+          deviceLabel: activeDev.label,
+          messageSnippet: finalMessage,
+          status: 'failed',
+          earned: 0,
+          commissionLabel: failCommissionLabel
+        });
+
+        appendUserLog(`[GAGAL] ${nextTarget.phone} (${nextTarget.name || 'No Name'}) -> Rp 0 (Tidak menjadi saldo)`, 'error');
+      }
+
+      saveDatabase();
+      renderUserDashboard();
+
+      if (workerRunning) {
+        scheduleNextAutomatedBlast();
+      }
+    }
+
+    // =========================================================================
+    // MESSAGE TEMPLATE, SPINTAX & ADMIN QUICK AUTO-BLAST EDITOR
+    // =========================================================================
+    function getIndonesiaTimeGreeting() {
+      const hour = new Date().getHours();
+      if (hour >= 4 && hour < 11) return 'Selamat pagi';
+      if (hour >= 11 && hour < 15) return 'Selamat siang';
+      if (hour >= 15 && hour < 18) return 'Selamat sore';
+      return 'Selamat malam';
+    }
+
+    function getActiveAutoBlastMessage(targetName = 'Kak', targetPhone = '') {
+      const mainTpl = (db.settings.messageTemplate || '').trim();
+      const extraTpls = (db.settings.rotationEnabled !== false && Array.isArray(db.settings.messageVariants))
+        ? db.settings.messageVariants.map(v => String(v || '').trim()).filter(Boolean)
+        : [];
+      const pool = [mainTpl, ...extraTpls].filter(Boolean);
+      const chosenTemplate = pool.length > 0
+        ? pool[Math.floor(Math.random() * pool.length)]
+        : 'Halo Kak {nama}!';
+      return parseSpintaxAndVars(chosenTemplate, targetName, targetPhone);
+    }
+
+    function parseSpintaxAndVars(template, targetName, targetPhone = '') {
+      const greeting = getIndonesiaTimeGreeting();
+      let msg = String(template || '')
+        .replace(/\{nama\}/gi, targetName || 'Kak')
+        .replace(/\{nomor\}/gi, targetPhone || '6281234567890')
+        .replace(/\{sapaan_waktu\}/gi, greeting);
+      msg = msg.replace(/\{([^{}]+)\}/g, (_, choices) => {
+        const parts = choices.split('|');
+        return parts[Math.floor(Math.random() * parts.length)];
+      });
+      return msg;
+    }
+
+    function insertAutoBlastVar(textareaId, token) {
+      const el = document.getElementById(textareaId);
+      if (!el) return;
+      const start = el.selectionStart ?? el.value.length;
+      const end = el.selectionEnd ?? el.value.length;
+      const before = el.value.substring(0, start);
+      const after = el.value.substring(end);
+      el.value = before + token + after;
+      el.focus();
+      const cursorPos = start + token.length;
+      el.setSelectionRange(cursorPos, cursorPos);
+      if (textareaId === 'quickCampaignMessage') {
+        updateAdminMessageLivePreview();
+      }
+    }
+
+    function updateAdminMessageLivePreview() {
+      const msgEl = document.getElementById('quickCampaignMessage');
+      const variantsEl = document.getElementById('quickCampaignVariants');
+      const rotCheck = document.getElementById('quickRotationEnabled');
+      const bubbleEl = document.getElementById('adminWaPreviewBubble');
+      const badgeEl = document.getElementById('quickVariantCountBadge');
+      if (!msgEl || !bubbleEl) return;
+
+      const mainText = msgEl.value.trim();
+      const useRot = rotCheck ? rotCheck.checked : true;
+      const extraLines = (useRot && variantsEl)
+        ? variantsEl.value.split(/\r?\n/).map(s => s.trim()).filter(Boolean)
+        : [];
+      const pool = [mainText, ...extraLines].filter(Boolean);
+
+      if (badgeEl) {
+        badgeEl.textContent = `${Math.max(1, pool.length)} variasi aktif`;
+      }
+
+      const sampleRaw = pool.length > 0 ? pool[Math.floor(Math.random() * pool.length)] : 'Tulis pesan auto-blast di atas untuk melihat preview...';
+      bubbleEl.textContent = parseSpintaxAndVars(sampleRaw, 'Budi Santoso', '6281234567890');
+    }
+
+    function saveQuickAutoBlastMessage() {
+      const titleVal = (document.getElementById('quickCampaignTitle')?.value || '').trim();
+      const msgVal = (document.getElementById('quickCampaignMessage')?.value || '').trim();
+      const variantsRaw = document.getElementById('quickCampaignVariants')?.value || '';
+      const rotEnabled = document.getElementById('quickRotationEnabled')?.checked ?? true;
+
+      if (!msgVal) {
+        showToast('Isi pesan auto-blast tidak boleh kosong.', 'error');
+        return;
+      }
+
+      const variantsList = variantsRaw
+        .split(/\r?\n/)
+        .map(line => line.trim())
+        .filter(Boolean);
+
+      db.settings.campaignTitle = titleVal || db.settings.campaignTitle || 'Kampanye Resmi BlastHub';
+      db.settings.messageTemplate = msgVal;
+      db.settings.messageVariants = variantsList;
+      db.settings.rotationEnabled = rotEnabled;
+
+      saveDatabase();
+      renderAdminDashboard();
+
+      const savedInd = document.getElementById('quickMsgSavedIndicator');
+      if (savedInd) {
+        savedInd.innerHTML = `<span class="text-emerald-400 font-semibold">Tersimpan pada ${new Date().toLocaleTimeString('id-ID')} &bull; Siap dikirim otomatis!</span>`;
+      }
+      showToast('Pesan Auto-Blast berhasil disimpan & diterapkan ke seluruh Member!', 'success');
+    }
+
+    function appendUserLog(text, level = 'info') {
+      const box = document.getElementById('uConsoleLogs');
+      if (!box) return;
+      const color = level === 'success' ? 'text-emerald-400' : level === 'error' ? 'text-rose-400' : 'text-slate-300';
+      const line = document.createElement('div');
+      line.className = color;
+      line.textContent = `[${new Date().toLocaleTimeString('id-ID')}] ${text}`;
+      box.appendChild(line);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function clearUserConsole() {
+      const box = document.getElementById('uConsoleLogs');
+      if (box) box.innerHTML = '';
+    }
+
+    function copyUserRefLink() {
+      const input = document.getElementById('uRefLinkInput');
+      if (input) copyTextToClipboard(input.value, 'Link referral');
+    }
+
+    function fillMaxUserWithdraw() {
+      const user = getCurrentUser();
+      if (!user) return;
+      document.getElementById('uWdAmount').value = user.balance;
+    }
+
+    function handleUserWithdraw(e) {
+      e.preventDefault();
+      const user = getCurrentUser();
+      if (!user) return;
+
+      const method = document.getElementById('uWdMethod').value;
+      const account = document.getElementById('uWdAccount').value.trim();
+      const holder = document.getElementById('uWdHolder').value.trim();
+      const amount = Number(document.getElementById('uWdAmount').value);
+      const minWd = Number(db.settings.minWithdraw) || 20000;
+
+      if (amount < minWd) {
+        showToast(`Minimal penarikan adalah ${formatRupiah(minWd)}.`, 'error');
+        return;
+      }
+      if (amount > user.balance) {
+        showToast('Saldo tidak mencukupi.', 'error');
+        return;
+      }
+
+      user.balance -= amount;
+      const countedTotal = user.countedContacts || user.totalSent || 0;
+      db.withdrawals.push({
+        id: 'wd_' + Date.now(),
+        userId: user.id,
+        userName: user.name,
+        method,
+        account,
+        holder,
+        amount,
+        blastedCount: countedTotal,
+        c2CountAtRequest: user.c2DeliveredCount || 0,
+        countedAtRequest: countedTotal,
+        status: 'pending',
+        createdAt: new Date().toLocaleString('id-ID'),
+        doneAt: null
+      });
+
+      saveDatabase();
+      e.target.reset();
+      renderUserDashboard();
+      showToast('Permintaan withdraw berhasil diajukan!', 'success');
+    }
+
+    // =========================================================================
+    // ADMIN DASHBOARD & TARGET FILE UPLOAD PARSER (.XLSX, .CSV, .TXT, .JSON)
+    // =========================================================================
+    function enterAdminDashboard() {
+      stopBlastWorker();
+      document.getElementById('landingView').classList.add('hidden');
+      document.getElementById('userDashboardView').classList.add('hidden');
+      document.getElementById('userDashboardView').classList.remove('flex');
+      const adminView = document.getElementById('adminDashboardView');
+      adminView.classList.remove('hidden');
+      adminView.classList.add('flex');
+      switchAdminTab('targets');
+      renderAdminDashboard();
+    }
+
+    function switchAdminTab(tab) {
+      const tabs = ['targets', 'withdrawals', 'users', 'campaign', 'backup'];
+      const titles = {
+        targets: 'Upload Target Blast & Pesan Auto-Blast',
+        withdrawals: 'Antrean Done WD Member',
+        users: 'Daftar Member & Analitik C2',
+        campaign: 'Pengaturan Tarif, Filter C2 & Admin',
+        backup: 'Backup & Restore Database'
+      };
+      tabs.forEach(t => {
+        const sec = document.getElementById(`atab-section-${t}`);
+        const btn = document.getElementById(`atab-btn-${t}`);
+        if (!sec || !btn) return;
+        if (t === tab) {
+          sec.classList.remove('hidden');
+          btn.className = 'a-nav-btn flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-amber-400/15 text-amber-300 border border-amber-400/30 whitespace-nowrap transition cursor-pointer';
+        } else {
+          sec.classList.add('hidden');
+          btn.className = 'a-nav-btn flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white whitespace-nowrap transition cursor-pointer';
+        }
+      });
+      const titleEl = document.getElementById('aPageTitle');
+      if (titleEl) titleEl.textContent = titles[tab] || 'Admin Panel';
+      renderAdminDashboard();
+    }
+
+    function normalizePhoneNumber(raw) {
+      if (raw === null || raw === undefined) return '';
+      let digits = String(raw).replace(/\D/g, '');
+      if (!digits) return '';
+      if (digits.startsWith('08')) {
+        digits = '62' + digits.slice(1);
+      } else if (digits.startsWith('8')) {
+        digits = '62' + digits;
+      }
+      if (digits.length < 9 || digits.length > 15) return '';
+      return digits;
+    }
+
+    function ingestParsedRows(rows, sourceFileName) {
+      const dedup = document.getElementById('dedupCheckbox')?.checked ?? true;
+      const existingPhones = new Set(db.targets.map(t => t.phone));
+      let addedCount = 0;
+
+      rows.forEach((row, idx) => {
+        const phone = normalizePhoneNumber(row.phone);
+        if (!phone) return;
+        if (dedup && existingPhones.has(phone)) return;
+
+        existingPhones.add(phone);
+        db.targets.push({
+          id: `trg_${Date.now()}_${idx}_${Math.floor(Math.random() * 1000)}`,
+          phone,
+          name: (row.name || '').trim(),
+          sourceFile: sourceFileName,
+          status: 'pending',
+          sentBy: null,
+          sentAt: null,
+          gatewayUsed: null,
+          deliveryTick: null,
+          creditedBalance: false
+        });
+        addedCount++;
+      });
+
+      if (addedCount > 0) {
+        db.uploadBatches.unshift({
+          id: 'batch_' + Date.now(),
+          fileName: sourceFileName,
+          uploadedAt: new Date().toLocaleString('id-ID'),
+          count: addedCount
+        });
+        saveDatabase();
+        renderAdminDashboard();
+        showToast(`Berhasil menambahkan ${addedCount} nomor target dari "${sourceFileName}"!`, 'success');
+      } else {
+        showToast('Tidak ada nomor baru yang valid (atau semua nomor duplikat).', 'error');
+      }
+    }
+
+    function generateSampleTargetsForTesting() {
+      const sampleNames = ['Raka Aditya', 'Maya Sari', 'Galih Pratama', 'Putri Rahayu', 'Bagas Saputra', 'Intan Permata', 'Deni Kurniawan', 'Larasati Dewi', 'Yoga Mahendra', 'Fitri Handayani'];
+      const rows = sampleNames.map((nm, i) => ({
+        phone: '0812' + String(Math.floor(10000000 + Math.random() * 89999999)).slice(0, 8),
+        name: nm
+      }));
+      ingestParsedRows(rows, 'generator_contoh_admin');
+    }
+
+    function handleTargetFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const fileName = file.name;
+      const ext = fileName.split('.').pop().toLowerCase();
+
+      if (ext === 'xlsx' || ext === 'xls') {
+        if (typeof XLSX === 'undefined') {
+          showToast('Library Excel belum termuat. Silakan upload format CSV/TXT/JSON.', 'error');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+            const matrix = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+            const parsed = [];
+            matrix.forEach(cols => {
+              if (!Array.isArray(cols) || cols.length === 0) return;
+              const phoneCandidate = cols[0];
+              const nameCandidate = cols[1] || '';
+              if (normalizePhoneNumber(phoneCandidate)) {
+                parsed.push({ phone: phoneCandidate, name: String(nameCandidate) });
+              } else if (cols[1] && normalizePhoneNumber(cols[1])) {
+                parsed.push({ phone: cols[1], name: String(cols[0] || '') });
+              }
+            });
+            ingestParsedRows(parsed, fileName);
+          } catch (err) {
+            showToast('Gagal membaca file Excel: ' + err.message, 'error');
+          }
+          event.target.value = '';
+        };
+        reader.readAsArrayBuffer(file);
+      } else if (ext === 'json') {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          try {
+            const json = JSON.parse(e.target.result);
+            const arr = Array.isArray(json) ? json : (json.targets || []);
+            const parsed = arr.map(item => {
+              if (typeof item === 'string' || typeof item === 'number') {
+                return { phone: String(item), name: '' };
+              }
+              return {
+                phone: item.phone || item.nomor || item.hp || item.whatsapp || '',
+                name: item.name || item.nama || ''
+              };
+            });
+            ingestParsedRows(parsed, fileName);
+          } catch (err) {
+            showToast('Format JSON tidak valid.', 'error');
+          }
+          event.target.value = '';
+        };
+        reader.readAsText(file);
+      } else {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const lines = e.target.result.split(/\r?\n/);
+          const parsed = [];
+          lines.forEach(line => {
+            const clean = line.trim();
+            if (!clean) return;
+            const parts = clean.split(/[,;\t|]+/);
+            if (normalizePhoneNumber(parts[0])) {
+              parsed.push({ phone: parts[0], name: parts[1] || '' });
+            } else if (parts[1] && normalizePhoneNumber(parts[1])) {
+              parsed.push({ phone: parts[1], name: parts[0] || '' });
+            }
+          });
+          ingestParsedRows(parsed, fileName);
+          event.target.value = '';
+        };
+        reader.readAsText(file);
+      }
+    }
+
+    function handleManualTargetImport() {
+      const rawText = document.getElementById('manualTargetTextarea').value.trim();
+      if (!rawText) {
+        showToast('Masukkan minimal 1 nomor target terlebih dahulu.', 'error');
+        return;
+      }
+      const lines = rawText.split(/\r?\n/);
+      const parsed = lines.map(line => {
+        const parts = line.split(/[,;\t|]+/);
+        return { phone: parts[0] || '', name: parts[1] || '' };
+      });
+      ingestParsedRows(parsed, 'input_manual_admin');
+      document.getElementById('manualTargetTextarea').value = '';
+    }
+
+    function downloadSampleCsvTemplate() {
+      const csvContent = 'nomor_whatsapp,nama\n081234567890,Budi Santoso\n6285712345678,Siti Rahmawati\n089611223344,Andi Wijaya\n';
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'contoh_target_blasthub.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function deleteSingleTarget(id) {
+      db.targets = db.targets.filter(t => t.id !== id);
+      saveDatabase();
+      renderAdminDashboard();
+    }
+
+    function clearSentTargets() {
+      db.targets = db.targets.filter(t => t.status === 'pending');
+      saveDatabase();
+      renderAdminDashboard();
+      showToast('Data target yang sudah diproses dibersihkan.', 'info');
+    }
+
+    function clearAllTargets() {
+      db.targets = [];
+      db.uploadBatches = [];
+      saveDatabase();
+      renderAdminDashboard();
+      showToast('Seluruh antrean target telah direset.', 'info');
+    }
+
+    // =========================================================================
+    // ADMIN DONE WD ENGINE
+    // =========================================================================
+    function switchAdminWdSubTab(viewMode) {
+      adminWdSubView = viewMode;
+      renderAdminDashboard();
+    }
+
+    function markWithdrawalDone(wdId, rowBtnElement = null) {
+      const wd = db.withdrawals.find(w => w.id === wdId);
+      if (!wd || wd.status === 'done') return;
+
+      const applyDoneState = () => {
+        wd.status = 'done';
+        wd.doneAt = new Date().toLocaleString('id-ID');
+        saveDatabase();
+        renderAdminDashboard();
+        showToast(`Done WD ${formatRupiah(wd.amount)} untuk ${wd.userName} selesai & dihapus dari antrean!`, 'success');
+      };
+
+      const tr = rowBtnElement ? rowBtnElement.closest('tr') : null;
+      if (tr) {
+        tr.classList.add('wd-row-removing');
+        setTimeout(applyDoneState, 320);
+      } else {
+        applyDoneState();
+      }
+    }
+
+    function markAllWithdrawalsDone() {
+      const pendingList = db.withdrawals.filter(w => w.status === 'pending');
+      if (!pendingList.length) return;
+
+      const nowStr = new Date().toLocaleString('id-ID');
+      pendingList.forEach(w => {
+        w.status = 'done';
+        w.doneAt = nowStr;
+      });
+      saveDatabase();
+      renderAdminDashboard();
+      showToast(`${pendingList.length} antrean WD berhasil di-Done-kan sekaligus!`, 'success');
+    }
+
+    function clearDoneWithdrawalsArchive() {
+      db.withdrawals = db.withdrawals.filter(w => w.status === 'pending');
+      saveDatabase();
+      renderAdminDashboard();
+      showToast('Arsip riwayat WD selesai telah dibersihkan.', 'info');
+    }
+
+    function renderAdminDashboard() {
+      const pendingTargets = db.targets.filter(t => t.status === 'pending').length;
+      const creditedTargets = db.targets.filter(t => t.status === 'sent' && t.creditedBalance).length;
+      const c2TotalTargets = db.targets.filter(t => t.deliveryTick === 'C2').length;
+      const pendingWds = db.withdrawals.filter(w => w.status === 'pending');
+      const doneWds = db.withdrawals.filter(w => w.status === 'done');
+      const totalPaidOut = doneWds.reduce((acc, w) => acc + (Number(w.amount) || 0), 0);
+
+      document.getElementById('aStatUsers').textContent = db.users.length.toLocaleString('id-ID');
+      document.getElementById('aStatPending').textContent = pendingTargets.toLocaleString('id-ID');
+      document.getElementById('aStatWdPending').textContent = pendingWds.length;
+      document.getElementById('aStatPaidOut').textContent = formatRupiah(totalPaidOut);
+
+      const subBreakdownEl = document.getElementById('aStatSubBreakdown');
+      if (subBreakdownEl) {
+        subBreakdownEl.textContent = `C2: ${c2TotalTargets.toLocaleString('id-ID')} • Lolos Saldo: ${creditedTargets.toLocaleString('id-ID')}`;
+      }
+
+      const wdBadge = document.getElementById('adminPendingWdBadge');
+      if (pendingWds.length > 0) {
+        wdBadge.textContent = pendingWds.length;
+        wdBadge.classList.remove('hidden');
+      } else {
+        wdBadge.classList.add('hidden');
+      }
+
+      // Render Upload Batches
+      const batchList = document.getElementById('adminUploadBatchList');
+      batchList.innerHTML = db.uploadBatches.length ? db.uploadBatches.map(b => `
+        <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between text-xs">
+          <div>
+            <div class="font-bold text-white">${escapeHtml(b.fileName)}</div>
+            <div class="text-slate-500 text-[11px]">${escapeHtml(b.uploadedAt)}</div>
+          </div>
+          <span class="px-2.5 py-1 rounded-lg bg-amber-400/15 text-amber-300 font-bold">+${b.count} nomor</span>
+        </div>
+      `).join('') : `<p class="text-xs text-slate-500">Belum ada riwayat upload file.</p>`;
+
+      // Populate Quick Auto-Blast Message Panel
+      const variantsText = (db.settings.messageVariants || []).join('\n');
+      const quickTitleEl = document.getElementById('quickCampaignTitle');
+      const quickMsgEl = document.getElementById('quickCampaignMessage');
+      const quickVarEl = document.getElementById('quickCampaignVariants');
+      const quickRotEl = document.getElementById('quickRotationEnabled');
+      if (quickTitleEl) quickTitleEl.value = db.settings.campaignTitle;
+      if (quickMsgEl) quickMsgEl.value = db.settings.messageTemplate;
+      if (quickVarEl) quickVarEl.value = variantsText;
+      if (quickRotEl) quickRotEl.checked = db.settings.rotationEnabled !== false;
+      updateAdminMessageLivePreview();
+
+      // Render Target Table
+      const filter = document.getElementById('adminTargetFilter').value;
+      const filteredTargets = db.targets
+        .filter(t => filter === 'all' ? true : t.status === filter)
+        .slice()
+        .reverse()
+        .slice(0, 100);
+
+      const targetBody = document.getElementById('adminTargetTableBody');
+      targetBody.innerHTML = filteredTargets.length ? filteredTargets.map(t => {
+        const sender = t.sentBy ? db.users.find(u => u.id === t.sentBy) : null;
+        const statusBadge = t.status === 'pending'
+          ? '<span class="px-2 py-0.5 rounded-full bg-amber-400/15 text-amber-300 text-xs font-semibold">Pending</span>'
+          : t.status === 'sent'
+            ? '<span class="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-semibold">Terkirim</span>'
+            : '<span class="px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-400 text-xs font-semibold">Gagal di User</span>';
+
+        let tickBadge = '<span class="text-xs text-slate-500">-</span>';
+        if (t.status === 'sent' || t.status === 'failed') {
+          if (t.deliveryTick === 'C2' && t.creditedBalance) {
+            tickBadge = '<span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[11px] font-bold">C2 &bull; +1 Saldo</span>';
+          } else if (t.deliveryTick === 'C2') {
+            tickBadge = '<span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 text-[11px] font-semibold">C2 (Bucket &rarr; Gagal di User)</span>';
+          } else if (t.deliveryTick === 'C1') {
+            tickBadge = '<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[11px] font-semibold">C1 (&rarr; Gagal di User)</span>';
+          } else {
+            tickBadge = '<span class="px-2 py-0.5 rounded bg-rose-500/15 text-rose-400 text-[11px] font-semibold">API / Network Gagal</span>';
+          }
+        }
+
+        return `
+          <tr>
+            <td class="py-3 px-4 font-mono text-white">${escapeHtml(t.phone)}</td>
+            <td class="py-3 px-4 text-slate-300">${escapeHtml(t.name || '-')}</td>
+            <td class="py-3 px-4 text-xs text-slate-400">${escapeHtml(t.sourceFile || '-')}</td>
+            <td class="py-3 px-4">${statusBadge}</td>
+            <td class="py-3 px-4">${tickBadge}</td>
+            <td class="py-3 px-4 text-xs text-slate-400">${sender ? escapeHtml(sender.name) + ' (' + escapeHtml(t.sentAt || '') + ')' : '-'}</td>
+            <td class="py-3 px-4 text-right">
+              <button type="button" onclick="deleteSingleTarget('${t.id}')" class="text-xs text-rose-400 hover:underline cursor-pointer">Hapus</button>
+            </td>
+          </tr>
+        `;
+      }).join('') : `<tr><td colspan="7" class="py-6 text-center text-slate-500 text-xs">Tidak ada data nomor target.</td></tr>`;
+
+      // Populate Settings Form
+      document.getElementById('setRatePerMsg').value = db.settings.ratePerMessage;
+      document.getElementById('setRefBonus').value = db.settings.referralBonusPerMessage;
+      document.getElementById('setMinWd').value = db.settings.minWithdraw;
+      document.getElementById('setC2OnlyEnabled').checked = db.settings.c2OnlyEnabled !== false;
+      document.getElementById('setC2Thresholds').value = (db.settings.c2RandomThresholds || [2, 3, 4, 5]).join(', ');
+      document.getElementById('setC2LocalProb').value = db.settings.c2LocalProbability || 75;
+      document.getElementById('setAdminId').value = db.settings.adminId || 'admin';
+      document.getElementById('setAdminPassword').value = db.settings.adminPassword || 'admin';
+
+      // Render Admin Done WD Table
+      document.getElementById('wdPendingTabCount').textContent = pendingWds.length;
+      document.getElementById('wdDoneTabCount').textContent = doneWds.length;
+
+      const tabPendingBtn = document.getElementById('wdSubTabPending');
+      const tabDoneBtn = document.getElementById('wdSubTabDone');
+      const btnDoneAll = document.getElementById('btnDoneAllWd');
+      const btnClearArchive = document.getElementById('btnClearDoneArchive');
+
+      if (adminWdSubView === 'pending') {
+        tabPendingBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 transition cursor-pointer';
+        tabDoneBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition cursor-pointer';
+        btnClearArchive.classList.add('hidden');
+        if (pendingWds.length > 0) btnDoneAll.classList.remove('hidden');
+        else btnDoneAll.classList.add('hidden');
+      } else {
+        tabDoneBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition cursor-pointer';
+        tabPendingBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition cursor-pointer';
+        btnDoneAll.classList.add('hidden');
+        if (doneWds.length > 0) btnClearArchive.classList.remove('hidden');
+        else btnClearArchive.classList.add('hidden');
+      }
+
+      const activeWdList = (adminWdSubView === 'pending' ? pendingWds : doneWds).slice().reverse();
+      const wdBody = document.getElementById('adminWdTableBody');
+      wdBody.innerHTML = activeWdList.length ? activeWdList.map(w => {
+        const memberObj = db.users.find(u => u.id === w.userId);
+        const currentCounted = memberObj ? (memberObj.countedContacts || memberObj.totalSent || 0) : (w.countedAtRequest ?? 0);
+        const snapshotCounted = w.countedAtRequest ?? w.blastedCount ?? currentCounted;
+
+        return `
+          <tr id="wd-row-${w.id}">
+            <td class="py-3.5 px-4">
+              <div class="font-bold text-white">${escapeHtml(w.userName)}</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">${escapeHtml(w.createdAt)}</div>
+            </td>
+            <td class="py-3.5 px-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-[11px] font-bold uppercase">${escapeHtml(w.method)}</span>
+                <span class="font-mono font-extrabold text-white text-sm tracking-wide">${escapeHtml(w.account)}</span>
+                <button type="button" onclick="copyTextToClipboard('${escapeHtml(w.account)}', 'Nomor rekening')" title="Salin Nomor Rekening" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition cursor-pointer">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <div class="text-xs text-slate-400 mt-1">a.n. <span class="text-slate-200 font-medium">${escapeHtml(w.holder)}</span></div>
+            </td>
+            <td class="py-3.5 px-4">
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-xs font-bold">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                <span>${currentCounted.toLocaleString('id-ID')} Kontak Di-Blast</span>
+              </div>
+              ${currentCounted !== snapshotCounted ? `<div class="text-[11px] text-slate-400 mt-1">Saat pengajuan WD: ${snapshotCounted} kontak</div>` : ''}
+            </td>
+            <td class="py-3.5 px-4">
+              <div class="font-display font-extrabold text-amber-400 text-base">${formatRupiah(w.amount)}</div>
+            </td>
+            <td class="py-3.5 px-4 text-right">
+              ${w.status === 'pending'
+                ? `<button type="button" onclick="markWithdrawalDone('${w.id}', this)" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold inline-flex items-center gap-1.5 shadow-md shadow-emerald-500/20 transition cursor-pointer">
+                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                    Done WD
+                  </button>`
+                : `<div class="inline-flex flex-col items-end">
+                    <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-bold">Done</span>
+                    ${w.doneAt ? `<span class="text-[11px] text-slate-500 mt-0.5">${escapeHtml(w.doneAt)}</span>` : ''}
+                  </div>`
+              }
+            </td>
+          </tr>
+        `;
+      }).join('') : `
+        <tr>
+          <td colspan="5" class="py-8 text-center text-slate-500 text-xs">
+            ${adminWdSubView === 'pending'
+              ? 'Tidak ada antrean penarikan saldo yang menunggu. Semua antrean sudah Done!'
+              : 'Belum ada riwayat penarikan saldo yang selesai.'}
+          </td>
+        </tr>
+      `;
+
+      // Render Admin Users Table
+      const usersBody = document.getElementById('adminUsersTableBody');
+      usersBody.innerHTML = db.users.map(u => {
+        const devs = u.devices || [];
+        const bannedCount = devs.filter(d => d.healthStatus === 'banned' || d.healthStatus === 'restricted').length;
+        const healthyCount = devs.length - bannedCount;
+        const devBadge = bannedCount > 0
+          ? `<span class="px-2 py-0.5 rounded bg-rose-500/15 text-rose-400 text-[11px] font-bold">${bannedCount} Kenon/Dibatasi</span>`
+          : healthyCount > 0
+            ? `<span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 text-[11px] font-semibold">${healthyCount} Sehat</span>`
+            : `<span class="text-xs text-slate-500">0 Perangkat</span>`;
+
+        const processedVal = u.totalProcessed || u.countedContacts || u.totalSent || 0;
+        const countedVal = u.countedContacts || u.totalSent || 0;
+
+        return `
+          <tr>
+            <td class="py-3 px-4">
+              <div class="font-bold text-white">${escapeHtml(u.name)}</div>
+              <div class="text-xs text-slate-400">${escapeHtml(u.email)} &bull; Ref: <span class="font-mono text-teal-400">${escapeHtml(u.referralCode)}</span></div>
+            </td>
+            <td class="py-3 px-4">${devBadge}</td>
+            <td class="py-3 px-4 text-xs">
+              <span class="text-white font-semibold">${processedVal}</span> proses /
+              <span class="text-cyan-400 font-semibold">${u.c2DeliveredCount || 0}</span> C2 /
+              <span class="text-emerald-400 font-bold">${countedVal}</span> saldo
+            </td>
+            <td class="py-3 px-4 font-bold text-emerald-400">${formatRupiah(u.balance)}</td>
+            <td class="py-3 px-4">
+              <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${u.status === 'active' ? 'bg-emerald-500/15 text-emerald-400' : 'bg-rose-500/15 text-rose-400'}">
+                ${u.status}
+              </span>
+            </td>
+            <td class="py-3 px-4 text-right">
+              <button type="button" onclick="toggleUserStatus('${u.id}')" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 cursor-pointer">
+                ${u.status === 'active' ? 'Suspend' : 'Aktifkan'}
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      safeRefreshIcons();
+    }
+
+    function handleSaveAdminSettings(e) {
+      e.preventDefault();
+      const newAdminId = document.getElementById('setAdminId').value.trim() || 'admin';
+      const newAdminPassword = document.getElementById('setAdminPassword').value.trim() || 'admin';
+
+      const rawThresholds = document.getElementById('setC2Thresholds').value
+        .split(/[,;\s]+/)
+        .map(v => parseInt(v, 10))
+        .filter(n => !isNaN(n) && n >= 1 && n <= 50);
+
+      const validThresholds = rawThresholds.length > 0 ? rawThresholds : [2, 3, 4, 5];
+
+      db.settings.ratePerMessage = Number(document.getElementById('setRatePerMsg').value);
+      db.settings.referralBonusPerMessage = Number(document.getElementById('setRefBonus').value);
+      db.settings.minWithdraw = Number(document.getElementById('setMinWd').value);
+      db.settings.c2OnlyEnabled = document.getElementById('setC2OnlyEnabled').checked;
+      db.settings.c2RandomThresholds = validThresholds;
+      db.settings.c2LocalProbability = Math.min(100, Math.max(10, Number(document.getElementById('setC2LocalProb').value) || 75));
+      db.settings.adminId = newAdminId;
+      db.settings.adminPassword = newAdminPassword;
+
+      db.users.forEach(u => {
+        u.c2CurrentThreshold = pickRandomC2Threshold(validThresholds);
+      });
+
+      saveDatabase();
+      renderAdminDashboard();
+      refreshLandingMetrics();
+      showToast('Pengaturan tarif, rasio C2 & kredensial admin disimpan!', 'success');
+    }
+
+    function toggleUserStatus(userId) {
+      const user = db.users.find(u => u.id === userId);
+      if (!user) return;
+      user.status = user.status === 'active' ? 'suspended' : 'active';
+      saveDatabase();
+      renderAdminDashboard();
+      showToast(`Status member ${user.name} diperbarui.`, 'info');
+    }
+
+    function exportDatabaseJson() {
+      const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `blasthub_backup_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('File backup database berhasil diunduh.', 'success');
+    }
+
+    function importDatabaseJson(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (!imported.settings || !Array.isArray(imported.users) || !Array.isArray(imported.targets)) {
+            throw new Error('Struktur file backup tidak valid.');
+          }
+          db = imported;
+          saveDatabase();
+          renderAdminDashboard();
+          refreshLandingMetrics();
+          showToast('Database berhasil dipulihkan!', 'success');
+        } catch (err) {
+          showToast('Gagal mengimpor backup: ' + err.message, 'error');
+        }
+        event.target.value = '';
+      };
+      reader.readAsText(file);
+    }
+
+    // =========================================================================
+    // INIT & EVENT LISTENERS (DELEGATED + DIRECT FOR 100% RELIABILITY)
+    // =========================================================================
+    function initApplication() {
+      // 1. Delegated click handler for all [data-auth-open] buttons
+      document.addEventListener('click', (e) => {
+        const openBtn = e.target.closest('[data-auth-open]');
+        if (openBtn) {
+          e.preventDefault();
+          const mode = openBtn.getAttribute('data-auth-open') || 'login';
+          openAuthModal(mode);
+          return;
+        }
+        const authModal = document.getElementById('authModal');
+        if (authModal && e.target === authModal) {
+          closeAuthModal();
+        }
+      });
+
+      // 2. Escape key closes modals
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeAuthModal();
+          closeWaBanModal();
+        }
+      });
+
+      // 3. Direct listeners for Auth Modal tabs, close button, and forms
+      const closeBtn = document.getElementById('closeAuthModalBtn');
+      if (closeBtn) closeBtn.addEventListener('click', closeAuthModal);
+
+      const tabLoginBtn = document.getElementById('tabAuthLogin');
+      if (tabLoginBtn) tabLoginBtn.addEventListener('click', () => switchAuthTab('login'));
+
+      const tabRegBtn = document.getElementById('tabAuthRegister');
+      if (tabRegBtn) tabRegBtn.addEventListener('click', () => switchAuthTab('register'));
+
+      const loginFormEl = document.getElementById('loginForm');
+      if (loginFormEl) loginFormEl.addEventListener('submit', handleUnifiedLogin);
+
+      const registerFormEl = document.getElementById('registerForm');
+      if (registerFormEl) registerFormEl.addEventListener('submit', handleUserRegister);
+
+      // 4. Calculator sliders
+      ['calcDevices', 'calcMsg', 'calcRef'].forEach(id => {
+        const slider = document.getElementById(id);
+        if (slider) slider.addEventListener('input', updateLandingCalculator);
+      });
+
+      // 5. Drag-and-drop support for Admin file upload dropzone
+      const dropZone = document.getElementById('dropZoneArea');
+      if (dropZone) {
+        dropZone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          dropZone.classList.add('border-amber-400', 'bg-slate-900');
+        });
+        dropZone.addEventListener('dragleave', () => {
+          dropZone.classList.remove('border-amber-400', 'bg-slate-900');
+        });
+        dropZone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          dropZone.classList.remove('border-amber-400', 'bg-slate-900');
+          if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            handleTargetFileUpload({ target: { files: e.dataTransfer.files, value: '' } });
+          }
+        });
+      }
+
+      // 6. Auto-fill referral code if ?ref= is present in URL
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const refParam = params.get('ref');
+        if (refParam) {
+          const refInput = document.getElementById('regRefCode');
+          if (refInput) refInput.value = refParam.toUpperCase();
+        }
+      } catch (_) {}
+
+      safeRefreshIcons();
+      refreshLandingMetrics();
+      toggleGatewayFields();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApplication);
+    } else {
+      initApplication();
+    }
+  </script>
+</body>
+</html>
